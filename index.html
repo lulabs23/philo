@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Philosophie · Révisions Terminale · Bac 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1814;
+    --paper: #f5f1e8;
+    --paper-2: #ede7d7;
+    --cream: #faf6ec;
+    --accent: #8b2e1f;
+    --accent-soft: #c4604a;
+    --gold: #a68a3e;
+    --muted: #6b6356;
+    --line: #d8cfb8;
+    --shadow: rgba(26, 24, 20, 0.08);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(139, 46, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(166, 138, 62, 0.05) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+
+  /* === HEADER === */
+  .masthead {
+    border-bottom: 1px solid var(--line);
+    padding: 28px 32px 24px;
+    background: var(--cream);
+    position: relative;
+  }
+  .masthead::before {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0; right: 0;
+    height: 1px;
+    background: var(--ink);
+    opacity: 0.15;
+  }
+  .masthead-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .brand {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .brand-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .brand-title {
+    font-family: var(--serif);
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .brand-title em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .brand-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-top: 8px;
+  }
+
+  /* === NAV TABS === */
+  .tabs {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    align-self: flex-end;
+  }
+  .tab {
+    background: transparent;
+    border: none;
+    padding: 10px 18px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--ink);
+    transition: all 0.2s ease;
+    border-right: 1px solid var(--ink);
+    position: relative;
+  }
+  .tab:last-child { border-right: none; }
+  .tab:hover { background: var(--paper-2); }
+  .tab.active {
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  /* === MAIN === */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 32px 80px;
+  }
+
+  /* === NOTION SELECTOR === */
+  .notion-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .notion-chip {
+    padding: 7px 14px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    text-transform: lowercase;
+    border-radius: 0;
+  }
+  .notion-chip:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .notion-chip.active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--cream);
+  }
+  .notion-chip[data-cours="true"]::after {
+    content: '●';
+    margin-left: 6px;
+    color: var(--accent);
+    font-size: 8px;
+    vertical-align: middle;
+  }
+  .notion-chip.active[data-cours="true"]::after {
+    color: var(--accent-soft);
+  }
+
+  /* === SECTIONS === */
+  .section { display: none; animation: fadeIn 0.4s ease; }
+  .section.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .section-counter {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* === FLASHCARDS === */
+  .fc-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .fc-progress {
+    width: 100%;
+    max-width: 640px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .fc-progress-bar {
+    flex: 1;
+    height: 2px;
+    background: var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  .fc-progress-fill {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    background: var(--accent);
+    transition: width 0.4s ease;
+  }
+  .flashcard {
+    width: 100%;
+    max-width: 640px;
+    aspect-ratio: 5 / 3;
+    perspective: 1500px;
+    cursor: pointer;
+  }
+  .flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+  .flashcard.flipped .flashcard-inner {
+    transform: rotateY(180deg);
+  }
+  .flashcard-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    background: var(--cream);
+    border: 1px solid var(--ink);
+    padding: 36px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 6px 6px 0 var(--ink);
+    overflow: hidden;
+  }
+  .flashcard-face::before {
+    content: '';
+    position: absolute;
+    top: 14px; left: 14px; right: 14px; bottom: 14px;
+    border: 1px solid var(--line);
+    pointer-events: none;
+  }
+  .flashcard-face.back {
+    transform: rotateY(180deg);
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .flashcard-face.back::before {
+    border-color: rgba(245, 241, 232, 0.15);
+  }
+  .fc-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 18px;
+    z-index: 1;
+  }
+  .flashcard-face.back .fc-tag {
+    color: var(--accent-soft);
+  }
+  .fc-question {
+    font-family: var(--serif);
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 500;
+    line-height: 1.3;
+    z-index: 1;
+    max-width: 90%;
+  }
+  .fc-question em { font-style: italic; }
+  .fc-answer-question {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(245, 241, 232, 0.5);
+    margin-bottom: 14px;
+    z-index: 1;
+    max-width: 90%;
+  }
+  .fc-answer {
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    z-index: 1;
+    max-width: 92%;
+  }
+  .fc-answer strong { font-weight: 600; color: var(--accent-soft); }
+  .fc-answer ul { text-align: left; padding-left: 18px; margin-top: 4px; }
+  .fc-answer li { margin-bottom: 4px; }
+  .fc-hint {
+    position: absolute;
+    bottom: 18px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    z-index: 1;
+  }
+  .flashcard-face.back .fc-hint { color: rgba(245, 241, 232, 0.4); }
+
+  .fc-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .fc-btn {
+    background: transparent;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    padding: 10px 20px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .fc-btn:hover:not(:disabled) {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .fc-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .fc-btn.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--cream);
+  }
+  .fc-btn.primary:hover { background: var(--ink); border-color: var(--ink); }
+
+  /* === QUIZ === */
+  .quiz-shell {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .quiz-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .quiz-progress-bar {
+    flex: 1;
+    height: 2px;
+    background: var(--line);
+    position: relative;
+  }
+  .quiz-progress-fill {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    background: var(--accent);
+    transition: width 0.4s ease;
+  }
+  .quiz-card {
+    background: var(--cream);
+    border: 1px solid var(--ink);
+    padding: 36px;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .quiz-q-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .quiz-question {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.6vw, 26px);
+    font-weight: 500;
+    line-height: 1.35;
+    margin-bottom: 28px;
+  }
+  .quiz-question em { font-style: italic; }
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .quiz-option {
+    background: transparent;
+    border: 1px solid var(--line);
+    padding: 14px 18px;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.18s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .quiz-option:hover:not(:disabled) {
+    border-color: var(--ink);
+    background: var(--paper);
+  }
+  .quiz-option:disabled { cursor: default; }
+  .quiz-option-letter {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    flex-shrink: 0;
+    width: 18px;
+    padding-top: 2px;
+  }
+  .quiz-option.correct {
+    border-color: #4a6e3a;
+    background: #e8efde;
+  }
+  .quiz-option.correct .quiz-option-letter { color: #4a6e3a; }
+  .quiz-option.wrong {
+    border-color: var(--accent);
+    background: rgba(139, 46, 31, 0.08);
+  }
+  .quiz-option.wrong .quiz-option-letter { color: var(--accent); }
+  .quiz-explain {
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+    font-family: var(--serif);
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--muted);
+    display: none;
+  }
+  .quiz-explain.show { display: block; animation: fadeIn 0.3s ease; }
+  .quiz-explain strong {
+    font-style: normal;
+    font-family: var(--sans);
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .quiz-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .quiz-score-banner {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 32px;
+    text-align: center;
+    border: 1px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--accent);
+  }
+  .quiz-score-num {
+    font-family: var(--serif);
+    font-size: 64px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--accent-soft);
+  }
+  .quiz-score-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 8px;
+    opacity: 0.7;
+  }
+  .quiz-score-msg {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    margin-top: 18px;
+  }
+
+  /* === TABLEAU === */
+  .table-intro {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--muted);
+    margin-bottom: 24px;
+    max-width: 720px;
+    line-height: 1.5;
+  }
+  .table-wrapper {
+    border: 1px solid var(--ink);
+    background: var(--cream);
+    overflow-x: auto;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  table.philo-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 720px;
+  }
+  table.philo-table thead {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  table.philo-table th {
+    text-align: left;
+    padding: 14px 18px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  table.philo-table td {
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  table.philo-table tr:last-child td { border-bottom: none; }
+  table.philo-table tr:hover td { background: var(--paper); }
+  table.philo-table .philosopher {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  table.philo-table .philosopher .dates {
+    display: block;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+  }
+  table.philo-table .thesis {
+    font-family: var(--serif);
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  table.philo-table .keyword {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* === EMPTY STATE === */
+  .empty {
+    text-align: center;
+    padding: 60px 20px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--muted);
+  }
+
+  /* === FOOTER === */
+  .footnote {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* === MOBILE === */
+  @media (max-width: 700px) {
+    .masthead { padding: 20px 18px 18px; }
+    .masthead-inner { flex-direction: column; align-items: flex-start; }
+    .tabs { width: 100%; }
+    .tab { flex: 1; padding: 10px 6px; font-size: 10px; letter-spacing: 0.08em; }
+    main { padding: 28px 18px 60px; }
+    .section-title { font-size: 28px; }
+    .flashcard-face { padding: 22px 20px; }
+    .flashcard-face::before { top: 10px; left: 10px; right: 10px; bottom: 10px; }
+    .quiz-card { padding: 22px; }
+    .fc-progress { font-size: 10px; gap: 10px; }
+    .fc-controls { width: 100%; justify-content: space-between; }
+    .fc-btn { padding: 10px 14px; font-size: 10px; flex: 1; }
+    .quiz-score-num { font-size: 48px; }
+  }
+
+  @media (max-width: 480px) {
+    .flashcard { aspect-ratio: 4 / 3; }
+    .fc-question { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="brand">
+      <span class="brand-eyebrow">Terminale · Tronc commun</span>
+      <h1 class="brand-title">Philosophie<em>.</em></h1>
+      <span class="brand-meta">17 NOTIONS + POLITIQUE · BAC 2026</span>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="flashcards" role="tab">Flashcards</button>
+      <button class="tab" data-tab="quiz" role="tab">QCM</button>
+      <button class="tab" data-tab="tableau" role="tab">Tableau</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="notion-bar" id="notionBar"></div>
+
+  <!-- FLASHCARDS -->
+  <section class="section active" id="section-flashcards">
+    <div class="section-header">
+      <h2 class="section-title">Cartes de <em>révision</em></h2>
+      <span class="section-counter" id="fc-counter">— / —</span>
+    </div>
+    <div class="fc-stage">
+      <div class="fc-progress">
+        <span id="fc-progress-text">01</span>
+        <div class="fc-progress-bar"><div class="fc-progress-fill" id="fc-progress-fill"></div></div>
+        <span id="fc-progress-total">—</span>
+      </div>
+      <div class="flashcard" id="flashcard">
+        <div class="flashcard-inner">
+          <div class="flashcard-face front">
+            <span class="fc-tag" id="fc-front-tag">Question</span>
+            <div class="fc-question" id="fc-front-q"></div>
+            <span class="fc-hint">Cliquer pour retourner</span>
+          </div>
+          <div class="flashcard-face back">
+            <span class="fc-tag" id="fc-back-tag">Réponse</span>
+            <div class="fc-answer-question" id="fc-back-q"></div>
+            <div class="fc-answer" id="fc-back-a"></div>
+            <span class="fc-hint">Cliquer pour retourner</span>
+          </div>
+        </div>
+      </div>
+      <div class="fc-controls">
+        <button class="fc-btn" id="fc-prev">← Précédent</button>
+        <button class="fc-btn primary" id="fc-flip">Retourner</button>
+        <button class="fc-btn" id="fc-shuffle">↻ Mélanger</button>
+        <button class="fc-btn" id="fc-next">Suivant →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section" id="section-quiz">
+    <div class="section-header">
+      <h2 class="section-title">QCM <em>thématique</em></h2>
+      <span class="section-counter" id="quiz-counter">— / —</span>
+    </div>
+    <div class="quiz-shell" id="quiz-shell"></div>
+  </section>
+
+  <!-- TABLEAU -->
+  <section class="section" id="section-tableau">
+    <div class="section-header">
+      <h2 class="section-title">Tableau des <em>auteurs</em></h2>
+      <span class="section-counter" id="tab-counter">— philosophes</span>
+    </div>
+    <p class="table-intro" id="tab-intro"></p>
+    <div class="table-wrapper">
+      <table class="philo-table">
+        <thead>
+          <tr>
+            <th style="width: 22%;">Philosophe</th>
+            <th style="width: 18%;">Concept-clé</th>
+            <th style="width: 60%;">Thèse principale</th>
+          </tr>
+        </thead>
+        <tbody id="tab-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="footnote">
+    <span>Programme officiel · Tronc commun · Coefficient 8</span>
+    <span>● = notion couverte en cours</span>
+  </div>
+</main>
+
+<script>
+// === DATA: 17 NOTIONS DU BAC DE PHILOSOPHIE 2026 ===
+// Format homogène : flashcards (questions/réponses), QCM, tableau philosophes
+// Notions issues du programme officiel du tronc commun (BO)
+
+const PHILO_DATA = {
+  // ============== 1. L'ART ==============
+  "art": {
+    nom: "L'art",
+    cours: true,
+    intro: "L'art désigne à la fois la technique de l'artisan et l'œuvre de l'artiste. Il pose la question de la création, du beau, et de la transformation de l'humain.",
+    flashcards: [
+      { type: "Définition", q: "Qu'est-ce que l'art ?", a: "L'art a deux sens : l'<strong>art comme technique</strong> (savoir-faire de l'artisan, partagé avec l'animal mais issu d'un apprentissage chez l'humain) et l'<strong>art comme création esthétique</strong> (l'œuvre de l'artiste qui vise le beau)." },
+      { type: "Définition", q: "Qu'est-ce qu'une œuvre d'art ?", a: "Création humaine destinée à être contemplée, qui n'a pas pour but premier l'utilité mais l'expression d'une vision, d'une émotion ou d'une vérité sur le monde." },
+      { type: "Définition", q: "Qu'est-ce que la sublimation chez Freud ?", a: "Mécanisme par lequel l'artiste <strong>transforme ses frustrations</strong> (manque d'amour, d'argent, de reconnaissance) en œuvre artistique. Les pulsions inavouables sont détournées en création socialement valorisée." },
+      { type: "Concept", q: "Selon Freud, qu'est-ce qu'un artiste ?", a: "Un <strong>introverti qui frôle la névrose</strong>. Frustré dans la vie réelle, il crée une fiction où son personnage obtient ce qu'il désire (amour, argent, reconnaissance)." },
+      { type: "Concept", q: "Quels sont les deux miracles de l'œuvre d'art selon Freud ?", a: "<ul><li><strong>La portée universelle</strong> : créée pour des raisons personnelles, elle touche tout le monde</li><li><strong>L'oubli de l'origine</strong> : née d'une frustration, elle ne paralyse pas mais stimule et galvanise</li></ul>" },
+      { type: "Auteur", q: "Que dit Matisse sur le regard de l'artiste ?", a: "L'artiste possède un <strong>regard d'enfant</strong> : il voit le monde comme s'il le découvrait pour la première fois, en dépassant l'habitude et les clichés. L'être du quotidien, lui, ne sait plus voir." },
+      { type: "Auteur", q: "Que veut dire Hegel par : « le bien connu, en tant que bien connu, est méconnu » ?", a: "L'<strong>habitude rend banal</strong>. À force de voir les mêmes choses, on n'y fait plus attention. L'art a précisément pour fonction de nous rendre visible ce que la familiarité nous a fait oublier." },
+      { type: "Question", q: "L'art transforme-t-il l'être humain ?", a: "<strong>Oui</strong> : l'art de l'artiste reconnecte à l'angoisse originelle (Matisse) et révèle ce que l'habitude masque (Hegel). <strong>Nuance</strong> : pour Freud, l'art ne transforme pas vraiment l'artiste, il lui apporte ce qu'il désirait au départ." },
+      { type: "Question", q: "Pourquoi l'artiste est-il angoissé selon Matisse ?", a: "Comme l'enfant, l'artiste est <strong>sans cesse confronté à l'inconnu</strong>. Il ne peut pas se reposer sur ses habitudes : voir le monde pour la première fois, c'est aussi accepter de ne plus rien tenir pour acquis." }
+    ],
+    quiz: [
+      {
+        q: "Selon Freud, qu'est-ce qui caractérise l'artiste ?",
+        options: ["Un génie naturellement doué", "Un introverti frustré qui frôle la névrose", "Un esprit purement rationnel", "Un être détaché de la société"],
+        correct: 1,
+        explain: "L'artiste freudien sublime ses frustrations (manque d'amour, d'argent, de reconnaissance) en créant une fiction qui peut connaître le succès."
+      },
+      {
+        q: "Que signifie « sublimation » chez Freud ?",
+        options: ["Le rejet pur et simple des pulsions", "La transformation des pulsions en création socialement valorisée", "Une forme de psychose artistique", "L'effacement complet du désir"],
+        correct: 1,
+        explain: "La sublimation détourne l'énergie pulsionnelle vers une activité valorisée — l'art en est l'exemple paradigmatique."
+      },
+      {
+        q: "Pour Matisse, l'artiste voit le monde comme :",
+        options: ["Un savant qui analyse", "Un philosophe qui doute", "Un enfant qui découvre pour la première fois", "Un photographe qui copie"],
+        correct: 2,
+        explain: "Matisse insiste sur ce regard premier, libéré des habitudes et des clichés — angoissant car sans appui, mais nécessaire à la création."
+      },
+      {
+        q: "Selon Hegel, le bien connu :",
+        options: ["Est ce que nous comprenons le mieux", "Est précisément, en tant que bien connu, méconnu", "N'a plus besoin d'être étudié", "Est la base de toute science"],
+        correct: 1,
+        explain: "L'habitude rend invisible ce qu'on côtoie tous les jours. L'art a pour fonction de nous le rendre à nouveau perceptible."
+      },
+      {
+        q: "Les « deux miracles » de l'œuvre d'art selon Freud sont :",
+        options: ["La beauté et l'utilité", "La portée universelle et l'oubli de son origine", "La technique et l'inspiration", "Le succès et la critique"],
+        correct: 1,
+        explain: "Née d'une frustration personnelle, l'œuvre touche pourtant universellement et fait oublier sa source intime."
+      }
+    ],
+    philosophes: [
+      { nom: "Freud", dates: "1856-1939", concept: "Sublimation", these: "L'artiste est un introverti frustré qui transforme ses manques en fiction. L'œuvre, née de raisons personnelles, peut toucher universellement." },
+      { nom: "Matisse", dates: "1869-1954", concept: "Regard d'enfant", these: "L'artiste réapprend à voir le monde pour la première fois, en dépassant l'habitude et les clichés qui aveuglent l'être du quotidien." },
+      { nom: "Hegel", dates: "1770-1831", concept: "Bien connu / méconnu", these: "« Le bien connu, précisément parce qu'il est bien connu, est méconnu. » L'art révèle ce que l'habitude nous empêche de voir." },
+      { nom: "Heidegger", dates: "1889-1976", concept: "Authenticité", these: "Face à la technique qui réduit le vivant à un étant utilisable, l'art peut nous reconnecter à une relation authentique au monde." },
+      { nom: "Platon", dates: "428-348 av. J.-C.", concept: "Mimésis", these: "L'art n'est qu'imitation d'imitation : il copie le sensible, qui n'est lui-même que l'ombre des Idées. Méfiance envers les artistes." }
+    ]
+  },
+
+  // ============== 2. LE BONHEUR ==============
+  "bonheur": {
+    nom: "Le bonheur",
+    cours: false,
+    intro: "Le bonheur est l'état durable de satisfaction complète. Mais peut-on vraiment l'atteindre ? Faut-il le rechercher ? Est-il individuel ou collectif ?",
+    flashcards: [
+      { type: "Définition", q: "Qu'est-ce que le bonheur ?", a: "État durable de <strong>satisfaction complète</strong> de l'être, par opposition au plaisir (ponctuel) et à la joie (intense mais passagère). Le bonheur est un horizon, non un instant." },
+      { type: "Distinction", q: "Quelle est la différence entre plaisir et bonheur ?", a: "Le <strong>plaisir</strong> est ponctuel, sensible, lié à la satisfaction d'un désir particulier. Le <strong>bonheur</strong> est un état global, durable, qui suppose une harmonie d'ensemble de la vie." },
+      { type: "Auteur", q: "Qu'est-ce que l'eudémonisme aristotélicien ?", a: "Pour Aristote, le bonheur (<em>eudaimonia</em>) est le <strong>souverain bien</strong>, la finalité de toute action humaine. On l'atteint par la vertu et par l'exercice excellent de la raison." },
+      { type: "Auteur", q: "Que dit Épicure sur le bonheur ?", a: "Le bonheur est l'<strong>ataraxie</strong> : absence de troubles de l'âme. Il s'atteint en distinguant les désirs <strong>naturels et nécessaires</strong> (à satisfaire) des désirs <strong>vains</strong> (gloire, richesse) à éliminer." },
+      { type: "Auteur", q: "Pourquoi Kant refuse-t-il de fonder la morale sur le bonheur ?", a: "Le bonheur est un <strong>idéal de l'imagination</strong>, indéterminé et variable selon les individus. La morale doit reposer sur la raison universelle (devoir), non sur la quête variable du bonheur." },
+      { type: "Auteur", q: "Que dit Schopenhauer du bonheur ?", a: "Le bonheur est <strong>impossible</strong> : la vie oscille entre la souffrance (désir non satisfait) et l'ennui (désir satisfait). Le pessimisme schopenhauerien voit dans le bonheur une illusion." },
+      { type: "Question", q: "Le bonheur dépend-il de nous ?", a: "Pour les <strong>stoïciens</strong> oui : il dépend de notre rapport aux choses, non des choses elles-mêmes. Pour <strong>Pascal</strong>, le divertissement nous éloigne du bonheur véritable en nous fuyant nous-mêmes." }
+    ],
+    quiz: [
+      {
+        q: "Pour Épicure, le bonheur réside dans :",
+        options: ["L'accumulation des plaisirs", "L'ataraxie, c'est-à-dire l'absence de troubles", "La richesse matérielle", "La gloire et la reconnaissance"],
+        correct: 1,
+        explain: "Épicure distingue les désirs nécessaires des désirs vains. Le bonheur est une tranquillité de l'âme, non une jouissance permanente."
+      },
+      {
+        q: "Pour Aristote, le bonheur (eudaimonia) est :",
+        options: ["Un plaisir intense et ponctuel", "Le souverain bien et la fin de toute action", "Un état de richesse matérielle", "Une illusion à dépasser"],
+        correct: 1,
+        explain: "Toute action vise un bien, et le bonheur est le bien recherché pour lui-même : c'est la fin ultime."
+      },
+      {
+        q: "Pourquoi Kant refuse-t-il de fonder la morale sur le bonheur ?",
+        options: ["Parce que le bonheur n'existe pas", "Parce que le bonheur est un concept indéterminé, variable selon chacun", "Parce que la morale doit être triste", "Parce que le bonheur est immoral"],
+        correct: 1,
+        explain: "Le bonheur est un idéal de l'imagination, pas de la raison. La morale, elle, doit être universelle."
+      },
+      {
+        q: "Selon Schopenhauer, la vie humaine oscille entre :",
+        options: ["Le travail et le repos", "La souffrance et l'ennui", "La joie et la tristesse", "Le savoir et l'ignorance"],
+        correct: 1,
+        explain: "Désir insatisfait = souffrance ; désir satisfait = ennui. Le bonheur durable est donc impossible selon lui."
+      },
+      {
+        q: "Le « divertissement » chez Pascal désigne :",
+        options: ["Une activité agréable et bénéfique", "Tout ce qui nous détourne de penser à notre condition", "Un loisir culturel élevé", "Le repos après le travail"],
+        correct: 1,
+        explain: "Le divertissement nous fuit nous-mêmes pour ne pas affronter notre misère existentielle. Il empêche le bonheur véritable."
+      }
+    ],
+    philosophes: [
+      { nom: "Aristote", dates: "384-322 av. J.-C.", concept: "Eudaimonia", these: "Le bonheur est le souverain bien, fin ultime de toute action humaine. Il s'atteint par la vertu et l'exercice excellent de la raison." },
+      { nom: "Épicure", dates: "341-270 av. J.-C.", concept: "Ataraxie", these: "Le bonheur est l'absence de troubles de l'âme. Il faut distinguer désirs naturels nécessaires et désirs vains pour cesser de souffrir." },
+      { nom: "Sénèque", dates: "4 av.-65", concept: "Stoïcisme", these: "Le bonheur dépend de notre jugement sur les choses, non des choses elles-mêmes. Distinguer ce qui dépend de nous et ce qui n'en dépend pas." },
+      { nom: "Pascal", dates: "1623-1662", concept: "Divertissement", these: "L'homme ne supporte pas d'être seul avec lui-même : il fuit dans le divertissement, qui l'éloigne du bonheur véritable." },
+      { nom: "Kant", dates: "1724-1804", concept: "Idéal de l'imagination", these: "Le bonheur est trop indéterminé pour fonder la morale. Il faut viser le devoir, qui rend digne d'être heureux, non le bonheur lui-même." },
+      { nom: "Schopenhauer", dates: "1788-1860", concept: "Pessimisme", these: "La vie oscille entre souffrance (désir) et ennui (satiété). Le bonheur durable est impossible : seules l'art et la compassion soulagent." }
+    ]
+  },
+
+  // ============== 3. LA CONSCIENCE ==============
+  "conscience": {
+    nom: "La conscience",
+    cours: true,
+    intro: "La conscience est ce par quoi je me sais exister. Elle pose la question de l'identité personnelle et du rapport à soi.",
+    flashcards: [
+      { type: "Définition", q: "Qu'est-ce que la conscience ?", a: "Capacité à se savoir soi-même, à se prendre soi-même comme objet de pensée. C'est sentir <strong>au plus profond de soi</strong> qu'on est un être singulier, unique." },
+      { type: "Distinction", q: "Quelle différence entre avoir conscience de soi et se connaître ?", a: "<strong>Avoir conscience de soi</strong> = sentir qu'on est unique. <strong>Se connaître</strong> = identifier ce qui nous rend unique. Le second est beaucoup plus difficile, voire jamais totalement accessible." },
+      { type: "Auteur", q: "Que dit Pascal sur le « moi » ?", a: "Le moi <strong>n'est pas dans les qualités</strong> (physiques, morales, intellectuelles) car celles-ci peuvent disparaître alors que la personne demeure. Le moi est insaisissable directement, on ne perçoit jamais la singularité d'autrui." },
+      { type: "Auteur", q: "Sur quoi repose l'identité personnelle selon Locke ?", a: "Sur la <strong>mémoire et la conscience de soi dans le temps</strong>. Ce n'est pas une caractéristique unique, mais notre capacité à retracer notre évolution. Nos souvenirs nous permettent de savoir que c'est bien nous qui avons vécu." },
+      { type: "Auteur", q: "Quelle est la limite de l'identité fondée sur la mémoire ?", a: "La mémoire est <strong>sélective et faillible</strong> : elle ne sélectionne pas forcément les bons souvenirs. Notre auto-connaissance reste donc partielle, et l'inconscient (Freud) viendra ébranler cette sécurité." },
+      { type: "Concept", q: "Qu'est-ce que le « cogito » de Descartes ?", a: "« <em>Je pense, donc je suis</em> ». Même en doutant de tout, je ne peux douter que je doute, donc que je pense, donc que j'existe. La conscience est la <strong>vérité première et indubitable</strong>." },
+      { type: "Question", q: "Peut-on ne pas être soi-même ?", a: "<strong>Sartre</strong> : non, l'existence précède l'essence, je suis toujours ce que je choisis d'être. <strong>Freud</strong> : oui, l'inconscient agit en nous à notre insu. <strong>Effet de groupe</strong> : la personnalité peut être absorbée dans l'impersonnel (concert, match)." }
+    ],
+    quiz: [
+      {
+        q: "Selon Pascal, le « moi » se trouve :",
+        options: ["Dans les qualités physiques", "Dans les qualités morales et intellectuelles", "Dans aucune qualité observable", "Dans le corps uniquement"],
+        correct: 2,
+        explain: "Pascal montre que les qualités peuvent disparaître alors que la personne demeure : le moi est donc insaisissable dans les qualités."
+      },
+      {
+        q: "Pour Locke, l'identité personnelle repose sur :",
+        options: ["Le corps biologique", "L'âme immortelle", "La mémoire et la conscience de soi dans le temps", "Le nom propre"],
+        correct: 2,
+        explain: "C'est la continuité de la conscience à travers le temps, par les souvenirs, qui fait que je reste moi-même."
+      },
+      {
+        q: "Le « cogito » de Descartes affirme :",
+        options: ["Que tout est doute", "Que je pense, donc je suis", "Que la pensée est illusion", "Que le corps précède l'esprit"],
+        correct: 1,
+        explain: "Même en doutant de tout, je ne peux douter que je pense — donc que j'existe comme chose pensante."
+      },
+      {
+        q: "Avoir conscience de soi et se connaître :",
+        options: ["C'est la même chose", "Sont deux choses très différentes", "S'opposent radicalement", "Sont impossibles tous les deux"],
+        correct: 1,
+        explain: "Avoir conscience de soi = sentir qu'on est unique. Se connaître = identifier ce qui nous rend unique. Le second est bien plus difficile."
+      },
+      {
+        q: "Pour Sartre, l'être humain :",
+        options: ["A une essence préfabriquée", "Existe d'abord, puis se définit par ses choix", "Est entièrement déterminé par son inconscient", "Est défini par sa nature biologique"],
+        correct: 1,
+        explain: "L'existence précède l'essence : contrairement aux objets, l'humain n'est pas prédéfini, il se construit par ses actes."
+      }
+    ],
+    philosophes: [
+      { nom: "Descartes", dates: "1596-1650", concept: "Cogito", these: "« Je pense, donc je suis. » La conscience de soi est la vérité première, le seul point indubitable du doute hyperbolique." },
+      { nom: "Pascal", dates: "1623-1662", concept: "Le moi insaisissable", these: "Le moi ne se trouve dans aucune qualité (physique, morale, intellectuelle) puisque celles-ci peuvent disparaître. La singularité reste opaque." },
+      { nom: "Locke", dates: "1632-1704", concept: "Mémoire", these: "L'identité personnelle repose sur la conscience que nous avons de nous-mêmes à travers le temps, grâce à la continuité des souvenirs." },
+      { nom: "Sartre", dates: "1905-1980", concept: "L'existence précède l'essence", these: "L'humain n'est pas prédéfini comme un objet : il est ce qu'il choisit de devenir par ses projets et ses actes. Il est absolument libre." },
+      { nom: "Freud", dates: "1856-1939", concept: "Décentrement du moi", these: "Le moi n'est pas maître dans sa propre maison : il est écartelé entre le ça (pulsions), le surmoi (interdits) et le principe de réalité." }
+    ]
+  },
+
+  // ============== 4. LE DEVOIR ==============
+  "devoir": {
+    nom: "Le devoir",
+    cours: false,
+    intro: "Le devoir est l'obligation morale qui s'impose à la conscience. Il interroge la liberté, la raison et le rapport entre morale et bonheur.",
+    flashcards: [
+      { type: "Définition", q: "Qu'est-ce que le devoir ?", a: "<strong>Obligation morale</strong> par laquelle la raison commande à la volonté d'agir non par intérêt ou plaisir, mais par respect pour la loi morale. Le devoir s'oppose à l'inclination." },
+      { type: "Distinction", q: "Quelle différence entre obligation et contrainte ?", a: "L'<strong>obligation</strong> est intérieure, morale, libre — j'y consens par devoir. La <strong>contrainte</strong> est extérieure, physique ou sociale — elle me force malgré moi. Le devoir est une obligation, non une contrainte." },
+      { type: "Auteur", q: "Qu'est-ce que l'impératif catégorique de Kant ?", a: "Loi morale absolue : « <em>Agis toujours selon une maxime telle que tu puisses vouloir qu'elle devienne une loi universelle.</em> » L'impératif est <strong>catégorique</strong> (inconditionnel), pas hypothétique (« si tu veux X, fais Y »)." },
+      { type: "Auteur", q: "Pourquoi Kant interdit-il absolument le mensonge ?", a: "<ul><li>(1) Je ne peux <strong>pas prévoir</strong> les conséquences d'un mensonge</li><li>(2) Le mensonge <strong>fragilise la confiance</strong> nécessaire à la vie sociale</li></ul>Même au meurtrier qui demande où est mon ami, je dois dire la vérité." },
+      { type: "Concept", q: "Que signifie « agir par devoir » vs « agir conformément au devoir » ?", a: "<strong>Agir par devoir</strong> : faire le bien parce que c'est le bien (valeur morale). <strong>Conformément au devoir</strong> : faire le bien par intérêt ou inclination (sans valeur morale chez Kant). Seul le premier a une dignité morale." },
+      { type: "Auteur", q: "Que reproche Nietzsche à la morale du devoir ?", a: "C'est une <strong>morale d'esclaves</strong>, née du ressentiment des faibles contre les forts. Elle inverse les valeurs vitales en vertus (humilité, obéissance) pour neutraliser la puissance." },
+      { type: "Question", q: "Peut-il y avoir un conflit de devoirs ?", a: "Oui — devoir envers soi vs envers autrui, envers la loi vs envers la conscience (cas d'Antigone). Pour <strong>Kant</strong>, en théorie non, car la loi morale est universelle. En pratique, la situation peut sembler tragique." }
+    ],
+    quiz: [
+      {
+        q: "L'impératif catégorique de Kant commande :",
+        options: ["D'agir selon ce qui te plaît", "D'agir selon une maxime universalisable", "D'obéir à l'autorité religieuse", "De rechercher le bonheur"],
+        correct: 1,
+        explain: "« Agis toujours selon une maxime telle que tu puisses vouloir qu'elle devienne une loi universelle. »"
+      },
+      {
+        q: "Selon Kant, mentir est :",
+        options: ["Permis si cela sauve une vie", "Toujours interdit, sans exception", "Une question de circonstances", "Acceptable si non intentionnel"],
+        correct: 1,
+        explain: "Même au meurtrier qui demande où est mon ami, je dois dire la vérité : (1) je ne peux pas prévoir les conséquences, (2) le mensonge détruit la confiance sociale."
+      },
+      {
+        q: "Une action a une valeur morale chez Kant si elle est faite :",
+        options: ["Par plaisir", "Par intérêt", "Par devoir", "Par habitude"],
+        correct: 2,
+        explain: "Agir conformément au devoir par intérêt n'a pas de valeur morale ; seule l'action accomplie par pur respect de la loi morale est morale."
+      },
+      {
+        q: "Pour Nietzsche, la morale du devoir est :",
+        options: ["Le sommet de la civilisation", "Une morale d'esclaves née du ressentiment", "Une vérité éternelle", "Un instinct naturel"],
+        correct: 1,
+        explain: "Nietzsche dénonce une inversion des valeurs : les faibles ont fait passer leur impuissance pour des vertus (humilité, obéissance)."
+      },
+      {
+        q: "L'obligation se distingue de la contrainte parce qu'elle est :",
+        options: ["Plus forte", "Intérieure et libre, alors que la contrainte est extérieure", "Toujours injuste", "Imposée par l'État"],
+        correct: 1,
+        explain: "Je peux obéir à une obligation par respect du devoir ; la contrainte, elle, me force physiquement ou socialement."
+      }
+    ],
+    philosophes: [
+      { nom: "Kant", dates: "1724-1804", concept: "Impératif catégorique", these: "Le devoir oblige inconditionnellement. Agir moralement, c'est agir par respect pour la loi universelle, non par intérêt ou inclination." },
+      { nom: "Rousseau", dates: "1712-1778", concept: "Voix de la conscience", these: "La conscience est « le guide assuré » qui distingue le bien et le mal. Le devoir vient d'une voix intérieure, non d'un calcul." },
+      { nom: "Nietzsche", dates: "1844-1900", concept: "Morale d'esclaves", these: "La morale du devoir est née du ressentiment des faibles contre les forts. Il faut dépasser les valeurs morales pour affirmer la vie." },
+      { nom: "Bentham / Mill", dates: "XIXe s.", concept: "Utilitarisme", these: "L'action morale est celle qui maximise le bonheur du plus grand nombre. La morale se calcule par les conséquences, non par l'intention." },
+      { nom: "Sartre", dates: "1905-1980", concept: "Liberté responsable", these: "L'humain n'a pas d'essence, donc pas de devoir préfabriqué. C'est en choisissant librement qu'il s'oblige et engage l'humanité entière." }
+    ]
+  },
+
+  // ============== 5. L'ÉTAT ==============
+  "etat": {
+    nom: "L'État",
+    cours: true,
+    intro: "L'État est l'ensemble des institutions politiques, judiciaires et administratives qui cadrent la vie en société. Doit-il être limité ? Sa légitimité repose sur quoi ?",
+    flashcards: [
+      { type: "Définition", q: "Qu'est-ce que l'État ?", a: "Ensemble des <strong>institutions politiques, judiciaires et administratives</strong> qui organisent la vie en société. Il détient le monopole de la violence légitime (Weber)." },
+      { type: "Auteur", q: "Pourquoi l'humain est-il un « animal politique » selon Aristote ?", a: "Vivre dans un État est inscrit dans <strong>l'essence humaine</strong>. La nature nous a donné le langage (au-delà de la voix animale) qui nous permet de penser le passé, le futur, le juste et l'injuste — donc la politique." },
+      { type: "Auteur", q: "Quelles sont les trois communautés selon Aristote ?", a: "<ul><li><strong>La famille</strong> : but = vivre et survivre</li><li><strong>Le village</strong> : but = bien vivre, gagner en confort par la division du travail</li><li><strong>La communauté politique</strong> : but = la morale, agir bien pour soi-même</li></ul>" },
+      { type: "Auteur", q: "Qu'est-ce que l'état de nature selon Hobbes ?", a: "Situation pré-politique où chacun a un <strong>droit absolu sur tout</strong>. C'est la « guerre de tous contre tous » : l'homme est un loup pour l'homme. La peur de la mort violente y règne." },
+      { type: "Auteur", q: "Qu'est-ce que le Léviathan de Hobbes ?", a: "<strong>État autoritaire</strong> mis en place pour mettre fin à l'état de nature. Les individus renoncent à leur liberté absolue et la transfèrent au souverain en échange de la sécurité. Le pouvoir doit être absolu pour être efficace." },
+      { type: "Auteur", q: "Que montre Clastres avec « la société contre l'État » ?", a: "Les tribus pourraient créer un État mais <strong>refusent</strong> de le faire. Le chef n'a qu'un droit de conseil sans autorité contraignante. En cas d'abus, la tribu utilise le <strong>rire</strong> pour disqualifier le pouvoir. L'absence d'État est un choix politique." },
+      { type: "Auteur", q: "Qu'est-ce que la volonté générale chez Rousseau ?", a: "Ce n'est <strong>pas la volonté de la majorité</strong>, mais le <strong>bien commun</strong> qui concerne la totalité du groupe sans exclure aucun individu. Chacun renonce à son intérêt particulier (aliénation de tous à tous) pour ne penser qu'à l'intérêt général." },
+      { type: "Question", q: "Doit-on limiter le pouvoir de l'État ?", a: "<strong>Non</strong> (Hobbes) : seul un pouvoir fort assure la paix. <strong>Oui</strong> (Aristote, Clastres) : son rôle est limité au domaine moral, ou peut être contrôlé. <strong>Non au sens classique</strong> (Rousseau) : ce qu'il faut limiter, c'est notre égoïsme, pas l'État qui exprime la volonté générale." }
+    ],
+    quiz: [
+      {
+        q: "Pour Aristote, l'humain est un animal politique parce que :",
+        options: ["Il vote", "Vivre en cité est inscrit dans son essence et il a le langage", "Il aime le pouvoir", "Il est naturellement violent"],
+        correct: 1,
+        explain: "Le langage permet de discuter du juste et de l'injuste — capacité proprement politique qui distingue l'homme de l'animal."
+      },
+      {
+        q: "L'état de nature selon Hobbes est :",
+        options: ["Un paradis perdu", "Une guerre de tous contre tous", "Une société primitive paisible", "Un ordre divin"],
+        correct: 1,
+        explain: "Sans État, chacun a droit à tout : c'est l'insécurité totale. D'où la nécessité du Léviathan."
+      },
+      {
+        q: "La volonté générale chez Rousseau est :",
+        options: ["La volonté de la majorité", "La somme des intérêts particuliers", "Le bien commun de toute la communauté", "L'avis du gouvernement"],
+        correct: 2,
+        explain: "Elle se distingue de la volonté de tous : elle vise l'intérêt général, sans exclure aucun individu."
+      },
+      {
+        q: "Pour Clastres, les sociétés sans État :",
+        options: ["Sont primitives par ignorance", "Refusent l'État par choix politique", "Sont en attente de civilisation", "Ne fonctionnent pas durablement"],
+        correct: 1,
+        explain: "Les tribus connaissent le pouvoir mais le refusent : le chef n'a qu'un droit de conseil, et le rire désamorce les abus."
+      },
+      {
+        q: "Pour Aristote, la communauté politique a pour but :",
+        options: ["Survivre", "Le confort matériel", "La morale, agir bien", "Le commerce"],
+        correct: 2,
+        explain: "La famille vise à vivre, le village à bien vivre, la cité à bien agir — c'est-à-dire viser la vertu."
+      }
+    ],
+    philosophes: [
+      { nom: "Aristote", dates: "384-322 av. J.-C.", concept: "Animal politique", these: "Vivre en cité est inscrit dans l'essence humaine. La nature nous a donné le langage pour discuter du juste et viser le bien commun." },
+      { nom: "Hobbes", dates: "1588-1679", concept: "Léviathan", these: "L'état de nature est une guerre de tous contre tous. Pour échapper à la peur, les hommes transfèrent leur liberté à un souverain absolu." },
+      { nom: "Locke", dates: "1632-1704", concept: "État libéral", these: "L'État doit protéger les droits naturels (vie, liberté, propriété). S'il les viole, le peuple a le droit de résistance." },
+      { nom: "Rousseau", dates: "1712-1778", concept: "Volonté générale", these: "La démocratie repose sur l'aliénation de tous à tous : chacun renonce à son intérêt particulier au profit du bien commun." },
+      { nom: "Clastres", dates: "1934-1977", concept: "Société contre l'État", these: "Les sociétés sans État refusent activement la centralisation du pouvoir. Le chef n'a qu'un droit de conseil, le rire neutralise les abus." },
+      { nom: "Weber", dates: "1864-1920", concept: "Monopole de la violence", these: "L'État se définit par le monopole de la violence physique légitime sur un territoire donné." }
+    ]
+  },
+
+  // ============== 6. L'INCONSCIENT ==============
+  "inconscient": {
+    nom: "L'inconscient",
+    cours: true,
+    intro: "L'inconscient est ce qui agit en nous sans que nous en ayons conscience. Il remet en cause la souveraineté du sujet rationnel.",
+    flashcards: [
+      { type: "Définition", q: "Qu'est-ce que l'inconscient ?", a: "Ensemble des <strong>processus psychiques inaccessibles à la conscience</strong> mais qui influencent nos pensées, désirs et actions. Concept central de la psychanalyse freudienne." },
+      { type: "Auteur", q: "Quelle est la « blessure narcissique » infligée par Freud ?", a: "Après Copernic (la Terre n'est pas le centre du monde) et Darwin (l'homme n'est pas une création à part), Freud montre que <strong>le moi n'est pas maître dans sa propre maison</strong>. C'est la 3ᵉ humiliation infligée à l'humanité." },
+      { type: "Concept", q: "Quels sont les trois « maîtres » du moi selon Freud ?", a: "<ul><li><strong>Le principe de réalité (Moi)</strong> : le monde extérieur qui s'impose par la contrainte</li><li><strong>Le ça</strong> : pulsions de création et de destruction, imprévisibles</li><li><strong>Le surmoi</strong> : intériorisation des interdits parentaux et sociaux</li></ul>Le moi est <strong>écartelé</strong> entre les trois." },
+      { type: "Concept", q: "Qu'est-ce que le « ça » chez Freud ?", a: "Réservoir des <strong>pulsions inconscientes</strong> (création, destruction, libido). Imprévisible, chaotique, impersonnel. Tant qu'on ne cherche pas à les réaliser, les pulsions ne disent rien de nous : <em>on ne culpabilise pas d'avoir des pulsions, seulement des actes</em>." },
+      { type: "Concept", q: "Qu'est-ce que le « surmoi » ?", a: "Intériorisation des <strong>interdits parentaux et sociaux</strong>. À force d'être répétés, ils deviennent automatiques. Ne pas les respecter entraîne <strong>culpabilité, scrupule, mauvaise conscience</strong>." },
+      { type: "Concept", q: "Qu'est-ce qu'une névrose vs une psychose chez Freud ?", a: "<strong>Névrose</strong> : tentative <em>consciente</em> d'échapper à un trouble psychique (maniaquerie, superstition). <strong>Psychose</strong> : activité <em>inconsciente</em> (kleptomanie). L'artiste serait un névrosé qui sublime." },
+      { type: "Auteur", q: "Que reproche Sartre à l'inconscient freudien ?", a: "L'inconscient serait une <strong>excuse</strong>, une « mauvaise foi » pour fuir la responsabilité. Pour Sartre, je suis toujours libre de mes actes ; me cacher derrière l'inconscient, c'est refuser ma liberté." },
+      { type: "Question", q: "Sommes-nous maîtres de nous-mêmes ?", a: "<strong>Freud</strong> : non, le moi est écartelé entre réalité, ça, surmoi. <strong>Sartre</strong> : oui, l'existence précède l'essence, je choisis qui je suis. <strong>Alain</strong> : l'inconscient est un alibi pour ne pas penser." }
+    ],
+    quiz: [
+      {
+        q: "Selon Freud, le moi est écartelé entre :",
+        options: ["Le bien et le mal", "Le corps et l'esprit", "Le ça, le surmoi et le principe de réalité", "Le passé et le futur"],
+        correct: 2,
+        explain: "Trois maîtres tirent le moi en sens contraires : les pulsions, les interdits intériorisés et les contraintes du réel."
+      },
+      {
+        q: "Le « ça » chez Freud désigne :",
+        options: ["La conscience morale", "L'ensemble des pulsions inconscientes", "Le surmoi parental", "La réalité extérieure"],
+        correct: 1,
+        explain: "Le ça est impersonnel, imprévisible et précède toute pensée volontaire."
+      },
+      {
+        q: "Le surmoi est :",
+        options: ["Un instinct naturel", "L'intériorisation des interdits parentaux et sociaux", "La partie supérieure du cerveau", "Une pulsion sexuelle"],
+        correct: 1,
+        explain: "À force d'entendre les mêmes interdits, ils s'intériorisent et deviennent une voix culpabilisatrice."
+      },
+      {
+        q: "La « blessure narcissique » freudienne signifie :",
+        options: ["Que l'homme est cruel", "Que le moi n'est pas maître dans sa propre maison", "Que la conscience est infaillible", "Que la psychanalyse soigne tout"],
+        correct: 1,
+        explain: "Après Copernic et Darwin, Freud montre que même intérieurement, l'humain n'est pas le centre rationnel qu'il croit être."
+      },
+      {
+        q: "Sartre reproche à l'inconscient freudien d'être :",
+        options: ["Trop scientifique", "Une excuse, une mauvaise foi pour fuir la responsabilité", "Trop poétique", "Inutilement complexe"],
+        correct: 1,
+        explain: "Pour Sartre, se cacher derrière l'inconscient, c'est refuser sa liberté absolue et fuir sa responsabilité."
+      }
+    ],
+    philosophes: [
+      { nom: "Freud", dates: "1856-1939", concept: "Trois maîtres", these: "Le moi est écartelé entre le ça (pulsions), le surmoi (interdits intériorisés) et le principe de réalité. L'inconscient gouverne en partie nos actes." },
+      { nom: "Sartre", dates: "1905-1980", concept: "Mauvaise foi", these: "L'inconscient freudien est une excuse pour fuir la liberté. Nous sommes toujours responsables de ce que nous faisons." },
+      { nom: "Alain", dates: "1868-1951", concept: "Refus de l'inconscient", these: "L'inconscient est un alibi pour ne pas penser. Penser, c'est se rendre compte. L'inconscient nous dispense d'effort de lucidité." },
+      { nom: "Leibniz", dates: "1646-1716", concept: "Petites perceptions", these: "Avant Freud, Leibniz montrait que la conscience claire repose sur une multitude de petites perceptions inaperçues." },
+      { nom: "Lacan", dates: "1901-1981", concept: "Inconscient structuré comme un langage", these: "L'inconscient n'est pas un magma de pulsions mais un système symbolique qui parle à travers nos lapsus, rêves, symptômes." }
+    ]
+  },
+
+  // ============== 7. LA JUSTICE ==============
+  "justice": {
+    nom: "La justice",
+    cours: false,
+    intro: "La justice désigne à la fois une vertu individuelle, l'égalité dans la distribution, et l'institution judiciaire. Elle interroge le rapport entre droit et morale.",
+    flashcards: [
+      { type: "Définition", q: "Quels sont les trois sens de la justice ?", a: "<ul><li><strong>Vertu morale</strong> individuelle (être juste)</li><li><strong>Justice sociale</strong> (égalité, équité dans la distribution)</li><li><strong>Institution</strong> judiciaire (tribunaux, lois)</li></ul>" },
+      { type: "Distinction", q: "Quelle différence entre légal et légitime ?", a: "<strong>Légal</strong> = conforme à la loi en vigueur. <strong>Légitime</strong> = conforme à la justice morale ou à un droit supérieur. Une loi peut être légale sans être légitime (lois de Vichy, apartheid)." },
+      { type: "Auteur", q: "Qu'est-ce que la justice distributive selon Aristote ?", a: "Distribuer les biens et les honneurs <strong>selon le mérite</strong> de chacun, non également. C'est l'<strong>égalité géométrique</strong> (proportionnelle), distincte de l'égalité arithmétique (à chacun la même chose)." },
+      { type: "Auteur", q: "Qu'est-ce que la justice commutative selon Aristote ?", a: "Justice des <strong>échanges</strong> : elle rétablit l'égalité entre les parties (commerce, réparation d'un tort). Si tu m'as volé 100€, tu me dois 100€." },
+      { type: "Auteur", q: "Que dit Pascal sur la justice ?", a: "« <em>Ne pouvant fortifier la justice, on a justifié la force.</em> » La justice sans force est impuissante, la force sans justice est tyrannique. En pratique, on prend la force pour la justice." },
+      { type: "Auteur", q: "Qu'est-ce que le « voile d'ignorance » de Rawls ?", a: "Expérience de pensée : pour définir une société juste, il faut imaginer qu'on ignore quelle place on y aura. On choisira alors des principes <strong>équitables pour tous</strong>, en particulier pour les plus défavorisés." },
+      { type: "Concept", q: "Qu'est-ce que l'équité ?", a: "<strong>Correction de la justice légale</strong> au cas particulier (Aristote). La loi est générale ; l'équité adapte le principe à la situation concrète, pour éviter qu'une justice rigide devienne injuste." },
+      { type: "Question", q: "Faut-il obéir à des lois injustes ?", a: "<strong>Socrate</strong> : oui, par respect du contrat social (il accepte de mourir). <strong>Thoreau / King</strong> : non, désobéissance civile. <strong>Antigone</strong> : les lois divines / morales priment sur les lois humaines." }
+    ],
+    quiz: [
+      {
+        q: "La distinction entre légal et légitime montre :",
+        options: ["Qu'ils sont synonymes", "Qu'une loi peut être légale sans être juste", "Que la légalité prime toujours", "Que la légitimité n'existe pas"],
+        correct: 1,
+        explain: "Les lois de Vichy étaient légales mais non légitimes. La légitimité renvoie à un droit supérieur (moral, naturel)."
+      },
+      {
+        q: "La justice distributive d'Aristote consiste à :",
+        options: ["Donner la même chose à tous", "Distribuer selon le mérite", "Tirer au sort", "Privilégier les plus faibles"],
+        correct: 1,
+        explain: "Égalité géométrique (proportionnelle) et non arithmétique : chacun reçoit selon ce qu'il mérite."
+      },
+      {
+        q: "Le « voile d'ignorance » de Rawls sert à :",
+        options: ["Cacher la vérité", "Définir des principes de justice équitables", "Critiquer la démocratie", "Justifier l'inégalité"],
+        correct: 1,
+        explain: "En ignorant ma future place, je choisis des principes qui protègent même les plus défavorisés — par prudence rationnelle."
+      },
+      {
+        q: "Pour Pascal, « ne pouvant fortifier la justice » :",
+        options: ["On a aboli la force", "On a justifié la force", "On a fui la justice", "On a oublié la morale"],
+        correct: 1,
+        explain: "Constat lucide : faute de pouvoir rendre la justice puissante, les hommes ont prétendu que la force était juste."
+      },
+      {
+        q: "L'équité chez Aristote est :",
+        options: ["Un synonyme de l'égalité", "La correction de la loi générale au cas particulier", "Un principe juridique récent", "Le contraire de la justice"],
+        correct: 1,
+        explain: "La loi est générale, mais les cas sont singuliers : l'équité ajuste pour éviter que la rigueur de la loi devienne injustice."
+      }
+    ],
+    philosophes: [
+      { nom: "Aristote", dates: "384-322 av. J.-C.", concept: "Justice distributive / commutative", these: "La justice distributive donne à chacun selon son mérite (égalité géométrique). La justice commutative rétablit l'égalité dans les échanges." },
+      { nom: "Pascal", dates: "1623-1662", concept: "Force et justice", these: "« Ne pouvant fortifier la justice, on a justifié la force. » La justice sans force est inefficace, la force sans justice est tyrannique." },
+      { nom: "Hobbes", dates: "1588-1679", concept: "Justice = loi du souverain", these: "Avant l'État, rien n'est juste ni injuste. C'est la loi du Léviathan qui définit la justice ; le légal et le juste se confondent." },
+      { nom: "Rousseau", dates: "1712-1778", concept: "Loi = volonté générale", these: "La loi juste exprime la volonté générale et concerne tous également. Elle ne fait acception de personne." },
+      { nom: "Rawls", dates: "1921-2002", concept: "Voile d'ignorance", these: "Une société juste est celle dont on accepterait les principes sans savoir quelle place on y occupera. Principe de différence en faveur des plus défavorisés." }
+    ]
+  },
+
+  // ============== 8. LE LANGAGE ==============
+  "langage": {
+    nom: "Le langage",
+    cours: false,
+    intro: "Le langage est la capacité de communiquer par des signes. Il est outil de pensée, vecteur de pouvoir, mais aussi source de malentendus.",
+    flashcards: [
+      { type: "Définition", q: "Qu'est-ce que le langage ?", a: "<strong>Capacité humaine</strong> de communiquer par un système de signes (mots) qui renvoient à des concepts. À distinguer de la <em>langue</em> (système particulier) et de la <em>parole</em> (acte individuel)." },
+      { type: "Distinction", q: "Quelle différence entre langage humain et communication animale ?", a: "Selon <strong>Aristote</strong>, l'animal a la <em>voix</em> (qui exprime le présent, le plaisir, la douleur), l'humain a le <em>langage</em> qui peut parler du <strong>passé, du futur, du juste, de l'injuste</strong>, de ce qui n'existe pas." },
+      { type: "Auteur", q: "Que dit Hegel sur le rapport pensée-langage ?", a: "« <em>C'est dans les mots que nous pensons.</em> » La pensée n'existe pas sans langage : le langage n'est pas un simple habillage, il <strong>structure</strong> la pensée elle-même." },
+      { type: "Auteur", q: "Qu'est-ce que la « performativité » selon Austin ?", a: "Certains énoncés <strong>ne décrivent pas, ils font</strong> : « je promets », « je vous déclare mariés », « je baptise ce navire ». Le langage est aussi <strong>action</strong>, pas seulement représentation." },
+      { type: "Concept", q: "Qu'est-ce que l'arbitraire du signe (Saussure) ?", a: "Le lien entre le <strong>signifiant</strong> (son « cheval ») et le <strong>signifié</strong> (concept de cheval) est <strong>conventionnel</strong>, non naturel. Preuve : les langues différentes ont des mots différents pour la même chose." },
+      { type: "Concept", q: "Comment le langage peut-il être un instrument de pouvoir ?", a: "Par la <strong>rhétorique</strong> (manipuler), la <strong>novlangue</strong> (Orwell : appauvrir le vocabulaire pour empêcher de penser), les <strong>éléments de langage</strong> politiques. Maîtriser le langage, c'est maîtriser les esprits." },
+      { type: "Question", q: "Le langage trahit-il la pensée ?", a: "<strong>Bergson</strong> : oui, les mots sont généraux et figent l'expérience singulière. <strong>Gorgias</strong> : on ne peut pas communiquer un ressenti concret avec des mots abstraits. <strong>Hegel</strong> : non, sans langage, pas de pensée du tout." }
+    ],
+    quiz: [
+      {
+        q: "Pour Aristote, ce qui distingue l'humain de l'animal, c'est :",
+        options: ["L'usage d'outils", "Le langage qui permet de penser le juste et l'injuste", "La taille du cerveau", "L'usage du feu"],
+        correct: 1,
+        explain: "L'animal a la voix (présent immédiat), l'humain a le logos (passé, futur, valeurs)."
+      },
+      {
+        q: "Selon Hegel, c'est dans les mots que :",
+        options: ["Nous mentons", "Nous pensons", "Nous oublions", "Nous rêvons"],
+        correct: 1,
+        explain: "Le langage n'est pas un simple véhicule de la pensée : il structure la pensée elle-même."
+      },
+      {
+        q: "L'arbitraire du signe (Saussure) signifie que :",
+        options: ["Les mots sont inventés au hasard", "Le lien entre signifiant et signifié est conventionnel, non naturel", "Le langage est inutile", "Les langues sont équivalentes"],
+        correct: 1,
+        explain: "Rien n'oblige naturellement à appeler un cheval « cheval » plutôt que « horse » ou « caballo »."
+      },
+      {
+        q: "Un énoncé performatif (Austin) :",
+        options: ["Décrit la réalité", "Fait ce qu'il dit (promesse, mariage, baptême)", "Est toujours faux", "Est purement esthétique"],
+        correct: 1,
+        explain: "« Je promets » ne décrit pas une promesse, il la réalise. Le langage est action."
+      },
+      {
+        q: "Pour Gorgias, le langage :",
+        options: ["Exprime parfaitement notre vécu", "Ne peut pas communiquer un ressenti concret car il est abstrait", "Est purement logique", "Est universel"],
+        correct: 1,
+        explain: "Comment décrire le rouge à un aveugle, le goût de l'ananas à qui n'en a jamais mangé ? Le langage abstrait échoue à dire le concret singulier."
+      }
+    ],
+    philosophes: [
+      { nom: "Aristote", dates: "384-322 av. J.-C.", concept: "Logos", these: "Le langage humain dépasse la voix animale : il porte sur le passé, le futur, le juste et l'injuste. Il fonde la communauté politique." },
+      { nom: "Hegel", dates: "1770-1831", concept: "Pensée et langage", these: "« C'est dans les mots que nous pensons. » Le langage n'habille pas la pensée, il la constitue." },
+      { nom: "Saussure", dates: "1857-1913", concept: "Arbitraire du signe", these: "Le signe linguistique est arbitraire (signifiant ≠ signifié) et différentiel (chaque mot tire son sens de sa différence avec les autres)." },
+      { nom: "Bergson", dates: "1859-1941", concept: "Mots et expérience", these: "Le langage est fait de mots généraux qui figent l'expérience vécue, toujours singulière. Il déforme autant qu'il exprime." },
+      { nom: "Austin", dates: "1911-1960", concept: "Performatif", these: "Certains énoncés ne décrivent pas mais agissent : promettre, baptiser, marier. Le langage est aussi action sur le monde." },
+      { nom: "Wittgenstein", dates: "1889-1951", concept: "Jeux de langage", these: "Le sens d'un mot est son usage. Comprendre, c'est savoir jouer le « jeu de langage » dans une forme de vie particulière." }
+    ]
+  },
+
+  // ============== 9. LA LIBERTÉ ==============
+  "liberte": {
+    nom: "La liberté",
+    cours: false,
+    intro: "La liberté est-elle absence de contrainte, autonomie de la volonté, ou capacité de choisir ? Sommes-nous vraiment libres ?",
+    flashcards: [
+      { type: "Définition", q: "Quels sont les trois sens de la liberté ?", a: "<ul><li><strong>Liberté physique</strong> : absence de contrainte extérieure</li><li><strong>Libre arbitre</strong> : pouvoir de choisir</li><li><strong>Autonomie</strong> : se donner à soi-même sa propre loi (vs hétéronomie)</li></ul>" },
+      { type: "Distinction", q: "Quelle différence entre liberté et libération ?", a: "<strong>Libération</strong> : suppression d'une contrainte extérieure (esclave libéré). <strong>Liberté</strong> : capacité positive d'agir et de se déterminer. Être libéré ne suffit pas à être libre." },
+      { type: "Auteur", q: "Qu'est-ce que le libre arbitre selon Descartes ?", a: "<strong>Pouvoir de choisir entre deux options</strong>, donné par Dieu. C'est ce qui rend l'humain à l'image de Dieu. Même quand je me trompe, c'est par mauvais usage de ma liberté, non par défaut." },
+      { type: "Auteur", q: "Que dit Spinoza sur le libre arbitre ?", a: "<strong>Illusion</strong>. Nous nous croyons libres parce que nous <em>connaissons nos désirs</em> mais <em>ignorons les causes</em> qui les produisent. Une pierre lancée se croirait libre si elle avait conscience. La vraie liberté = comprendre la nécessité." },
+      { type: "Auteur", q: "Qu'est-ce que la liberté selon Sartre ?", a: "<strong>Liberté absolue et angoissante</strong>. L'existence précède l'essence : rien ne me prédéfinit, je suis ce que je choisis d'être. Une seule chose impossible : <em>ne pas être libre</em>. Ne pas choisir, c'est encore choisir." },
+      { type: "Concept", q: "Qu'est-ce que la mauvaise foi (Sartre) ?", a: "<strong>Fuite de la liberté</strong> : se prétendre déterminé (par son éducation, son inconscient, sa nature) pour se décharger de la responsabilité. Le serveur qui « joue » à être serveur en est l'exemple." },
+      { type: "Auteur", q: "Comment Rousseau articule liberté individuelle et liberté civile ?", a: "L'humain naît libre mais est partout dans les fers. Le contrat social transforme la liberté naturelle (faire ce qu'on veut) en <strong>liberté civile</strong> (obéir à la loi qu'on s'est prescrite). Obéir à la volonté générale = être libre." },
+      { type: "Question", q: "Le déterminisme exclut-il la liberté ?", a: "<strong>Compatibilisme</strong> (Spinoza, Hegel) : non, être libre c'est comprendre et accepter la nécessité. <strong>Incompatibilisme</strong> (Sartre) : oui si déterminisme, mais nous sommes radicalement libres. <strong>Kant</strong> : phénomène déterminé, noumène libre." }
+    ],
+    quiz: [
+      {
+        q: "Pour Spinoza, le libre arbitre est :",
+        options: ["La plus haute faculté humaine", "Une illusion : nous ignorons les causes de nos désirs", "Un don divin", "Une réalité physique"],
+        correct: 1,
+        explain: "« L'homme se croit libre parce qu'il a conscience de ses volitions et ignore les causes qui le déterminent. »"
+      },
+      {
+        q: "Pour Sartre, la seule chose qu'on ne peut pas faire, c'est :",
+        options: ["Être heureux", "Ne pas être libre", "Mentir", "Choisir le mal"],
+        correct: 1,
+        explain: "Ne pas choisir, c'est déjà choisir : choisir de ne pas s'engager. La liberté est inéluctable."
+      },
+      {
+        q: "L'autonomie kantienne signifie :",
+        options: ["Faire ce qu'on veut", "Se donner à soi-même sa propre loi par la raison", "L'indépendance économique", "L'isolement"],
+        correct: 1,
+        explain: "Auto-nomos : se donner soi-même la loi (de la raison), par opposition à l'hétéronomie (loi venue du dehors : passions, autorité)."
+      },
+      {
+        q: "La mauvaise foi sartrienne consiste à :",
+        options: ["Mentir aux autres", "Se prétendre déterminé pour fuir sa liberté", "Être malhonnête en affaires", "Refuser la religion"],
+        correct: 1,
+        explain: "Se cacher derrière son rôle, son inconscient, son passé pour ne pas assumer qu'on est radicalement responsable."
+      },
+      {
+        q: "Pour Rousseau, la liberté civile, c'est :",
+        options: ["Faire ce qu'on veut", "Obéir à la loi qu'on s'est prescrite", "Être seul", "Ne pas avoir de loi"],
+        correct: 1,
+        explain: "Le contrat social transforme la liberté naturelle anarchique en liberté véritable, où la loi qu'on suit est celle qu'on a contribué à faire."
+      }
+    ],
+    philosophes: [
+      { nom: "Descartes", dates: "1596-1650", concept: "Libre arbitre", these: "Le pouvoir de choisir entre les contraires est ce qu'il y a de plus divin en nous. Même mes erreurs viennent du mauvais usage de ma liberté." },
+      { nom: "Spinoza", dates: "1632-1677", concept: "Illusion du libre arbitre", these: "Nous nous croyons libres parce que nous ignorons les causes qui nous déterminent. La liberté véritable est l'intelligence de la nécessité." },
+      { nom: "Kant", dates: "1724-1804", concept: "Autonomie", these: "Être libre, c'est obéir à la loi morale qu'on se donne par sa raison. L'hétéronomie (suivre ses penchants) est servitude." },
+      { nom: "Rousseau", dates: "1712-1778", concept: "Liberté civile", these: "Le contrat social transforme la liberté naturelle (anarchique) en liberté civile : obéir à la loi qu'on s'est prescrite." },
+      { nom: "Sartre", dates: "1905-1980", concept: "Liberté absolue", these: "L'humain est condamné à être libre. L'existence précède l'essence ; nous sommes radicalement responsables de qui nous devenons." },
+      { nom: "Bergson", dates: "1859-1941", concept: "Acte libre", these: "Un acte est libre quand il exprime toute la personnalité, quand il vient de nous tout entier — non d'une partie de nous." }
+    ]
+  },
+
+  // ============== 10. LA NATURE ==============
+  "nature": {
+    nom: "La nature",
+    cours: false,
+    intro: "La nature désigne ce qui existe sans intervention humaine, mais aussi l'essence d'une chose. Quel rapport l'humain doit-il avoir avec elle ?",
+    flashcards: [
+      { type: "Définition", q: "Quels sont les sens du mot « nature » ?", a: "<ul><li><strong>Tout ce qui existe</strong> sans intervention humaine (forêt, animaux, lois physiques)</li><li><strong>L'essence</strong> d'une chose (« la nature humaine »)</li><li>Ce qui est <strong>inné</strong> par opposition à l'acquis (la culture)</li></ul>" },
+      { type: "Distinction", q: "Quelle différence entre nature et culture ?", a: "<strong>Nature</strong> = ce qui est inné, universel, ne change pas. <strong>Culture</strong> = ce qui est acquis, varie selon les sociétés. <em>Lévi-Strauss</em> : la prohibition de l'inceste fait le passage de l'une à l'autre — universelle (nature) <em>et</em> imposée (culture)." },
+      { type: "Auteur", q: "Que dit Aristote sur la nature ?", a: "Chaque être a une <strong>fin naturelle</strong> (téléologie) : le gland devient chêne, l'enfant devient adulte. La nature est comme un <strong>artisan immanent</strong> qui pousse chaque être vers sa perfection propre." },
+      { type: "Auteur", q: "Quelle vision moderne de la nature avec Descartes ?", a: "La nature est une <strong>machine</strong>, descriptible mathématiquement. L'humain doit s'en rendre « comme maître et possesseur » par la science et la technique. <strong>Désenchantement</strong> de la nature." },
+      { type: "Auteur", q: "Que dit Rousseau sur l'état de nature ?", a: "Contrairement à Hobbes, l'homme à l'état de nature est <strong>bon</strong> et solitaire. C'est la <strong>société</strong> qui le corrompt en introduisant la propriété, l'inégalité et l'amour-propre. « <em>L'homme est né libre, et partout il est dans les fers.</em> »" },
+      { type: "Concept", q: "Qu'est-ce que l'écologie philosophique ?", a: "Réflexion sur le <strong>rapport humain-nature</strong> face à la crise écologique. <em>Hans Jonas</em> : « Principe responsabilité » — agir aujourd'hui en pensant aux générations futures. <em>Heidegger</em> : la technique a transformé la nature en simple ressource." },
+      { type: "Question", q: "Existe-t-il une « nature humaine » ?", a: "<strong>Aristote</strong> : oui, l'humain est un animal politique et rationnel. <strong>Sartre</strong> : non, l'existence précède l'essence, l'humain n'a pas de nature, il se construit. <strong>Lévi-Strauss</strong> : un seuil (l'inceste) marque la sortie de la nature." }
+    ],
+    quiz: [
+      {
+        q: "Pour Lévi-Strauss, la prohibition de l'inceste marque :",
+        options: ["Une simple coutume locale", "Le passage de la nature à la culture", "Une invention moderne", "Un tabou religieux"],
+        correct: 1,
+        explain: "Universelle (nature) mais imposée (culture), elle est le seuil où l'humanité quitte le règne animal."
+      },
+      {
+        q: "Pour Rousseau, l'homme à l'état de nature est :",
+        options: ["Un loup pour l'homme", "Bon, solitaire, pacifique", "Cruel et calculateur", "Esclave de ses passions"],
+        correct: 1,
+        explain: "C'est la société qui corrompt — par la propriété, l'inégalité, l'amour-propre — un être originellement bon."
+      },
+      {
+        q: "Descartes appelle l'humain à devenir :",
+        options: ["Le serviteur de la nature", "Comme maître et possesseur de la nature", "L'égal de la nature", "L'enfant de la nature"],
+        correct: 1,
+        explain: "Vision moderne : la science et la technique permettent de comprendre les lois naturelles pour les exploiter."
+      },
+      {
+        q: "Pour Aristote, chaque être de la nature :",
+        options: ["Existe par hasard", "A une fin naturelle (téléologie)", "Est un mécanisme", "Est créé par l'homme"],
+        correct: 1,
+        explain: "La nature est téléologique : le gland tend à devenir chêne, l'enfant à devenir adulte. Tout être vise sa perfection propre."
+      },
+      {
+        q: "Le « principe responsabilité » de Hans Jonas :",
+        options: ["Limite la liberté individuelle", "Demande d'agir en pensant aux générations futures", "Interdit la technologie", "Diviniser la nature"],
+        correct: 1,
+        explain: "Face à la puissance technique moderne, notre responsabilité s'étend à l'humanité à venir et à la biosphère."
+      }
+    ],
+    philosophes: [
+      { nom: "Aristote", dates: "384-322 av. J.-C.", concept: "Téléologie", these: "Chaque être naturel a une fin (telos) qui le pousse à se réaliser. La nature est un ordre orienté, non un mécanisme aveugle." },
+      { nom: "Descartes", dates: "1596-1650", concept: "Nature-machine", these: "La nature est une machine mathématisable. L'humain doit s'en rendre maître et possesseur par la science et la technique." },
+      { nom: "Rousseau", dates: "1712-1778", concept: "Bon sauvage", these: "L'homme à l'état de nature est bon. La société introduit la propriété, l'inégalité et corrompt cette innocence originelle." },
+      { nom: "Lévi-Strauss", dates: "1908-2009", concept: "Nature/Culture", these: "La prohibition de l'inceste, à la fois universelle (nature) et imposée (culture), est le seuil entre les deux règnes." },
+      { nom: "Heidegger", dates: "1889-1976", concept: "Arraisonnement", these: "La technique moderne transforme la nature en « fonds » disponible : le Rhin devient ressource hydroélectrique, non plus fleuve." },
+      { nom: "Jonas", dates: "1903-1993", concept: "Principe responsabilité", these: "Notre puissance technique nous oblige à étendre la responsabilité morale aux générations futures et à la biosphère." }
+    ]
+  },
+
+  // ============== 11. LA POLITIQUE ==============
+  "politique": {
+    nom: "La politique",
+    cours: true,
+    intro: "La politique est l'art de gouverner la cité. Elle interroge la légitimité du pouvoir, les régimes, et le rôle du citoyen.",
+    flashcards: [
+      { type: "Définition", q: "Qu'est-ce que la politique ?", a: "Du grec <em>polis</em> (cité). Ensemble des <strong>activités liées au gouvernement</strong> de la communauté : exercice du pouvoir, organisation des institutions, débat public, citoyenneté." },
+      { type: "Distinction", q: "Quelle différence entre la politique et le politique ?", a: "<strong>La politique</strong> (féminin) : pratique partisane, jeu des partis, conflits d'opinions. <strong>Le politique</strong> (masculin) : ce qui concerne fondamentalement le vivre-ensemble, l'organisation de la cité." },
+      { type: "Auteur", q: "Qu'est-ce qu'un « animal politique » selon Aristote ?", a: "L'humain ne réalise sa nature qu'<strong>en cité</strong>. Le langage (logos) le destine à délibérer du juste et de l'injuste. Vivre hors de la cité, c'est être « ou bête, ou dieu »." },
+      { type: "Auteur", q: "Quels sont les régimes politiques selon Aristote ?", a: "Trois bons : <strong>monarchie</strong> (un seul), <strong>aristocratie</strong> (les meilleurs), <strong>politeia</strong> (la majorité au service du bien commun). Trois corrompus : <strong>tyrannie</strong>, <strong>oligarchie</strong>, <strong>démagogie</strong> (= démocratie corrompue)." },
+      { type: "Auteur", q: "Que dit Machiavel sur le politique ?", a: "Sépare politique et morale : le Prince doit savoir « <strong>ne pas être bon</strong> » selon les circonstances. La fin (conserver l'État) justifie les moyens. Réalisme cynique vs idéalisme moralisant." },
+      { type: "Auteur", q: "Que défend Hannah Arendt sur la politique ?", a: "La politique = <strong>action en commun</strong> dans l'espace public, où chacun apparaît par la parole et l'acte. <strong>Totalitarisme</strong> = destruction de cet espace public, fusion du privé et du politique." },
+      { type: "Concept", q: "Qu'est-ce que la démocratie ?", a: "Régime du <em>dèmos</em> (peuple). Repose sur : <strong>souveraineté populaire</strong>, <strong>égalité politique</strong> (un homme, une voix), <strong>libertés fondamentales</strong>, <strong>séparation des pouvoirs</strong> (Montesquieu)." },
+      { type: "Question", q: "Le politique relève-t-il de la science ou de l'art ?", a: "<strong>Platon</strong> : science (le philosophe-roi). <strong>Aristote</strong> : art (la prudence pratique, <em>phronesis</em>). <strong>Machiavel</strong> : art rusé du pouvoir. <strong>Habermas</strong> : délibération rationnelle." }
+    ],
+    quiz: [
+      {
+        q: "Pour Aristote, qui vit hors de la cité est :",
+        options: ["Un philosophe", "Ou bête, ou dieu", "Un sage", "Un voyageur"],
+        correct: 1,
+        explain: "L'humain réalise sa nature dans la communauté politique : en sortir, c'est sortir de l'humanité."
+      },
+      {
+        q: "La démagogie selon Aristote est :",
+        options: ["Le bon gouvernement du peuple", "La forme corrompue de la démocratie", "Un synonyme de monarchie", "Un régime mixte"],
+        correct: 1,
+        explain: "Quand la majorité gouverne pour son intérêt particulier (et non pour le bien commun), la démocratie dégénère en démagogie."
+      },
+      {
+        q: "Pour Machiavel, le Prince doit :",
+        options: ["Être toujours bon", "Savoir ne pas être bon selon les circonstances", "Suivre la morale chrétienne", "Renoncer au pouvoir"],
+        correct: 1,
+        explain: "Le réalisme machiavélien sépare politique et morale : conserver l'État peut exiger la ruse, voire la cruauté."
+      },
+      {
+        q: "Hannah Arendt définit le totalitarisme comme :",
+        options: ["Un excès de démocratie", "La destruction de l'espace public et de la pluralité", "Un régime stable", "Une démocratie populaire"],
+        correct: 1,
+        explain: "Le totalitarisme abolit la distinction privé/public et empêche toute action politique commune."
+      },
+      {
+        q: "La séparation des pouvoirs (Montesquieu) vise à :",
+        options: ["Affaiblir l'État", "Empêcher l'abus de pouvoir", "Multiplier les ministères", "Unifier le gouvernement"],
+        correct: 1,
+        explain: "« Pour qu'on ne puisse abuser du pouvoir, il faut que, par la disposition des choses, le pouvoir arrête le pouvoir. »"
+      }
+    ],
+    philosophes: [
+      { nom: "Aristote", dates: "384-322 av. J.-C.", concept: "Animal politique", these: "L'humain réalise sa nature dans la cité. La politique vise le bien commun par la délibération sur le juste et l'injuste." },
+      { nom: "Machiavel", dates: "1469-1527", concept: "Réalisme politique", these: "Le politique se sépare de la morale. Le Prince doit savoir ne pas être bon, et apprendre du lion (force) et du renard (ruse)." },
+      { nom: "Hobbes", dates: "1588-1679", concept: "Souverain absolu", these: "Le pacte social donne tous les pouvoirs au Léviathan, condition de la paix civile contre la guerre de tous contre tous." },
+      { nom: "Montesquieu", dates: "1689-1755", concept: "Séparation des pouvoirs", these: "Pour éviter la tyrannie, il faut que le pouvoir arrête le pouvoir : législatif, exécutif, judiciaire séparés." },
+      { nom: "Rousseau", dates: "1712-1778", concept: "Volonté générale", these: "La souveraineté appartient au peuple. La loi exprime la volonté générale, non la somme des intérêts particuliers." },
+      { nom: "Arendt", dates: "1906-1975", concept: "Action politique", these: "La politique est action en commun dans l'espace public. Le totalitarisme la détruit en abolissant la pluralité humaine." }
+    ]
+  },
+
+  // ============== 12. LA RAISON ==============
+  "raison": {
+    nom: "La raison",
+    cours: false,
+    intro: "La raison est la faculté de connaître et de juger. Mais a-t-elle des limites ? Suffit-elle à comprendre le monde et à guider l'action ?",
+    flashcards: [
+      { type: "Définition", q: "Qu'est-ce que la raison ?", a: "<strong>Faculté de connaître par concepts</strong>, de juger, d'argumenter et de calculer. Universelle (la même chez tous) et a priori (indépendante de l'expérience pour ses principes : non-contradiction, identité)." },
+      { type: "Distinction", q: "Raison vs entendement (Kant) ?", a: "<strong>Entendement</strong> : faculté qui applique les concepts aux phénomènes (science). <strong>Raison</strong> : faculté qui vise les Idées (Dieu, âme, monde) — au-delà de l'expérience possible." },
+      { type: "Distinction", q: "Quelle différence entre raison et raisonnable ?", a: "<strong>Rationnel</strong> = conforme à la logique, à la cohérence (peut être inhumain). <strong>Raisonnable</strong> = mesuré, sage, prudent (intègre la dimension morale et pratique). On peut être rationnel sans être raisonnable." },
+      { type: "Auteur", q: "Que dit Pascal sur la raison ?", a: "« <em>La dernière démarche de la raison est de reconnaître qu'il y a une infinité de choses qui la surpassent.</em> » La raison a ses limites : « le cœur a ses raisons que la raison ne connaît point. »" },
+      { type: "Auteur", q: "Que dit Kant des limites de la raison ?", a: "La raison génère des <strong>antinomies</strong> (contradictions) quand elle dépasse l'expérience possible. Elle ne peut prouver ni Dieu, ni l'âme, ni la liberté — mais peut les <strong>postuler</strong> pour la morale." },
+      { type: "Auteur", q: "Comment Hume critique-t-il la raison ?", a: "<strong>Empiriste</strong> : nos idées viennent de l'expérience, pas de la raison pure. La <strong>causalité</strong> elle-même n'est qu'une habitude mentale, pas une vérité a priori. La raison est l'esclave des passions." },
+      { type: "Concept", q: "Qu'est-ce que la « raison instrumentale » (Adorno, Horkheimer) ?", a: "Raison réduite au <strong>calcul des moyens</strong> sans interroger les fins. Critique de l'École de Francfort : la raison technicienne moderne peut servir la barbarie (Auschwitz)." },
+      { type: "Question", q: "La raison est-elle universelle ?", a: "<strong>Descartes</strong> : oui, le bon sens est la chose la mieux partagée. <strong>Lévi-Strauss</strong> : oui, mais elle s'exprime différemment selon les cultures (« pensée sauvage » aussi rigoureuse). <strong>Foucault</strong> : la raison occidentale a son histoire, n'est pas neutre." }
+    ],
+    quiz: [
+      {
+        q: "Pour Pascal, la dernière démarche de la raison est :",
+        options: ["De tout comprendre", "De reconnaître qu'il y a une infinité de choses qui la surpassent", "De rejeter la foi", "De s'opposer au cœur"],
+        correct: 1,
+        explain: "La raison lucide reconnaît ses propres limites : « Le cœur a ses raisons que la raison ne connaît point. »"
+      },
+      {
+        q: "Pour Hume, la raison est :",
+        options: ["Maître des passions", "L'esclave des passions", "Indépendante de l'expérience", "Innée"],
+        correct: 1,
+        explain: "La raison, dit Hume, ne peut motiver l'action ; ce sont les passions qui meuvent, et la raison qui calcule les moyens."
+      },
+      {
+        q: "Une antinomie kantienne est :",
+        options: ["Une preuve mathématique", "Une contradiction où les deux thèses opposées semblent démontrables", "Une loi physique", "Une figure rhétorique"],
+        correct: 1,
+        explain: "Quand la raison dépasse l'expérience possible, elle aboutit à des contradictions : signe qu'elle a outrepassé ses limites."
+      },
+      {
+        q: "Le rationnel et le raisonnable :",
+        options: ["Sont synonymes", "Diffèrent : on peut être rationnel sans être raisonnable", "S'opposent toujours", "Sont des concepts religieux"],
+        correct: 1,
+        explain: "Une décision logiquement rationnelle peut être inhumaine ; le raisonnable intègre la mesure et la sagesse pratique."
+      },
+      {
+        q: "La « raison instrumentale » critiquée par l'École de Francfort :",
+        options: ["Cherche la vérité", "Calcule les moyens sans interroger les fins", "S'oppose à la science", "Est purement religieuse"],
+        correct: 1,
+        explain: "Adorno et Horkheimer montrent qu'une raison purement calculatrice peut servir la barbarie totalitaire."
+      }
+    ],
+    philosophes: [
+      { nom: "Descartes", dates: "1596-1650", concept: "Bon sens", these: "« Le bon sens est la chose du monde la mieux partagée. » La raison est universelle, mais il faut la conduire avec méthode." },
+      { nom: "Pascal", dates: "1623-1662", concept: "Limites de la raison", these: "La raison reconnaît ce qui la dépasse. Le cœur a ses raisons que la raison ne connaît point : la foi commence où la raison s'arrête." },
+      { nom: "Hume", dates: "1711-1776", concept: "Empirisme", these: "Toutes nos idées viennent de l'expérience. La raison est l'esclave des passions : elle calcule mais ne meut pas." },
+      { nom: "Kant", dates: "1724-1804", concept: "Critique de la raison", these: "La raison a des bornes (l'expérience possible). Au-delà, elle tombe dans les antinomies. Mais elle peut postuler la liberté pour la morale." },
+      { nom: "Hegel", dates: "1770-1831", concept: "Ruse de la raison", these: "L'histoire est rationnelle malgré les apparences. Les passions individuelles servent, à leur insu, la réalisation de la Raison." },
+      { nom: "Adorno / Horkheimer", dates: "XXe s.", concept: "Raison instrumentale", these: "La raison technicienne, séparée des fins, peut servir la barbarie. La Shoah est le produit d'une rationalité dévoyée." }
+    ]
+  },
+
+  // ============== 13. LA RELIGION ==============
+  "religion": {
+    nom: "La religion",
+    cours: false,
+    intro: "La religion lie les hommes au sacré et entre eux. Est-elle illusion, exigence morale ou besoin anthropologique ?",
+    flashcards: [
+      { type: "Définition", q: "Qu'est-ce que la religion ?", a: "Du latin <em>religare</em> (relier) ou <em>relegere</em> (relire scrupuleusement). Système de <strong>croyances et de pratiques</strong> liant les humains au sacré et entre eux par des rites, dogmes, communauté." },
+      { type: "Distinction", q: "Foi vs croyance vs savoir ?", a: "<strong>Savoir</strong> : adhésion fondée sur des preuves. <strong>Croyance</strong> : adhésion sans preuve suffisante. <strong>Foi</strong> : engagement existentiel et confiance, qui dépasse la simple croyance intellectuelle." },
+      { type: "Auteur", q: "Que dit Pascal du « pari » ?", a: "Si Dieu existe et que je crois → gain infini. S'il n'existe pas et que je crois → perte minime. <strong>Le calcul rationnel commande de parier sur Dieu.</strong> La foi est ici présentée comme une option pratique raisonnable." },
+      { type: "Auteur", q: "Que dit Marx de la religion ?", a: "« <em>La religion est l'opium du peuple.</em> » Elle <strong>console</strong> les opprimés mais les <strong>endort</strong> en les détournant de leur libération réelle. Reflet d'un monde misérable, elle disparaîtra avec lui." },
+      { type: "Auteur", q: "Que dit Freud de la religion ?", a: "<strong>Illusion</strong> issue d'un désir : besoin d'un Père tout-puissant qui protège, donne sens à la souffrance, promet l'au-delà. La religion = projection psychique de désirs infantiles." },
+      { type: "Auteur", q: "Que dit Nietzsche du christianisme ?", a: "« <strong>Dieu est mort</strong> », et c'est nous qui l'avons tué. Le christianisme est une <strong>morale d'esclaves</strong> qui inverse les valeurs vitales (humilité comme vertu). À dépasser pour le surhomme." },
+      { type: "Auteur", q: "Que dit Durkheim de la religion ?", a: "Approche <strong>sociologique</strong> : la religion est l'expression symbolique de la <strong>société elle-même</strong>. En adorant Dieu, le groupe s'adore lui-même. Fonction de cohésion sociale." },
+      { type: "Question", q: "Foi et raison sont-elles compatibles ?", a: "<strong>Saint Thomas</strong> : oui, la raison naturelle prépare la foi. <strong>Pascal</strong> : raison et cœur ont leurs domaines, complémentaires. <strong>Kant</strong> : la raison limite le savoir pour faire place à la foi morale. <strong>Nietzsche/Freud</strong> : non, la religion est illusion." }
+    ],
+    quiz: [
+      {
+        q: "Le pari de Pascal commande de :",
+        options: ["Renoncer à la raison", "Parier sur Dieu (gain infini vs perte minime)", "Adopter la science", "Rejeter toute croyance"],
+        correct: 1,
+        explain: "Calcul rationnel : croire en Dieu est l'option la plus avantageuse en termes d'espérance de gain."
+      },
+      {
+        q: "« La religion est l'opium du peuple » est de :",
+        options: ["Nietzsche", "Marx", "Freud", "Sartre"],
+        correct: 1,
+        explain: "Pour Marx, la religion console les opprimés mais les endort en détournant leur révolte vers l'au-delà."
+      },
+      {
+        q: "Pour Freud, la religion est :",
+        options: ["Une révélation divine", "Une illusion née du désir d'un Père tout-puissant", "Une science primitive", "Une convention sociale"],
+        correct: 1,
+        explain: "Projection psychique : l'humain projette dans Dieu ses désirs infantiles de protection et de sens."
+      },
+      {
+        q: "« Dieu est mort » est une formule de :",
+        options: ["Marx", "Freud", "Nietzsche", "Sartre"],
+        correct: 2,
+        explain: "Nietzsche annonce la fin de l'autorité morale chrétienne et le défi de créer de nouvelles valeurs."
+      },
+      {
+        q: "Pour Durkheim, la religion exprime fondamentalement :",
+        options: ["Une vérité divine", "La société elle-même se prenant pour objet", "Une névrose collective", "Un calcul utilitaire"],
+        correct: 1,
+        explain: "Approche sociologique : en adorant Dieu, le groupe adore symboliquement sa propre cohésion."
+      }
+    ],
+    philosophes: [
+      { nom: "Pascal", dates: "1623-1662", concept: "Pari", these: "Croire en Dieu est rationnel : si Dieu existe, gain infini ; sinon, perte minime. La foi est aussi une affaire du cœur." },
+      { nom: "Spinoza", dates: "1632-1677", concept: "Critique des Écritures", these: "La Bible n'enseigne pas le savoir mais l'obéissance. La superstition repose sur la peur ; la vraie religion est rationnelle." },
+      { nom: "Kant", dates: "1724-1804", concept: "Religion morale", these: "On ne peut prouver Dieu, mais la raison pratique le postule comme garant de la justice. La religion vraie est morale." },
+      { nom: "Marx", dates: "1818-1883", concept: "Opium du peuple", these: "La religion console les opprimés et les détourne de leur émancipation réelle. Elle disparaîtra avec ses causes sociales." },
+      { nom: "Nietzsche", dates: "1844-1900", concept: "Mort de Dieu", these: "Le christianisme est une morale d'esclaves. « Dieu est mort » : il faut créer de nouvelles valeurs affirmant la vie." },
+      { nom: "Freud", dates: "1856-1939", concept: "Illusion", these: "La religion est une illusion née du désir : projection d'un Père protecteur, équivalent collectif de la névrose obsessionnelle." },
+      { nom: "Durkheim", dates: "1858-1917", concept: "Religion = société", these: "Le sacré est la société elle-même symbolisée. La religion produit du lien social et de la cohésion collective." }
+    ]
+  },
+
+  // ============== 14. LA SCIENCE ==============
+  "science": {
+    nom: "La science",
+    cours: false,
+    intro: "La science est la connaissance certaine et démontrée. Quelle est sa méthode ? Ses limites ? Sa différence avec l'opinion ou la croyance ?",
+    flashcards: [
+      { type: "Définition", q: "Qu'est-ce que la science ?", a: "<strong>Connaissance rationnelle, méthodique et démontrée</strong>, visant les lois universelles et nécessaires. Elle se distingue de l'opinion (subjective) et de la croyance (sans preuve)." },
+      { type: "Distinction", q: "Sciences formelles vs sciences expérimentales ?", a: "<strong>Formelles</strong> (maths, logique) : démontrent par déduction à partir d'axiomes, sans recours à l'expérience. <strong>Expérimentales</strong> (physique, biologie) : confrontent hypothèses au réel par l'expérimentation." },
+      { type: "Auteur", q: "Quelle est la méthode expérimentale (Claude Bernard) ?", a: "<ol><li><strong>Observation</strong> d'un phénomène</li><li><strong>Hypothèse</strong> explicative</li><li><strong>Expérimentation</strong> pour tester</li><li><strong>Vérification</strong> ou réfutation</li></ol>" },
+      { type: "Auteur", q: "Qu'est-ce que la « rupture épistémologique » (Bachelard) ?", a: "La science <strong>rompt avec l'opinion et le sens commun</strong>. « <em>L'opinion pense mal ; elle ne pense pas.</em> » La connaissance scientifique progresse contre les évidences premières, par <strong>obstacles épistémologiques</strong> à dépasser." },
+      { type: "Auteur", q: "Qu'est-ce que la falsifiabilité selon Popper ?", a: "Critère de <strong>scientificité</strong> : une théorie est scientifique si elle est <strong>réfutable</strong> par l'expérience. Une théorie qui explique tout (psychanalyse, marxisme selon Popper) n'est pas scientifique." },
+      { type: "Auteur", q: "Qu'est-ce qu'un « paradigme » selon Kuhn ?", a: "Cadre théorique partagé par une communauté scientifique. Les <strong>révolutions scientifiques</strong> sont des <strong>changements de paradigme</strong> (Newton → Einstein) où le monde n'est plus vu de la même façon." },
+      { type: "Concept", q: "Quelle est la différence entre expliquer et comprendre (Dilthey) ?", a: "<strong>Expliquer</strong> (sciences de la nature) : trouver les causes, lois universelles. <strong>Comprendre</strong> (sciences humaines) : saisir le sens, l'intention. Méthodes différentes pour des objets différents." },
+      { type: "Question", q: "La science peut-elle tout expliquer ?", a: "<strong>Scientisme</strong> : oui, en droit. <strong>Bergson</strong> : non, la science fige par concepts ce qui est devenir vivant. <strong>Wittgenstein</strong> : « il y a de l'inexprimable, c'est ce qui se montre, c'est le mystique »." }
+    ],
+    quiz: [
+      {
+        q: "Pour Bachelard, la science :",
+        options: ["Confirme l'opinion", "Rompt avec l'opinion et le sens commun", "S'appuie sur les évidences", "Reproduit l'expérience quotidienne"],
+        correct: 1,
+        explain: "« L'opinion pense mal ; elle ne pense pas. » Le savoir scientifique se construit contre les évidences premières."
+      },
+      {
+        q: "Selon Popper, une théorie est scientifique si elle est :",
+        options: ["Vérifiable", "Réfutable (falsifiable) par l'expérience", "Simple", "Acceptée par la majorité"],
+        correct: 1,
+        explain: "Une théorie qui s'arrange de toute observation et explique tout n'est pas scientifique mais idéologique."
+      },
+      {
+        q: "Un paradigme chez Kuhn est :",
+        options: ["Une expérience cruciale", "Un cadre théorique partagé par une communauté scientifique", "Une loi universelle", "Une formule mathématique"],
+        correct: 1,
+        explain: "Les révolutions scientifiques (Copernic, Einstein) sont des changements de paradigme, pas de simples ajouts de connaissances."
+      },
+      {
+        q: "Expliquer et comprendre (Dilthey) :",
+        options: ["Sont synonymes", "Distinguent sciences de la nature et sciences humaines", "S'opposent radicalement", "Sont deux étapes successives"],
+        correct: 1,
+        explain: "On explique la nature par des lois, on comprend l'humain par le sens et l'intention."
+      },
+      {
+        q: "La méthode expérimentale (Claude Bernard) suppose :",
+        options: ["Pure déduction", "Observation, hypothèse, expérimentation, vérification", "Inspiration", "Intuition seule"],
+        correct: 1,
+        explain: "L'hypothèse n'a de valeur que confrontée au réel par l'expérimentation contrôlée."
+      }
+    ],
+    philosophes: [
+      { nom: "Aristote", dates: "384-322 av. J.-C.", concept: "Science des causes", these: "La science cherche les causes (matérielle, formelle, efficiente, finale). Elle vise l'universel et le nécessaire, non le particulier." },
+      { nom: "Descartes", dates: "1596-1650", concept: "Méthode", these: "La science suit quatre règles : évidence, analyse, synthèse, dénombrement. Modèle mathématique de la connaissance." },
+      { nom: "Claude Bernard", dates: "1813-1878", concept: "Méthode expérimentale", these: "Observation – hypothèse – expérimentation – vérification. Le déterminisme est la base de toute science expérimentale." },
+      { nom: "Bachelard", dates: "1884-1962", concept: "Obstacle épistémologique", these: "La science se construit contre l'opinion. Les évidences du sens commun sont les premiers obstacles à dépasser." },
+      { nom: "Popper", dates: "1902-1994", concept: "Falsifiabilité", these: "Une théorie est scientifique si elle peut être réfutée par l'expérience. Sinon, c'est de l'idéologie déguisée." },
+      { nom: "Kuhn", dates: "1922-1996", concept: "Révolution scientifique", these: "La science progresse par changements de paradigme, pas par accumulation linéaire. Les révolutions changent la vision du monde." }
+    ]
+  },
+
+  // ============== 15. LA TECHNIQUE ==============
+  "technique": {
+    nom: "La technique",
+    cours: true,
+    intro: "La technique est l'ensemble des procédés permettant de produire et de transformer. Libère-t-elle l'humain ou l'aliène-t-elle ?",
+    flashcards: [
+      { type: "Définition", q: "Qu'est-ce que la technique ?", a: "Ensemble des <strong>procédés et savoir-faire</strong> permettant de transformer la nature pour produire des objets utiles. Du grec <em>technè</em> (art, savoir-faire). La technologie ajoute le <em>logos</em> : technique + science." },
+      { type: "Auteur", q: "Que raconte le mythe de Prométhée ?", a: "Épiméthée distribue les capacités aux animaux mais <strong>oublie l'humain</strong>, qui reste démuni. Prométhée vole le <strong>feu et la technique</strong> aux dieux pour les lui donner. La technique humaine n'est pas signe d'intelligence créative, mais de <strong>dénuement originel</strong>." },
+      { type: "Auteur", q: "Quels arts Zeus accorde-t-il pour contrôler la technique ?", a: "<ul><li><strong>L'art militaire</strong> : discipline, faire passer ses besoins avant ses envies</li><li><strong>L'art politique</strong> : prendre en compte le bien commun</li></ul>Sans ces arts, la technique se retourne contre l'humain." },
+      { type: "Auteur", q: "Quels sont les deux dangers de la technique selon Heidegger ?", a: "<ul><li><strong>Autodestruction</strong> : l'humain crée des techniques (IA, nucléaire) capables d'anéantir la vie. Il fait tout ce qu'il <em>peut</em> faire sans se demander s'il a le <em>droit</em>.</li><li><strong>Transformation de l'être en étant</strong> : on perçoit le vivant comme un simple objet utilisable.</li></ul>" },
+      { type: "Concept", q: "Que signifie « transformation de l'être en étant » (Heidegger) ?", a: "Habitués aux objets techniques, on finit par voir le <strong>vivant comme une fonction</strong> (le Rhin = ressource hydroélectrique, l'humain = prestataire de services). La technique <strong>déshumanise</strong> en réduisant tout à de l'utile." },
+      { type: "Auteur", q: "Que dit Marx de la technique ?", a: "La machine devrait <strong>libérer l'humain</strong> du travail pénible. Mais sous le capitalisme, elle <strong>aliène</strong> le travailleur (cadence, parcellisation, perte de sens). Critique de la technique <em>dans</em> son usage social, pas <em>en soi</em>." },
+      { type: "Question", q: "La technique nous rend-elle libres ?", a: "<strong>Oui</strong> : elle nous libère des contraintes naturelles (faim, distance, maladie). <strong>Non</strong> (Heidegger) : elle nous emprisonne dans une vision utilitariste du monde. <strong>Ambigu</strong> (Marx) : libératrice en soi, aliénante dans son usage capitaliste." }
+    ],
+    quiz: [
+      {
+        q: "Le mythe de Prométhée montre que la technique humaine est :",
+        options: ["Le signe de notre supériorité", "La preuve de notre dénuement originel", "Un don divin pur", "Un instinct naturel"],
+        correct: 1,
+        explain: "Sans griffes ni fourrure, l'humain devait recevoir la technique pour survivre — elle compense un manque, ce n'est pas un luxe."
+      },
+      {
+        q: "Pour Heidegger, le premier danger de la technique est :",
+        options: ["La pollution", "L'autodestruction (faire tout ce qu'on peut sans se demander si on en a le droit)", "L'ennui", "L'isolement"],
+        correct: 1,
+        explain: "Fasciné par sa puissance, l'humain crée des techniques susceptibles d'anéantir la vie elle-même."
+      },
+      {
+        q: "Le second danger heideggérien est :",
+        options: ["La perte d'emploi", "La transformation de l'être en étant (réduction du vivant à de l'utile)", "L'inflation", "Le bruit"],
+        correct: 1,
+        explain: "On finit par voir le vivant — la nature, autrui, soi-même — comme un simple objet fonctionnel."
+      },
+      {
+        q: "Pour Marx, la machine sous le capitalisme :",
+        options: ["Libère totalement le travailleur", "Aliène le travailleur (cadence, parcellisation)", "Est neutre", "Disparaît rapidement"],
+        correct: 1,
+        explain: "La technique en soi pourrait libérer ; sous des rapports d'exploitation, elle écrase celui qui la sert."
+      },
+      {
+        q: "L'art militaire et l'art politique, dans le mythe de Prométhée, servent à :",
+        options: ["Faire la guerre", "Contrôler l'usage de la technique pour le bien commun", "Remplacer la technique", "Adorer les dieux"],
+        correct: 1,
+        explain: "Sans discipline (militaire) et bien commun (politique), la technique se retourne contre l'humanité."
+      }
+    ],
+    philosophes: [
+      { nom: "Mythe de Prométhée", dates: "tradition grecque", concept: "Dénuement originel", these: "La technique compense la faiblesse naturelle de l'humain. Sans arts militaires et politiques pour la contrôler, elle devient dangereuse." },
+      { nom: "Aristote", dates: "384-322 av. J.-C.", concept: "Technè / poièsis", these: "La technique imite la nature et achève ce qu'elle ne peut pas faire. Elle est subordonnée à la praxis (action morale)." },
+      { nom: "Descartes", dates: "1596-1650", concept: "Maîtres de la nature", these: "Par la science et la technique, l'humain doit se rendre « comme maître et possesseur de la nature » pour soulager ses maux." },
+      { nom: "Marx", dates: "1818-1883", concept: "Aliénation par la machine", these: "La machine pourrait libérer le travail, mais sous le capitalisme elle aliène : cadence, parcellisation, perte de sens." },
+      { nom: "Heidegger", dates: "1889-1976", concept: "Arraisonnement (Gestell)", these: "La technique moderne réduit tout — nature, humains — à un fonds disponible. Double danger : autodestruction et oubli de l'être." },
+      { nom: "Simondon", dates: "1924-1989", concept: "Mode d'existence des objets techniques", these: "Réhabilite l'objet technique : il n'est pas opposé à la culture, il a sa propre dignité et son évolution interne." }
+    ]
+  },
+
+  // ============== 16. LE TEMPS ==============
+  "temps": {
+    nom: "Le temps",
+    cours: false,
+    intro: "Le temps est-il une réalité objective, une forme de notre sensibilité, ou la conscience même ? Comment l'humain habite-t-il sa durée ?",
+    flashcards: [
+      { type: "Définition", q: "Qu'est-ce que le temps ?", a: "Forme du <strong>devenir</strong> : succession ordonnée des moments (passé, présent, futur). Mais le passé n'est plus, le futur n'est pas encore, le présent passe : <em>Saint Augustin</em> : « Si on ne me le demande pas, je le sais ; si on me le demande, je ne le sais plus. »" },
+      { type: "Distinction", q: "Temps physique vs temps vécu ?", a: "<strong>Temps physique</strong> : objectif, mesurable, homogène (horloges). <strong>Temps vécu</strong> (Bergson : <em>durée</em>) : subjectif, qualitatif, hétérogène — une heure d'attente n'est pas une heure de plaisir." },
+      { type: "Auteur", q: "Que dit Saint Augustin du temps ?", a: "Le temps est dans <strong>l'âme</strong>, pas dans le monde. Trois temps : « <strong>présent du passé</strong> » (mémoire), « <strong>présent du présent</strong> » (attention), « <strong>présent du futur</strong> » (attente). Tout se vit au présent." },
+      { type: "Auteur", q: "Qu'est-ce que la « durée » bergsonienne ?", a: "<strong>Temps vécu, qualitatif</strong>, irréductible à la mesure. Les états de conscience se <strong>fondent</strong> les uns dans les autres comme une mélodie. Le temps spatialisé des sciences trahit la durée vraie." },
+      { type: "Auteur", q: "Que dit Kant sur le temps ?", a: "Le temps est une <strong>forme a priori de la sensibilité</strong> : ce n'est pas une chose dans le monde, mais la manière dont notre esprit ordonne les phénomènes. Tout ce que nous percevons est nécessairement temporel." },
+      { type: "Auteur", q: "Que dit Heidegger sur l'« être-pour-la-mort » ?", a: "L'humain est un <strong>être temporel par essence</strong>. Le temps n'est pas neutre : la <strong>finitude</strong> (savoir que je vais mourir) donne sens à l'existence et oblige à l'authenticité." },
+      { type: "Concept", q: "Carpe diem vs eschatologie ?", a: "<strong>Carpe diem</strong> (Horace, épicurisme) : profiter du présent, seul réel. <strong>Eschatologie</strong> : tendre vers une fin (salut, accomplissement). Deux rapports opposés au temps : l'instant ou le projet." },
+      { type: "Question", q: "Peut-on être maître du temps ?", a: "<strong>Stoïciens</strong> : le présent seul nous appartient. <strong>Pascal</strong> : nous fuyons le présent dans le passé/futur (« nous ne vivons jamais »). <strong>Bergson</strong> : la durée vraie est création, liberté en acte." }
+    ],
+    quiz: [
+      {
+        q: "Pour Saint Augustin, le temps existe :",
+        options: ["Dans la nature seule", "Dans l'âme (mémoire, attention, attente)", "Hors de toute conscience", "Uniquement chez Dieu"],
+        correct: 1,
+        explain: "Trois temps présents : présent du passé (mémoire), présent du présent (attention), présent du futur (attente)."
+      },
+      {
+        q: "La « durée » bergsonienne désigne :",
+        options: ["Le temps des horloges", "Le temps vécu, qualitatif, irréductible à la mesure", "L'éternité", "Le passé seul"],
+        correct: 1,
+        explain: "Bergson distingue le temps spatialisé (homogène) de la durée vraie (qualitative, hétérogène, vécue)."
+      },
+      {
+        q: "Pour Kant, le temps est :",
+        options: ["Une chose réelle dans le monde", "Une forme a priori de la sensibilité", "Une illusion", "Un concept religieux"],
+        correct: 1,
+        explain: "Le temps n'est pas dans le monde mais dans la manière dont notre esprit ordonne les phénomènes."
+      },
+      {
+        q: "L'« être-pour-la-mort » de Heidegger signifie :",
+        options: ["Que la vie est désespérée", "Que la finitude donne sens à l'existence et appelle l'authenticité", "Qu'il faut craindre la mort", "Que la mort n'existe pas"],
+        correct: 1,
+        explain: "Savoir qu'on va mourir transforme le rapport à la vie : on ne peut plus la vivre comme infinie."
+      },
+      {
+        q: "Le carpe diem épicurien recommande de :",
+        options: ["Préparer l'au-delà", "Profiter du présent, seul réel", "Vivre dans le passé", "Anticiper l'avenir"],
+        correct: 1,
+        explain: "« Cueille le jour » : seul l'instant présent est à notre portée, le passé est révolu et le futur incertain."
+      }
+    ],
+    philosophes: [
+      { nom: "Saint Augustin", dates: "354-430", concept: "Trois temps de l'âme", these: "Le temps est dans l'âme : présent du passé (mémoire), présent du présent (attention), présent du futur (attente)." },
+      { nom: "Kant", dates: "1724-1804", concept: "Forme a priori", these: "Le temps n'est pas dans les choses mais dans notre sensibilité. C'est la condition de toute expérience possible." },
+      { nom: "Hegel", dates: "1770-1831", concept: "Histoire", these: "Le temps est le devenir de l'Esprit. L'histoire a un sens : la marche progressive de la liberté à travers les époques." },
+      { nom: "Bergson", dates: "1859-1941", concept: "Durée", these: "Le temps vrai est durée vécue, qualitative, créatrice. La science le spatialise et trahit son essence : la nouveauté pure." },
+      { nom: "Heidegger", dates: "1889-1976", concept: "Être-pour-la-mort", these: "L'humain est essentiellement temporel. La finitude (savoir qu'on mourra) ouvre à l'existence authentique." },
+      { nom: "Pascal", dates: "1623-1662", concept: "Fuite du présent", these: "Nous ne vivons jamais : toujours dans le passé ou le futur, jamais dans le présent. Le divertissement nous fuit nous-mêmes." }
+    ]
+  },
+
+  // ============== 17. LE TRAVAIL ==============
+  "travail": {
+    nom: "Le travail",
+    cours: false,
+    intro: "Le travail est-il malédiction ou émancipation ? Définit-il l'humain, ou l'aliène-t-il ? Comment articule-t-il liberté, nécessité et reconnaissance ?",
+    flashcards: [
+      { type: "Définition", q: "Qu'est-ce que le travail ?", a: "Du latin <em>tripalium</em> (instrument de torture). <strong>Activité de transformation</strong> de la nature pour produire ce qui est utile. À distinguer du <strong>loisir</strong> (activité libre) et de l'<strong>œuvre</strong> (création durable, Arendt)." },
+      { type: "Distinction", q: "Travail / œuvre / action (Arendt) ?", a: "<ul><li><strong>Travail</strong> (<em>animal laborans</em>) : assure la survie, cycle biologique</li><li><strong>Œuvre</strong> (<em>homo faber</em>) : produit des objets durables, fabrique un monde</li><li><strong>Action</strong> : agir avec d'autres dans l'espace public</li></ul>" },
+      { type: "Auteur", q: "Que dit Hegel du travail (dialectique du maître et de l'esclave) ?", a: "<strong>L'esclave</strong>, en transformant la nature par son travail, <strong>se forme lui-même</strong> et accède à la conscience de soi. Le maître, lui, jouit sans agir et reste dépendant de l'esclave. <strong>Le travail libère</strong>." },
+      { type: "Auteur", q: "Qu'est-ce que l'aliénation du travail selon Marx ?", a: "Sous le capitalisme, le travailleur est aliéné de : <ul><li>Son <strong>produit</strong> (qui appartient au patron)</li><li>Son <strong>activité</strong> (cadence imposée)</li><li>Son <strong>essence humaine</strong> (créativité)</li><li>Les <strong>autres travailleurs</strong> (concurrence)</li></ul>" },
+      { type: "Auteur", q: "Que dit Adam Smith du travail ?", a: "La <strong>division du travail</strong> (exemple de la manufacture d'épingles) augmente massivement la productivité. Mais elle réduit l'ouvrier à des gestes <strong>répétitifs et abrutissants</strong> — Smith en est conscient." },
+      { type: "Auteur", q: "Que dit Arendt du travail moderne ?", a: "Notre société valorise le <em>travail</em> (cycle vital) au détriment de l'<em>œuvre</em> (durable) et de l'<em>action</em> (politique). Triomphe de l'<strong>animal laborans</strong> : nous travaillons pour consommer, non pour bâtir un monde." },
+      { type: "Concept", q: "Travail et reconnaissance ?", a: "<strong>Hegel</strong> : on existe par la reconnaissance d'autrui ; le travail produit cette reconnaissance. <strong>Honneth</strong> : la lutte pour la reconnaissance est au cœur des conflits sociaux modernes (mépris vs estime)." },
+      { type: "Question", q: "Le travail est-il libérateur ou aliénant ?", a: "<strong>Hegel</strong> : libérateur, le travail forme la conscience de soi. <strong>Marx</strong> : aliénant sous le capitalisme, il faudrait le réorganiser. <strong>Arendt</strong> : ambigu, il faut distinguer travail/œuvre/action et préserver l'action politique." }
+    ],
+    quiz: [
+      {
+        q: "Pour Hegel, dans la dialectique maître-esclave :",
+        options: ["Le maître est libéré par sa puissance", "L'esclave se libère par le travail qui le forme", "Tous deux sont aliénés", "Aucun n'évolue"],
+        correct: 1,
+        explain: "En transformant la nature, l'esclave se transforme lui-même et accède à la conscience de soi — paradoxalement plus libre que le maître."
+      },
+      {
+        q: "L'aliénation du travail chez Marx désigne :",
+        options: ["La fatigue physique", "Le fait que le travailleur est dépossédé de son produit, de son activité, de son essence", "Une maladie psychique", "Le travail manuel"],
+        correct: 1,
+        explain: "Quatre dimensions : aliénation par rapport au produit, à l'activité, à l'essence humaine, aux autres."
+      },
+      {
+        q: "Adam Smith voit dans la division du travail :",
+        options: ["Un mal absolu", "Une source massive de productivité, mais aussi d'abrutissement", "Une utopie", "Une fiction"],
+        correct: 1,
+        explain: "Smith célèbre la productivité (manufacture d'épingles) mais mesure ses effets sur l'esprit ouvrier."
+      },
+      {
+        q: "Pour Arendt, l'« animal laborans » triomphe lorsque :",
+        options: ["L'humain devient un sage", "Tout est subordonné au cycle production-consommation", "On valorise l'art", "On contemple la nature"],
+        correct: 1,
+        explain: "Arendt déplore l'effacement de l'œuvre durable et de l'action politique au profit du seul travail-consommation."
+      },
+      {
+        q: "L'étymologie de « travail » (tripalium) renvoie à :",
+        options: ["Une fête", "Un instrument de torture", "Une école", "Une prière"],
+        correct: 1,
+        explain: "Origine pénible : le tripalium était un instrument à trois pieux servant à immobiliser les animaux ou à torturer."
+      }
+    ],
+    philosophes: [
+      { nom: "Aristote", dates: "384-322 av. J.-C.", concept: "Mépris du travail", these: "Le travail manuel (poièsis) est inférieur à l'action politique (praxis) et à la contemplation (theoria). Réservé aux esclaves." },
+      { nom: "Locke", dates: "1632-1704", concept: "Travail = propriété", these: "Le travail fonde le droit de propriété : ce que je transforme par mon travail devient mien." },
+      { nom: "Smith", dates: "1723-1790", concept: "Division du travail", these: "La division du travail multiplie la productivité (manufacture d'épingles) mais peut abrutir l'ouvrier réduit à des gestes répétitifs." },
+      { nom: "Hegel", dates: "1770-1831", concept: "Maître et esclave", these: "Par le travail, l'esclave se forme lui-même et accède à la conscience de soi. Le travail est formation et libération." },
+      { nom: "Marx", dates: "1818-1883", concept: "Aliénation", these: "Sous le capitalisme, le travailleur est aliéné de son produit, de son activité, de son essence et des autres. Il faut transformer les rapports de production." },
+      { nom: "Arendt", dates: "1906-1975", concept: "Travail / œuvre / action", these: "Distinguer le travail (vital), l'œuvre (durable) et l'action (politique). La modernité réduit tout au travail-consommation." }
+    ]
+  },
+
+  // ============== 18. LA VÉRITÉ ==============
+  "verite": {
+    nom: "La vérité",
+    cours: true,
+    intro: "La vérité est l'adéquation entre la pensée et le réel. Mais est-elle utile ? Universelle ? Plurielle selon les points de vue ?",
+    flashcards: [
+      { type: "Définition", q: "Qu'est-ce que la vérité ?", a: "<strong>Adéquation entre l'intellect et la chose</strong> (<em>adæquatio rei et intellectus</em>). Une phrase est vraie si elle décrit fidèlement la réalité. Du grec <em>aletheia</em> = dévoilement, signalement." },
+      { type: "Distinction", q: "Vérité vs réalité ?", a: "La <strong>réalité</strong> est ce qui est. La <strong>vérité</strong> est une propriété d'un <em>discours</em> (énoncé, jugement) qui décrit fidèlement la réalité. La réalité est ; la vérité se dit." },
+      { type: "Auteur", q: "Qu'est-ce que le pragmatisme de William James ?", a: "Le vrai n'est pas ce qui est logique, mais ce qui <strong>rend l'action plus efficace</strong>. La vérité a une <strong>valeur d'usage</strong> : on cherche la vérité pour mieux agir, non par amour du vrai." },
+      { type: "Auteur", q: "Pourquoi Kant interdit-il absolument le mensonge ?", a: "<ul><li>(1) Je ne peux <strong>pas prévoir</strong> les conséquences d'un mensonge</li><li>(2) Le mensonge <strong>fragilise la confiance</strong> sociale</li></ul>Même au meurtrier qui demande où est mon ami, je dois dire la vérité." },
+      { type: "Auteur", q: "Que représente l'allégorie de la caverne (Platon) ?", a: "<ul><li><strong>Ombres</strong> = illusions quotidiennes</li><li><strong>Marionnettistes</strong> = maîtres à penser, politiques</li><li><strong>Prisonniers</strong> = nous, trompés par perceptions et préjugés</li><li><strong>Montée vers la lumière</strong> = accès aux Idées</li><li><strong>Retour</strong> = risque d'être rejeté ou tué en disant la vérité</li></ul>" },
+      { type: "Concept", q: "Sensible vs intelligible chez Platon ?", a: "<strong>Sensible</strong> : monde des apparences changeantes, des illusions (la caverne). <strong>Intelligible</strong> : monde des Idées, des essences universelles et intemporelles. La vérité appartient à l'intelligible." },
+      { type: "Auteur", q: "Qu'est-ce que le relativisme (Protagoras, Gorgias) ?", a: "« <strong>L'homme est mesure de toutes choses</strong> » : la vérité dépend de ma perception. Elle est <strong>personnelle, variable, incommunicable</strong>. On ne peut décrire le rouge à un aveugle, ni le goût de l'ananas." },
+      { type: "Auteur", q: "Qu'est-ce que le perspectivisme de Nietzsche ?", a: "« <em>La vérité est femme</em> » : multiple, séduisante, insaisissable. Elle dépend du <strong>point de vue</strong> (≠ opinion). Tous les points de vue ne se valent pas : <strong>l'expert a plus de légitimité</strong>." },
+      { type: "Distinction", q: "Opinion vs point de vue (Nietzsche) ?", a: "<strong>Opinion</strong> : repose sur le vécu personnel — toutes les opinions se valent. <strong>Point de vue</strong> : angle d'analyse adopté pour examiner un objet (cinématographique, politique, historique). Les points de vue ne se valent pas." },
+      { type: "Question", q: "Rechercher la vérité est-il utile ?", a: "<strong>Oui</strong> (James) : la vérité augmente l'efficacité de l'action. <strong>Oui</strong> (Kant) : sans elle, la confiance sociale s'effondre. <strong>Non</strong> (Platon) : elle nous expose à la moquerie ou à la mort. <strong>Nuancé</strong> (Nietzsche) : avoir le meilleur point de vue évite la vision limitée du monde." }
+    ],
+    quiz: [
+      {
+        q: "L'adéquation entre l'intellect et la chose définit :",
+        options: ["L'opinion", "La vérité classique", "La croyance", "L'illusion"],
+        correct: 1,
+        explain: "Une phrase est vraie si elle correspond à la réalité — définition aristotélicienne de la vérité."
+      },
+      {
+        q: "Pour William James, la vérité :",
+        options: ["Est rationnelle et désintéressée", "A de la valeur si elle rend l'action plus efficace", "Existe en soi", "N'existe pas"],
+        correct: 1,
+        explain: "Le pragmatisme : le vrai est ce qui marche, ce qui augmente notre efficacité — non ce qui est logique en soi."
+      },
+      {
+        q: "Pour Kant, mentir :",
+        options: ["Est permis pour sauver une vie", "Est toujours interdit, même au meurtrier", "Dépend des cas", "Est moralement neutre"],
+        correct: 1,
+        explain: "Je ne peux prévoir les conséquences ; et tout mensonge ruine la confiance sociale. Le devoir de vérité est inconditionnel."
+      },
+      {
+        q: "Dans l'allégorie de la caverne, les ombres représentent :",
+        options: ["La vérité ultime", "Les illusions quotidiennes auxquelles nous croyons", "Les Idées", "Les philosophes"],
+        correct: 1,
+        explain: "Les prisonniers prennent les ombres pour la réalité — nous prenons nos préjugés pour des vérités."
+      },
+      {
+        q: "Pour Protagoras, « l'homme est mesure de toutes choses » signifie :",
+        options: ["L'homme est sage", "La vérité dépend de la perception de chacun", "L'homme domine la nature", "Tous les hommes pensent pareil"],
+        correct: 1,
+        explain: "C'est le relativisme : si je vois la chemise bleue, elle est bleue pour moi — la vérité est personnelle."
+      },
+      {
+        q: "Pour Nietzsche, opinion et point de vue :",
+        options: ["Sont identiques", "Diffèrent : tous les points de vue ne se valent pas", "S'opposent radicalement", "Sont des illusions"],
+        correct: 1,
+        explain: "L'opinion repose sur le vécu (toutes équivalentes). Le point de vue est un angle d'analyse — l'expert a plus de légitimité."
+      }
+    ],
+    philosophes: [
+      { nom: "Platon", dates: "428-348 av. J.-C.", concept: "Allégorie de la caverne", these: "La vérité appartient au monde intelligible (Idées). Le sensible n'est qu'illusion. La vérité libère mais expose au rejet." },
+      { nom: "Aristote", dates: "384-322 av. J.-C.", concept: "Adéquation", these: "Dire de ce qui est qu'il est, et de ce qui n'est pas qu'il n'est pas — telle est la vérité. Définition classique." },
+      { nom: "Protagoras / Gorgias", dates: "Ve s. av. J.-C.", concept: "Relativisme", these: "« L'homme est mesure de toutes choses. » La vérité dépend de la perception individuelle, variable, incommunicable." },
+      { nom: "Kant", dates: "1724-1804", concept: "Devoir de vérité", these: "Mentir est toujours interdit : on ne prévoit pas les conséquences, et tout mensonge fragilise la confiance sociale." },
+      { nom: "James", dates: "1842-1910", concept: "Pragmatisme", these: "Le vrai est ce qui rend l'action plus efficace. La vérité a une valeur d'usage, non une valeur en soi." },
+      { nom: "Nietzsche", dates: "1844-1900", concept: "Perspectivisme", these: "La vérité est multiple, dépend du point de vue (≠ opinion). Tous les points de vue ne se valent pas — l'expert prime." }
+    ]
+  }
+};
+
+// Liste ordonnée des notions du bac (alphabétique selon programme officiel)
+const NOTIONS_ORDER = [
+  "art", "bonheur", "conscience", "devoir", "etat", "inconscient",
+  "justice", "langage", "liberte", "nature", "politique", "raison",
+  "religion", "science", "technique", "temps", "travail", "verite"
+];
+
+</script>
+<script>
+// === APP LOGIC ===
+
+const state = {
+  currentTab: 'flashcards',
+  currentNotion: 'verite', // notion vue en cours par défaut
+  fcIndex: 0,
+  fcOrder: [],
+  quizIndex: 0,
+  quizAnswers: [], // { qIndex, chosen, correct }
+  quizFinished: false
+};
+
+// === UTILITAIRES ===
+function $(sel) { return document.querySelector(sel); }
+function $$(sel) { return document.querySelectorAll(sel); }
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// === NOTION BAR ===
+function buildNotionBar() {
+  const bar = $('#notionBar');
+  bar.innerHTML = '';
+  NOTIONS_ORDER.forEach(key => {
+    const data = PHILO_DATA[key];
+    const btn = document.createElement('button');
+    btn.className = 'notion-chip' + (key === state.currentNotion ? ' active' : '');
+    btn.textContent = data.nom;
+    btn.dataset.key = key;
+    if (data.cours) btn.dataset.cours = "true";
+    btn.addEventListener('click', () => {
+      state.currentNotion = key;
+      state.fcIndex = 0;
+      state.quizIndex = 0;
+      state.quizAnswers = [];
+      state.quizFinished = false;
+      buildNotionBar();
+      renderAll();
+    });
+    bar.appendChild(btn);
+  });
+}
+
+// === TABS ===
+function setupTabs() {
+  $$('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      state.currentTab = target;
+      $$('.tab').forEach(t => t.classList.toggle('active', t === tab));
+      $$('.section').forEach(s => s.classList.toggle('active', s.id === `section-${target}`));
+    });
+  });
+}
+
+// === FLASHCARDS ===
+function renderFlashcards() {
+  const data = PHILO_DATA[state.currentNotion];
+  const cards = data.flashcards;
+
+  if (state.fcOrder.length !== cards.length || state.fcOrder.some(i => i >= cards.length)) {
+    state.fcOrder = cards.map((_, i) => i);
+  }
+
+  const total = cards.length;
+  $('#fc-counter').textContent = `${data.nom} · ${total} carte${total > 1 ? 's' : ''}`;
+  $('#fc-progress-text').textContent = String(state.fcIndex + 1).padStart(2, '0');
+  $('#fc-progress-total').textContent = String(total).padStart(2, '0');
+  $('#fc-progress-fill').style.width = `${((state.fcIndex + 1) / total) * 100}%`;
+
+  const card = cards[state.fcOrder[state.fcIndex]];
+  $('#fc-front-tag').textContent = card.type;
+  $('#fc-back-tag').textContent = card.type;
+  $('#fc-front-q').innerHTML = card.q;
+  $('#fc-back-q').innerHTML = card.q;
+  $('#fc-back-a').innerHTML = card.a;
+
+  // Reset flip
+  $('#flashcard').classList.remove('flipped');
+
+  $('#fc-prev').disabled = state.fcIndex === 0;
+  $('#fc-next').disabled = state.fcIndex === total - 1;
+}
+
+function setupFlashcards() {
+  $('#flashcard').addEventListener('click', () => {
+    $('#flashcard').classList.toggle('flipped');
+  });
+  $('#fc-flip').addEventListener('click', (e) => {
+    e.stopPropagation();
+    $('#flashcard').classList.toggle('flipped');
+  });
+  $('#fc-prev').addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (state.fcIndex > 0) { state.fcIndex--; renderFlashcards(); }
+  });
+  $('#fc-next').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const total = PHILO_DATA[state.currentNotion].flashcards.length;
+    if (state.fcIndex < total - 1) { state.fcIndex++; renderFlashcards(); }
+  });
+  $('#fc-shuffle').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const total = PHILO_DATA[state.currentNotion].flashcards.length;
+    state.fcOrder = shuffle(Array.from({ length: total }, (_, i) => i));
+    state.fcIndex = 0;
+    renderFlashcards();
+  });
+  // Keyboard
+  document.addEventListener('keydown', (e) => {
+    if (state.currentTab !== 'flashcards') return;
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowLeft' && state.fcIndex > 0) { state.fcIndex--; renderFlashcards(); }
+    else if (e.key === 'ArrowRight') {
+      const total = PHILO_DATA[state.currentNotion].flashcards.length;
+      if (state.fcIndex < total - 1) { state.fcIndex++; renderFlashcards(); }
+    } else if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      $('#flashcard').classList.toggle('flipped');
+    }
+  });
+}
+
+// === QUIZ ===
+function renderQuiz() {
+  const data = PHILO_DATA[state.currentNotion];
+  const questions = data.quiz;
+  const shell = $('#quiz-shell');
+  $('#quiz-counter').textContent = `${data.nom} · ${questions.length} questions`;
+
+  if (state.quizFinished) {
+    renderQuizResult();
+    return;
+  }
+
+  const qIndex = state.quizIndex;
+  const q = questions[qIndex];
+  const answered = state.quizAnswers.find(a => a.qIndex === qIndex);
+
+  shell.innerHTML = `
+    <div class="quiz-progress">
+      <span>${String(qIndex + 1).padStart(2, '0')}</span>
+      <div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width: ${((qIndex + 1) / questions.length) * 100}%"></div></div>
+      <span>${String(questions.length).padStart(2, '0')}</span>
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-q-num">Question ${qIndex + 1} / ${questions.length}</div>
+      <div class="quiz-question">${q.q}</div>
+      <div class="quiz-options" id="quiz-options"></div>
+      <div class="quiz-explain ${answered ? 'show' : ''}" id="quiz-explain">
+        <strong>${answered && answered.chosen === q.correct ? 'Bonne réponse' : 'Réponse correcte'}</strong>
+        ${q.explain}
+      </div>
+      <div class="quiz-actions">
+        <button class="fc-btn" id="quiz-prev" ${qIndex === 0 ? 'disabled' : ''}>← Précédent</button>
+        <button class="fc-btn primary" id="quiz-next">${qIndex === questions.length - 1 ? 'Voir le score →' : 'Suivant →'}</button>
+      </div>
+    </div>
+  `;
+
+  const optsContainer = $('#quiz-options');
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-option';
+    const letter = String.fromCharCode(65 + i);
+    btn.innerHTML = `<span class="quiz-option-letter">${letter}</span><span>${opt}</span>`;
+    btn.disabled = !!answered;
+
+    if (answered) {
+      if (i === q.correct) btn.classList.add('correct');
+      else if (i === answered.chosen) btn.classList.add('wrong');
+    }
+
+    btn.addEventListener('click', () => {
+      if (state.quizAnswers.find(a => a.qIndex === qIndex)) return;
+      state.quizAnswers.push({ qIndex, chosen: i, correct: i === q.correct });
+      renderQuiz();
+    });
+    optsContainer.appendChild(btn);
+  });
+
+  $('#quiz-prev').addEventListener('click', () => {
+    if (state.quizIndex > 0) { state.quizIndex--; renderQuiz(); }
+  });
+  $('#quiz-next').addEventListener('click', () => {
+    if (state.quizIndex < questions.length - 1) {
+      state.quizIndex++;
+      renderQuiz();
+    } else {
+      state.quizFinished = true;
+      renderQuiz();
+    }
+  });
+}
+
+function renderQuizResult() {
+  const data = PHILO_DATA[state.currentNotion];
+  const total = data.quiz.length;
+  const correct = state.quizAnswers.filter(a => a.correct).length;
+  const pct = Math.round((correct / total) * 100);
+  let msg = "Continue de réviser, tu y es presque.";
+  if (pct === 100) msg = "Parfait. Tu maîtrises cette notion.";
+  else if (pct >= 80) msg = "Excellent niveau, quelques détails à peaufiner.";
+  else if (pct >= 60) msg = "Bon socle, mais certaines distinctions méritent révision.";
+  else if (pct >= 40) msg = "Les bases sont là, retravaille les fiches.";
+
+  const shell = $('#quiz-shell');
+  shell.innerHTML = `
+    <div class="quiz-score-banner">
+      <div class="quiz-score-num">${correct}<span style="opacity:0.4; font-size:42px;">/${total}</span></div>
+      <div class="quiz-score-label">${pct}% de réussite</div>
+      <div class="quiz-score-msg">« ${msg} »</div>
+    </div>
+    <div class="quiz-actions" style="justify-content: center; margin-top: 28px;">
+      <button class="fc-btn" id="quiz-review">Revoir les questions</button>
+      <button class="fc-btn primary" id="quiz-restart">↻ Recommencer</button>
+    </div>
+  `;
+  $('#quiz-review').addEventListener('click', () => {
+    state.quizFinished = false;
+    state.quizIndex = 0;
+    renderQuiz();
+  });
+  $('#quiz-restart').addEventListener('click', () => {
+    state.quizFinished = false;
+    state.quizIndex = 0;
+    state.quizAnswers = [];
+    renderQuiz();
+  });
+}
+
+// === TABLEAU ===
+function renderTable() {
+  const data = PHILO_DATA[state.currentNotion];
+  const philos = data.philosophes;
+  $('#tab-counter').textContent = `${philos.length} philosophe${philos.length > 1 ? 's' : ''}`;
+  $('#tab-intro').textContent = data.intro;
+  const body = $('#tab-body');
+  body.innerHTML = '';
+  philos.forEach(p => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><div class="philosopher">${p.nom}<span class="dates">${p.dates}</span></div></td>
+      <td><span class="keyword">${p.concept}</span></td>
+      <td><div class="thesis">${p.these}</div></td>
+    `;
+    body.appendChild(tr);
+  });
+}
+
+// === RENDER ALL ===
+function renderAll() {
+  state.fcOrder = [];
+  renderFlashcards();
+  renderQuiz();
+  renderTable();
+}
+
+// === INIT ===
+document.addEventListener('DOMContentLoaded', () => {
+  buildNotionBar();
+  setupTabs();
+  setupFlashcards();
+  renderAll();
+});
+
+</script>
+</body>
+</html>
