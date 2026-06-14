@@ -3,297 +3,191 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>φ flashcards · textes</title>
+<title>φ révisions · philosophie</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:     #0a0a0b;
-  --bg1:    #111113;
-  --bg2:    #161618;
-  --bg3:    #1c1c1f;
-  --bgh:    #202024;
-  --bd:     #26262a;
-  --bds:    #34343a;
-  --tx:     #ededed;
-  --tx2:    #a1a1a8;
-  --tx3:    #6c6c75;
-  --tx4:    #4a4a52;
-  --ac:     #4ade80;
-  --acd:    rgba(74,222,128,.1);
-  --er:     #f87171;
-  --sans:   'Geist', -apple-system, sans-serif;
-  --mono:   'Geist Mono', monospace;
-  --r:      7px;
-  --rs:     4px;
+  --bg:#0a0a0b; --bg1:#111113; --bg2:#161618; --bg3:#1c1c1f; --bgh:#202024;
+  --bd:#26262a; --bds:#34343a;
+  --tx:#ededed; --tx2:#a1a1a8; --tx3:#6c6c75; --tx4:#4a4a52;
+  --ac:#4ade80; --acd:rgba(74,222,128,.1); --acs:rgba(74,222,128,.2);
+  --er:#f87171; --erd:rgba(248,113,113,.08); --ers:rgba(248,113,113,.25);
+  --sans:'Geist',-apple-system,sans-serif;
+  --mono:'Geist Mono',monospace;
+  --r:7px; --rs:4px;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body {
-  background: var(--bg);
-  color: var(--tx);
-  font-family: var(--sans);
-  font-size: 14px;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-  letter-spacing: -.005em;
-}
-body {
-  background-image:
-    radial-gradient(ellipse 70% 40% at 50% -10%, rgba(74,222,128,.05), transparent),
-    radial-gradient(ellipse 50% 30% at 90% 5%, rgba(74,222,128,.02), transparent);
-}
-::selection { background: var(--acd); color: var(--tx); }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;letter-spacing:-.005em}
+body{background-image:radial-gradient(ellipse 70% 40% at 50% -10%,rgba(74,222,128,.05),transparent),radial-gradient(ellipse 50% 30% at 90% 5%,rgba(74,222,128,.02),transparent)}
+::selection{background:var(--acd);color:var(--tx)}
 
 /* ── TOPBAR ── */
-.topbar {
-  border-bottom: 1px solid var(--bd);
-  background: rgba(10,10,11,.88);
-  backdrop-filter: blur(12px);
-  position: sticky; top:0; z-index:100;
-}
-.topbar-inner {
-  max-width: 900px; margin: 0 auto;
-  padding: 13px 24px;
-  display: flex; align-items: center; justify-content: space-between; gap:16px;
-}
-.brand { display: flex; align-items: center; gap:10px; }
-.brand-mark {
-  width:24px; height:24px; border-radius:5px;
-  background: linear-gradient(135deg, var(--ac), #2d6e44);
-  display:grid; place-items:center;
-  font-family:var(--mono); font-size:12px; font-weight:600; color:#0a0a0b;
-}
-.brand-name { font-family:var(--mono); font-size:13px; font-weight:500; }
-.brand-sub  { font-family:var(--mono); font-size:10px; color:var(--tx3); }
-.brand-text { display:flex; flex-direction:column; gap:1px; }
-.topbar-right {
-  font-family:var(--mono); font-size:11px; color:var(--tx4);
-  display:flex; align-items:center; gap:16px;
-}
-.dot-live {
-  width:5px; height:5px; border-radius:50%;
-  background:var(--ac); box-shadow:0 0 6px var(--ac);
-  display:inline-block; margin-right:6px;
-  animation: pulse 2.5s ease-in-out infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+.topbar{border-bottom:1px solid var(--bd);background:rgba(10,10,11,.9);backdrop-filter:blur(14px);position:sticky;top:0;z-index:200}
+.topbar-inner{max-width:1100px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-mark{width:24px;height:24px;border-radius:5px;background:linear-gradient(135deg,var(--ac),#2d6e44);display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:600;color:#0a0a0b;flex-shrink:0}
+.brand-text{display:flex;flex-direction:column;gap:1px}
+.brand-name{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--tx)}
+.brand-sub{font-family:var(--mono);font-size:10px;color:var(--tx3)}
+.mode-toggle{display:flex;gap:2px;background:var(--bg1);border:1px solid var(--bd);border-radius:var(--r);padding:3px}
+.mode-btn{background:transparent;border:none;padding:7px 16px;font-family:var(--sans);font-size:12px;font-weight:500;cursor:pointer;color:var(--tx3);border-radius:var(--rs);transition:all .12s;display:flex;align-items:center;gap:7px}
+.mode-btn svg{width:13px;height:13px}
+.mode-btn:hover{color:var(--tx2)}
+.mode-btn.active{background:var(--bg3);color:var(--tx);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.topbar-meta{font-family:var(--mono);font-size:11px;color:var(--tx4);display:flex;align-items:center;gap:4px}
+.dot-live{width:5px;height:5px;border-radius:50%;background:var(--ac);box-shadow:0 0 6px var(--ac);display:inline-block;margin-right:5px;animation:pulse 2.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
-/* ── MAIN ── */
-main { max-width:900px; margin:0 auto; padding:32px 24px 80px; }
+/* ── LAYOUT ── */
+main{max-width:1100px;margin:0 auto;padding:28px 24px 80px}
+.section{display:none;animation:fadeUp .22s ease}
+.section.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── CONTROLS ── */
-.controls {
-  display:flex; align-items:center; gap:8px; margin-bottom:28px; flex-wrap:wrap;
-}
-.filter-label {
-  font-family:var(--mono); font-size:10px; color:var(--tx4);
-  text-transform:uppercase; letter-spacing:.08em; margin-right:4px;
-}
-.filter-btn {
-  background:var(--bg1); border:1px solid var(--bd); color:var(--tx3);
-  padding:5px 12px; font-family:var(--sans); font-size:11px; font-weight:500;
-  cursor:pointer; border-radius:var(--rs); transition:all .12s;
-}
-.filter-btn:hover { background:var(--bgh); color:var(--tx); border-color:var(--bds); }
-.filter-btn.active { background:var(--tx); color:var(--bg); border-color:var(--tx); font-weight:600; }
+/* ── SHARED CONTROLS ── */
+.controls-row{display:flex;align-items:center;gap:6px;margin-bottom:20px;flex-wrap:wrap}
+.filter-label{font-family:var(--mono);font-size:10px;color:var(--tx4);text-transform:uppercase;letter-spacing:.08em;margin-right:2px}
+.chip{padding:5px 12px;background:var(--bg1);border:1px solid var(--bd);color:var(--tx3);font-family:var(--sans);font-size:11px;font-weight:500;cursor:pointer;border-radius:var(--rs);transition:all .12s}
+.chip:hover{background:var(--bgh);color:var(--tx);border-color:var(--bds)}
+.chip.active{background:var(--tx);color:var(--bg);border-color:var(--tx);font-weight:600}
+.chip[data-cours]::before{content:'';width:5px;height:5px;background:var(--ac);border-radius:50%;box-shadow:0 0 4px var(--ac);display:inline-block;margin-right:6px;vertical-align:middle}
+.chip.active[data-cours]::before{background:var(--bg);box-shadow:none}
 
-/* ── SESSION META ── */
-.session-bar {
-  display:flex; align-items:center; justify-content:space-between;
-  margin-bottom:20px; flex-wrap:wrap; gap:10px;
-}
-.session-info {
-  font-family:var(--mono); font-size:11px; color:var(--tx3);
-  display:flex; align-items:center; gap:14px;
-}
-.badge {
-  background:var(--bg1); border:1px solid var(--bd);
-  padding:3px 9px; border-radius:var(--rs); color:var(--tx2);
-}
-.badge.green { background:var(--acd); border-color:rgba(74,222,128,.25); color:var(--ac); }
-.badge.red   { background:rgba(248,113,113,.08); border-color:rgba(248,113,113,.25); color:var(--er); }
-.progress-bar {
-  width:180px; height:2px; background:var(--bd); border-radius:2px; overflow:hidden;
-}
-.progress-fill {
-  height:100%; background:var(--ac);
-  transition:width .35s ease;
-  box-shadow:0 0 4px var(--ac);
-}
-.btn {
-  background:var(--bg1); border:1px solid var(--bd); color:var(--tx2);
-  padding:7px 14px; font-family:var(--sans); font-size:12px; font-weight:500;
-  cursor:pointer; border-radius:var(--rs); transition:all .12s;
-  display:inline-flex; align-items:center; gap:7px;
-}
-.btn:hover { background:var(--bgh); border-color:var(--bds); color:var(--tx); }
-.btn svg { width:13px; height:13px; flex-shrink:0; }
-.btn.primary { background:var(--tx); border-color:var(--tx); color:var(--bg); }
-.btn.primary:hover { background:#ccc; border-color:#ccc; }
+.btn{background:var(--bg1);border:1px solid var(--bd);color:var(--tx2);padding:7px 14px;font-family:var(--sans);font-size:12px;font-weight:500;cursor:pointer;border-radius:var(--rs);transition:all .12s;display:inline-flex;align-items:center;gap:7px}
+.btn:hover:not(:disabled){background:var(--bgh);border-color:var(--bds);color:var(--tx)}
+.btn:disabled{opacity:.3;cursor:not-allowed}
+.btn.primary{background:var(--tx);border-color:var(--tx);color:var(--bg)}
+.btn.primary:hover:not(:disabled){background:#ccc;border-color:#ccc}
+.btn svg{width:13px;height:13px;flex-shrink:0}
 
-/* ── CARD AREA ── */
-.card-area { display:flex; flex-direction:column; align-items:center; }
+/* ═══════════════════════════════════════
+   MODE A — FLASHCARDS PAR TEXTE
+═══════════════════════════════════════ */
+.fc-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.fc-meta{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;color:var(--tx3)}
+.badge{background:var(--bg1);border:1px solid var(--bd);padding:3px 9px;border-radius:var(--rs);color:var(--tx2)}
+.badge.ok{background:var(--acd);border-color:var(--acs);color:var(--ac)}
+.badge.nok{background:var(--erd);border-color:var(--ers);color:var(--er)}
+.prog-bar{width:160px;height:2px;background:var(--bd);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:var(--ac);transition:width .35s;box-shadow:0 0 4px var(--ac)}
+.fc-actions-row{display:flex;gap:6px}
 
-/* Flashcard */
-.flashcard {
-  width:100%; max-width:760px;
-  aspect-ratio:16/9;
-  perspective:1400px;
-  cursor:pointer; margin-bottom:18px;
-}
-.fc-inner {
-  position:relative; width:100%; height:100%;
-  transition:transform .5s cubic-bezier(.4,0,.2,1);
-  transform-style:preserve-3d;
-}
-.flashcard.flipped .fc-inner { transform:rotateY(180deg); }
-.fc-face {
-  position:absolute; inset:0;
-  backface-visibility:hidden;
-  border-radius:var(--r);
-  border:1px solid var(--bd);
-  padding:36px 48px;
-  display:flex; flex-direction:column;
-  overflow:hidden;
-  transition:border-color .15s;
-}
-.flashcard:hover .fc-face { border-color:var(--bds); }
-.fc-face.front { background:var(--bg1); }
-.fc-face.back  { background:var(--bg2); transform:rotateY(180deg); }
+/* Card flip */
+.flashcard{width:100%;aspect-ratio:16/9;perspective:1400px;cursor:pointer;margin-bottom:14px}
+.fc-inner{position:relative;width:100%;height:100%;transition:transform .5s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
+.flashcard.flipped .fc-inner{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r);border:1px solid var(--bd);padding:36px 48px;display:flex;flex-direction:column;overflow:hidden;transition:border-color .15s}
+.flashcard:hover .fc-face{border-color:var(--bds)}
+.fc-face.front{background:var(--bg1)}
+.fc-face.back{background:var(--bg2);transform:rotateY(180deg)}
 
-/* front */
-.fc-eyebrow {
-  display:flex; align-items:center; justify-content:space-between;
-  margin-bottom:20px;
-  font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:.08em;
-}
-.fc-tag { color:var(--ac); display:flex; align-items:center; gap:6px; }
-.fc-tag::before { content:''; width:4px; height:4px; background:var(--ac); border-radius:1px; }
-.fc-side { color:var(--tx4); }
-.fc-auteur {
-  font-size:28px; font-weight:600; color:var(--tx);
-  letter-spacing:-.02em; line-height:1.1; margin-bottom:6px;
-}
-.fc-oeuvre {
-  font-size:14px; color:var(--ac); font-style:italic;
-  line-height:1.3; margin-bottom:auto;
-}
-.fc-notions-row {
-  display:flex; flex-wrap:wrap; gap:5px; margin-top:16px;
-}
-.notion-tag {
-  font-family:var(--mono); font-size:9px; text-transform:uppercase;
-  letter-spacing:.06em; color:var(--ac);
-  background:var(--acd); border:1px solid rgba(74,222,128,.2);
-  padding:2px 7px; border-radius:3px;
-}
-.fc-hint {
-  position:absolute; bottom:16px; left:0; right:0;
-  text-align:center;
-  font-family:var(--mono); font-size:9px; color:var(--tx4);
-  letter-spacing:.06em; text-transform:uppercase;
-  display:flex; align-items:center; justify-content:center; gap:8px;
-}
-.kbd {
-  background:var(--bg3); border:1px solid var(--bd);
-  border-radius:3px; padding:1px 5px;
-  font-family:var(--mono); font-size:9px; color:var(--tx3);
-}
+.fc-eyebrow{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+.fc-tag{color:var(--ac);display:flex;align-items:center;gap:5px}
+.fc-tag::before{content:'';width:4px;height:4px;background:var(--ac);border-radius:1px}
+.fc-side{color:var(--tx4)}
+.fc-auteur{font-size:26px;font-weight:600;color:var(--tx);letter-spacing:-.02em;line-height:1.1;margin-bottom:5px}
+.fc-oeuvre{font-size:14px;color:var(--ac);font-style:italic;line-height:1.3;margin-bottom:auto}
+.notion-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:14px}
+.ntag{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.05em;color:var(--ac);background:var(--acd);border:1px solid var(--acs);padding:2px 7px;border-radius:3px}
+.ntag.dim{color:var(--tx4);background:transparent;border-color:var(--bd)}
+.fc-hint{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:9px;color:var(--tx4);letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:7px}
+.kbd{background:var(--bg3);border:1px solid var(--bd);border-radius:3px;padding:1px 5px;font-family:var(--mono);font-size:9px;color:var(--tx3)}
 
-/* back */
-.fc-back-auteur {
-  font-family:var(--mono); font-size:10px; color:var(--tx4);
-  margin-bottom:16px; text-transform:uppercase; letter-spacing:.05em;
-}
-.fc-resume-label {
-  font-family:var(--mono); font-size:9px; color:var(--ac);
-  text-transform:uppercase; letter-spacing:.1em;
-  margin-bottom:10px; display:flex; align-items:center; gap:6px;
-}
-.fc-resume-label::before { content:''; width:4px; height:4px; background:var(--ac); border-radius:1px; }
-.fc-resume {
-  font-size:15px; color:var(--tx); line-height:1.65;
-  flex:1;
-}
-.fc-resume strong { font-weight:500; color:var(--ac); }
-.fc-resume em { color:var(--tx2); font-style:italic; }
-.fc-notions-back {
-  margin-top:14px; padding-top:12px; border-top:1px solid var(--bd);
-  display:flex; flex-wrap:wrap; gap:4px;
-}
-.fc-back-eyebrow {
-  display:flex; align-items:center; justify-content:space-between;
-  margin-bottom:14px;
-  font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:.08em;
-}
+.fc-back-sub{font-family:var(--mono);font-size:10px;color:var(--tx4);margin-bottom:12px;text-transform:uppercase;letter-spacing:.04em}
+.fc-resume-label{font-family:var(--mono);font-size:9px;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;display:flex;align-items:center;gap:5px}
+.fc-resume-label::before{content:'';width:4px;height:4px;background:var(--ac);border-radius:1px}
+.fc-resume{font-size:14.5px;color:var(--tx);line-height:1.65;flex:1;overflow:hidden}
+.fc-resume strong{font-weight:500;color:var(--ac)}
+.fc-resume em{color:var(--tx2);font-style:italic}
+.fc-notions-back{margin-top:12px;padding-top:10px;border-top:1px solid var(--bd);display:flex;flex-wrap:wrap;gap:4px}
 
-/* ── ACTION BUTTONS ── */
-.card-actions {
-  display:flex; gap:8px; justify-content:center;
-  margin-bottom:20px; width:100%; max-width:760px;
-}
-.action-btn {
-  flex:1; max-width:160px;
-  background:var(--bg1); border:1px solid var(--bd); color:var(--tx2);
-  padding:10px 0; font-family:var(--sans); font-size:12px; font-weight:500;
-  cursor:pointer; border-radius:var(--rs); transition:all .12s;
-  display:flex; align-items:center; justify-content:center; gap:7px;
-}
-.action-btn:hover { background:var(--bgh); border-color:var(--bds); color:var(--tx); }
-.action-btn.ok  { border-color:#2d6e44; background:rgba(74,222,128,.07); color:var(--ac); }
-.action-btn.ok:hover  { background:rgba(74,222,128,.14); }
-.action-btn.nok { border-color:rgba(248,113,113,.4); background:rgba(248,113,113,.06); color:var(--er); }
-.action-btn.nok:hover { background:rgba(248,113,113,.12); }
-.action-btn svg { width:14px; height:14px; }
+/* Mark buttons */
+.mark-row{display:flex;gap:7px;justify-content:center;margin-bottom:14px}
+.mark-btn{flex:1;max-width:150px;padding:9px 0;font-family:var(--sans);font-size:12px;font-weight:500;cursor:pointer;border-radius:var(--rs);transition:all .12s;display:flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--bd);background:var(--bg1);color:var(--tx2)}
+.mark-btn:hover{background:var(--bgh);border-color:var(--bds);color:var(--tx)}
+.mark-btn.ok{border-color:#2d6e44;background:rgba(74,222,128,.07);color:var(--ac)}
+.mark-btn.ok:hover{background:rgba(74,222,128,.14)}
+.mark-btn.nok{border-color:rgba(248,113,113,.4);background:var(--erd);color:var(--er)}
+.mark-btn.nok:hover{background:rgba(248,113,113,.13)}
+.mark-btn svg{width:14px;height:14px}
 
-/* Nav buttons below */
-.nav-row {
-  display:flex; gap:8px; justify-content:space-between;
-  width:100%; max-width:760px;
-}
+.nav-row{display:flex;gap:7px;justify-content:space-between}
 
-/* ── RESULTS SCREEN ── */
-.results {
-  display:none; flex-direction:column; align-items:center;
-  gap:24px; text-align:center;
-  background:var(--bg1); border:1px solid var(--bd);
-  border-radius:var(--r); padding:48px 32px;
-  max-width:760px; width:100%;
-}
-.results.show { display:flex; }
-.results-score {
-  font-family:var(--mono); font-size:72px; font-weight:500;
-  color:var(--tx); letter-spacing:-.04em; line-height:1;
-}
-.results-score .den { color:var(--tx3); font-size:40px; }
-.results-pct { font-family:var(--mono); font-size:12px; color:var(--ac); margin-top:4px; }
-.results-msg { font-size:14px; color:var(--tx2); max-width:360px; line-height:1.55; }
-.results-actions { display:flex; gap:8px; }
-.results-label {
-  font-family:var(--mono); font-size:10px; text-transform:uppercase;
-  letter-spacing:.12em; color:var(--tx4);
-}
+/* Result screen */
+.result-screen{display:none;flex-direction:column;align-items:center;gap:20px;text-align:center;background:var(--bg1);border:1px solid var(--bd);border-radius:var(--r);padding:48px 32px}
+.result-screen.show{display:flex;animation:fadeUp .25s ease}
+.res-score{font-family:var(--mono);font-size:72px;font-weight:500;color:var(--tx);letter-spacing:-.04em;line-height:1}
+.res-score .den{color:var(--tx3);font-size:40px}
+.res-pct{font-family:var(--mono);font-size:12px;color:var(--ac);margin-top:4px}
+.res-msg{font-size:14px;color:var(--tx2);max-width:340px;line-height:1.55}
+.res-label{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--tx4)}
+.res-actions{display:flex;gap:8px}
 
-/* ── FOOTER ── */
-.footer {
-  max-width:900px; margin:60px auto 0; padding:18px 24px;
-  border-top:1px solid var(--bd);
-  font-family:var(--mono); font-size:10px; color:var(--tx4);
-  display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
-}
-.legend { display:flex; align-items:center; gap:6px; }
-.legend-dot { width:5px; height:5px; background:var(--ac); border-radius:50%; box-shadow:0 0 4px var(--ac); }
+/* ═══════════════════════════════════════
+   MODE B — FICHES PAR NOTION
+═══════════════════════════════════════ */
+.notion-layout{display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:start}
+.notion-sidebar{}
+.notion-nav{display:flex;flex-direction:column;gap:3px;position:sticky;top:72px}
+.notion-nav-btn{background:transparent;border:none;padding:8px 12px;font-family:var(--sans);font-size:12px;color:var(--tx3);cursor:pointer;border-radius:var(--rs);text-align:left;transition:all .12s;display:flex;align-items:center;gap:8px;width:100%}
+.notion-nav-btn:hover{background:var(--bg1);color:var(--tx)}
+.notion-nav-btn.active{background:var(--bg2);color:var(--tx);font-weight:500}
+.notion-nav-btn .ndot{width:5px;height:5px;border-radius:50%;background:var(--tx4);flex-shrink:0}
+.notion-nav-btn.active .ndot{background:var(--ac);box-shadow:0 0 4px var(--ac)}
+.notion-nav-btn[data-cours] .ndot{background:var(--ac);opacity:.6}
+.notion-nav-btn.active[data-cours] .ndot{opacity:1;box-shadow:0 0 4px var(--ac)}
 
-@media(max-width:640px){
-  .topbar-right { display:none; }
-  main { padding:20px 16px 60px; }
-  .fc-face { padding:22px 20px; }
-  .fc-auteur { font-size:22px; }
-  .fc-resume { font-size:13px; }
-  .progress-bar { display:none; }
-  .results-score { font-size:52px; }
+.notion-content{}
+.notion-header{margin-bottom:24px}
+.notion-eyebrow{font-family:var(--mono);font-size:10px;color:var(--tx4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.notion-cours-badge{font-family:var(--mono);font-size:9px;color:var(--ac);background:var(--acd);border:1px solid var(--acs);padding:2px 7px;border-radius:3px;letter-spacing:.06em}
+.notion-title{font-size:32px;font-weight:600;color:var(--tx);letter-spacing:-.02em;line-height:1.1;margin-bottom:8px}
+.notion-intro{font-size:14px;color:var(--tx3);line-height:1.55;font-style:italic;max-width:680px}
+.section-sep{height:1px;background:var(--bd);margin:22px 0}
+
+/* Auteurs table */
+.auteurs-label{font-family:var(--mono);font-size:10px;color:var(--tx4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px}
+.auteurs-table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;background:var(--bg1)}
+.auteurs-table thead{background:var(--bg2)}
+.auteurs-table th{text-align:left;padding:9px 14px;font-family:var(--mono);font-size:9px;font-weight:500;color:var(--tx4);text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid var(--bd)}
+.auteurs-table td{padding:11px 14px;border-bottom:1px solid var(--bd);vertical-align:top;font-size:13px;color:var(--tx2);line-height:1.5}
+.auteurs-table tbody tr:last-child td{border-bottom:none}
+.auteurs-table tbody tr{transition:background .1s}
+.auteurs-table tbody tr:hover td{background:var(--bg2);color:var(--tx)}
+.td-name{font-size:13px;font-weight:500;color:var(--tx);white-space:nowrap}
+.td-dates{font-family:var(--mono);font-size:10px;color:var(--tx4);display:block;margin-top:2px}
+.td-concept{font-family:var(--mono);font-size:10px;color:var(--ac);background:var(--acd);border:1px solid var(--acs);padding:2px 7px;border-radius:3px;display:inline-block;white-space:nowrap}
+.td-these{font-size:12.5px;color:var(--tx2);line-height:1.5}
+
+/* Méthodo section */
+.methodo-label{font-family:var(--mono);font-size:10px;color:var(--tx4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;margin-top:22px}
+.methodo-grid{display:flex;flex-direction:column;gap:6px}
+.methodo-card{background:var(--bg1);border:1px solid var(--bd);border-radius:var(--r);padding:0;overflow:hidden;transition:border-color .12s}
+.methodo-card:hover{border-color:var(--bds)}
+.methodo-head{padding:12px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.methodo-auteur{font-size:13px;font-weight:500;color:var(--tx)}
+.methodo-oeuvre{font-size:11px;color:var(--tx3);font-style:italic;margin-top:1px}
+.methodo-usage{padding:0 16px 13px;font-size:12.5px;color:var(--tx2);line-height:1.55;border-top:1px solid var(--bd);padding-top:10px;margin-top:0}
+
+/* Mobile */
+@media(max-width:720px){
+  .notion-layout{grid-template-columns:1fr}
+  .notion-sidebar{display:none}
+  .topbar-meta{display:none}
+  main{padding:20px 16px 60px}
+  .fc-face{padding:22px 20px}
+  .fc-auteur{font-size:20px}
+  .fc-resume{font-size:13px}
+  .prog-bar{display:none}
+  .res-score{font-size:52px}
+  .notion-title{font-size:26px}
+}
+@media(max-width:480px){
+  .flashcard{aspect-ratio:4/3}
+  .nav-row{flex-wrap:wrap}
+  .btn{flex:1;justify-content:center}
 }
 </style>
 </head>
@@ -304,580 +198,836 @@ main { max-width:900px; margin:0 auto; padding:32px 24px 80px; }
     <div class="brand">
       <div class="brand-mark">φ</div>
       <div class="brand-text">
-        <span class="brand-name">flashcards · textes</span>
+        <span class="brand-name">philosophie</span>
         <span class="brand-sub">terminale · bac 2026</span>
       </div>
     </div>
-    <div class="topbar-right">
-      <span><span class="dot-live"></span><span id="hd-count">23 textes</span></span>
-      <span id="hd-session">session en cours</span>
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="btn-mode-fc" onclick="switchMode('fc')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Flashcards
+      </button>
+      <button class="mode-btn" id="btn-mode-notions" onclick="switchMode('notions')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+        Fiches notions
+      </button>
     </div>
+    <div class="topbar-meta"><span class="dot-live"></span>23 textes · 18 notions</div>
   </div>
 </header>
 
 <main>
 
-  <!-- FILTRES PAR NOTION -->
-  <div class="controls" id="controls">
-    <span class="filter-label">notion</span>
-    <!-- rendered by JS -->
-  </div>
+<!-- ══════════════════ MODE FLASHCARDS ══════════════════ -->
+<div class="section active" id="section-fc">
+  <div class="controls-row" id="fc-filters"></div>
 
-  <!-- BARRE SESSION -->
-  <div class="session-bar">
-    <div class="session-info">
-      <span class="badge" id="card-counter">1 / 23</span>
-      <div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
-      <span class="badge green" id="score-ok">✓ 0</span>
-      <span class="badge red"   id="score-nok">✗ 0</span>
+  <div class="fc-topbar">
+    <div class="fc-meta">
+      <span class="badge" id="fc-pos">1 / 23</span>
+      <div class="prog-bar"><div class="prog-fill" id="fc-prog"></div></div>
+      <span class="badge ok" id="fc-ok">✓ 0</span>
+      <span class="badge nok" id="fc-nok">✗ 0</span>
     </div>
-    <div style="display:flex;gap:6px">
-      <button class="btn" id="btn-shuffle">
+    <div class="fc-actions-row">
+      <button class="btn" id="fc-shuffle">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
         Mélanger
       </button>
-      <button class="btn" id="btn-restart">
+      <button class="btn" id="fc-reset">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 109-9 9.75 9.75 0 00-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
         Réinitialiser
       </button>
     </div>
   </div>
 
-  <!-- ZONE CARTE -->
-  <div class="card-area" id="card-area">
+  <div id="fc-area">
     <div class="flashcard" id="flashcard">
-      <div class="fc-inner" id="fc-inner">
-        <!-- RECTO -->
-        <div class="fc-face front" id="fc-front">
+      <div class="fc-inner">
+        <div class="fc-face front">
           <div class="fc-eyebrow">
-            <span class="fc-tag" id="fc-tag">Auteur</span>
+            <span class="fc-tag" id="fc-tag">Texte</span>
             <span class="fc-side">recto</span>
           </div>
           <div class="fc-auteur" id="fc-auteur"></div>
           <div class="fc-oeuvre" id="fc-oeuvre"></div>
-          <div class="fc-notions-row" id="fc-notions-front"></div>
-          <div class="fc-hint">
-            <span class="kbd">espace</span> retourner
-            <span class="kbd">←</span><span class="kbd">→</span> naviguer
-          </div>
+          <div class="notion-tags" id="fc-ntags-front"></div>
+          <div class="fc-hint"><span class="kbd">espace</span> retourner <span class="kbd">←</span><span class="kbd">→</span></div>
         </div>
-        <!-- VERSO -->
-        <div class="fc-face back" id="fc-back">
-          <div class="fc-back-eyebrow">
+        <div class="fc-face back">
+          <div class="fc-eyebrow">
             <span class="fc-tag">Résumé</span>
-            <span class="fc-side" style="color:var(--tx4)">verso</span>
+            <span class="fc-side">verso</span>
           </div>
-          <div class="fc-back-auteur" id="fc-back-auteur"></div>
+          <div class="fc-back-sub" id="fc-back-sub"></div>
           <div class="fc-resume-label">Thèse principale</div>
           <div class="fc-resume" id="fc-resume"></div>
-          <div class="fc-notions-back" id="fc-notions-back"></div>
-          <div class="fc-hint" style="position:relative;bottom:auto;margin-top:10px">
-            <span class="kbd">espace</span> retourner
-          </div>
+          <div class="fc-notions-back" id="fc-ntags-back"></div>
+          <div class="fc-hint" style="position:relative;bottom:auto;margin-top:10px"><span class="kbd">espace</span> retourner</div>
         </div>
       </div>
     </div>
 
-    <!-- ACTIONS SU/SD (shown après retournement) -->
-    <div class="card-actions" id="card-actions" style="display:none">
-      <button class="action-btn nok" id="btn-nok">
+    <div class="mark-row" id="mark-row" style="display:none">
+      <button class="mark-btn nok" id="btn-nok">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         À revoir
       </button>
-      <button class="action-btn" id="btn-skip">
+      <button class="mark-btn" id="btn-skip">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
         Passer
       </button>
-      <button class="action-btn ok" id="btn-ok">
+      <button class="mark-btn ok" id="btn-ok">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
         Maîtrisé
       </button>
     </div>
 
-    <!-- NAV -->
     <div class="nav-row" id="nav-row">
-      <button class="btn" id="btn-prev">
+      <button class="btn" id="fc-prev">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
         Précédent
       </button>
-      <button class="btn primary" id="btn-flip">
+      <button class="btn primary" id="fc-flip">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 019-9 9.75 9.75 0 016.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 01-9 9 9.75 9.75 0 01-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
         Retourner
       </button>
-      <button class="btn" id="btn-next">
+      <button class="btn" id="fc-next">
         Suivant
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
       </button>
     </div>
 
-    <!-- RÉSULTATS -->
-    <div class="results" id="results">
-      <div class="results-label">Session terminée</div>
-      <div>
-        <div class="results-score"><span id="res-ok">0</span><span class="den"> / <span id="res-total">23</span></span></div>
-        <div class="results-pct" id="res-pct">0%</div>
-      </div>
-      <div class="results-msg" id="res-msg"></div>
-      <div class="results-actions">
+    <div class="result-screen" id="result-screen">
+      <div class="res-label">Session terminée</div>
+      <div><div class="res-score"><span id="res-ok">0</span><span class="den"> / <span id="res-total">23</span></span></div><div class="res-pct" id="res-pct">0%</div></div>
+      <div class="res-msg" id="res-msg"></div>
+      <div class="res-actions">
         <button class="btn" id="res-review">Revoir les difficiles</button>
         <button class="btn primary" id="res-restart">↻ Recommencer</button>
       </div>
     </div>
   </div>
+</div>
+
+<!-- ══════════════════ MODE FICHES NOTIONS ══════════════════ -->
+<div class="section" id="section-notions">
+  <div class="notion-layout">
+    <div class="notion-sidebar">
+      <nav class="notion-nav" id="notion-nav"></nav>
+    </div>
+    <div class="notion-content" id="notion-content"></div>
+  </div>
+</div>
+
 </main>
 
-<footer class="footer">
-  <span>23 textes · fiche méthodologique prof · bac 2026</span>
-  <span class="legend"><span class="legend-dot"></span>notions mobilisables</span>
-</footer>
-
 <script>
-// ── DATA : 23 textes du PDF, strictement ────────────────────────────────
+// ══════════════════════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════════════════════
+
 const TEXTES = [
-  {
-    id: 1,
-    auteur: "James",
-    oeuvre: "Le pragmatisme",
-    resume: `La vérité n'a pas de valeur en soi : elle vaut si elle <strong>rend l'action plus efficace</strong>. On ne recherche pas le vrai par amour du vrai, mais parce qu'il nous aide à agir. La raison elle-même n'est qu'une faculté pratique. Ce texte peut être mobilisé pour montrer que toute connaissance — scientifique, judiciaire, ou ordinaire — se juge à ses effets, non à sa conformité à un réel absolu.`,
-    notions: ["La vérité","La justice","La science","Le langage","La raison","La liberté","Le temps"],
-    mots_cles: ["vérité pragmatique","valeur d'usage","efficacité","action","raison pratique"],
+  { id:1, auteur:"James", oeuvre:"Le pragmatisme",
+    resume:"La vérité n'a pas de valeur en soi : elle vaut si elle <strong>rend l'action plus efficace</strong>. On ne recherche pas le vrai par amour du vrai, mais parce qu'il aide à agir. La raison elle-même n'est qu'une faculté pratique. Toute connaissance — scientifique, judiciaire, ou ordinaire — se juge à ses effets, non à sa conformité à un réel absolu.",
+    notions:["La vérité","La justice","La science","Le langage","La raison","La liberté","Le temps"] },
+  { id:2, auteur:"Kant", oeuvre:"D'un prétendu droit de mentir par humanité",
+    resume:"Mentir est <strong>toujours interdit</strong>, sans exception. (1) On ne peut prévoir les conséquences d'un mensonge ; (2) il détruit la <strong>confiance sociale</strong> sans laquelle aucun lien n'est possible. Même au meurtrier qui cherche notre ami, nous devons dire la vérité. Illustration de l'<em>impératif catégorique</em>.",
+    notions:["La vérité","Le devoir","La justice","L'État","Le langage","La conscience","La liberté","Le temps"] },
+  { id:3, auteur:"Platon", oeuvre:"La République — Allégorie de la caverne",
+    resume:"Des prisonniers prennent les <strong>ombres pour la réalité</strong>. L'un, libéré, monte vers la lumière (les Idées). En redescendant pour libérer ses camarades, il risque d'être tué. Vérité = intelligible / illusion = sensible. La vérité libère mais expose au danger — elle n'est pas garante du bonheur.",
+    notions:["La vérité","Le devoir","La nature","La science","Le bonheur","Le langage","La raison","La conscience","La liberté"] },
+  { id:4, auteur:"Gorgias", oeuvre:"Sur le non-être",
+    resume:"Trois thèses radicales : rien n'existe ; si quelque chose existe, on ne peut le connaître ; si on le connaît, on ne peut le <strong>communiquer</strong>. Les mots trop généraux ne rendent pas nos ressentis singuliers. Ce <em>relativisme absolu</em> remet en cause la science, la justice, le langage.",
+    notions:["La vérité","L'art","La justice","La science","L'État","Le langage","La raison","La conscience"] },
+  { id:5, auteur:"Nietzsche", oeuvre:"Par-delà bien et mal — Préface",
+    resume:"La vérité est comme une femme : multiple, séduisante, insaisissable. Nietzsche propose le <strong>perspectivisme</strong> : toute connaissance dépend d'un point de vue — et les points de vue ne se valent pas. Chaque œuvre d'art offre un nouveau point de vue sur le réel. La vérité est libre : elle ne peut être possédée.",
+    notions:["La vérité","L'art","La science","La liberté"] },
+  { id:6, auteur:"Pascal", oeuvre:"Pensées — « Qu'est-ce que le moi ? »",
+    resume:"Le moi ne se trouve dans <strong>aucune qualité</strong> (physique, morale, intellectuelle) car elles peuvent toutes changer. On n'aime jamais quelqu'un lui-même, mais ses qualités actuelles — éphémères. La connaissance d'autrui est toujours partielle et liée au présent.",
+    notions:["La vérité","Le bonheur","Le langage","La raison","La conscience","Le temps"] },
+  { id:7, auteur:"Locke", oeuvre:"Essai philosophique concernant l'entendement humain",
+    resume:"L'identité personnelle repose sur la <strong>mémoire</strong> : c'est en retraçant notre évolution que nous savons que c'est bien nous qui avons vécu ces événements. Mais la mémoire est sélective et faillible. Pour se connaître, il faut raison et réflexion, pas seulement l'expérience.",
+    notions:["La vérité","Le bonheur","La raison","La conscience","Le temps"] },
+  { id:8, auteur:"Freud", oeuvre:"Nouvelles conférences — Décomposition de la personnalité",
+    resume:"Le moi est écartelé entre <strong>trois maîtres</strong> : le <em>ça</em> (pulsions), le <em>surmoi</em> (interdits intériorisés), et le <em>principe de réalité</em> (monde extérieur contraignant). Ce texte interroge la liberté (quelle place reste-t-il ?), le bonheur (le moi écartelé peut-il être heureux ?), et l'État (principe de réalité).",
+    notions:["L'inconscient","Le devoir","La nature","Le bonheur","La raison","L'État","La liberté","La religion"] },
+  { id:9, auteur:"Sartre", oeuvre:"L'existentialisme est un humanisme",
+    resume:"<strong>L'existence précède l'essence</strong> : l'humain n'est pas prédéfini. Contrairement à l'artisan qui fabrique selon un plan, l'humain existe d'abord puis se définit par ses choix. Il est radicalement libre et totalement responsable — <em>condamné à être libre</em>. Aucun devoir préfabriqué, aucune essence fixe.",
+    notions:["La liberté","L'art","Le devoir","La nature","Le travail","La conscience","La religion","Le temps"] },
+  { id:10, auteur:"Platon", oeuvre:"Protagoras — Mythe de Prométhée",
+    resume:"Épiméthée oublie l'humain dans la distribution des capacités. Prométhée vole le feu et la technique. Zeus ajoute l'<em>art militaire</em> (discipline) et l'<em>art politique</em> (bien commun), sans quoi les hommes s'entre-déchirent. La technique seule ne suffit pas : il faut le sens de la <strong>justice</strong> pour en user correctement.",
+    notions:["La technique","La justice","La nature","Le travail","La liberté"] },
+  { id:11, auteur:"Freud", oeuvre:"Introduction à la psychanalyse",
+    resume:"L'artiste est un <strong>introverti frustré</strong> (manque d'amour, gloire, richesse) qui crée une fiction. Si l'œuvre connaît le succès, il obtient réellement ce qu'il cherchait — par hasard. Deux miracles : l'œuvre touche universellement malgré son origine personnelle, et fait oublier sa source. Névrose = fuite <em>consciente</em> / psychose = fuite <em>inconsciente</em>.",
+    notions:["L'inconscient","Le travail","Le bonheur","Le langage","La conscience","L'art"] },
+  { id:12, auteur:"Heidegger", oeuvre:"Essais et conférences — L'essence de la technique",
+    resume:"Double danger de la technique moderne : (1) <strong>autodestruction</strong> — l'homme fait tout ce qu'il <em>peut</em> sans se demander s'il en a le <em>droit</em> ; (2) <em>arraisonnement</em> (Gestell) — le vivant est réduit à un « fonds disponible » utile (le Rhin = ressource, l'humain = prestataire). Le devoir et la technique s'opposent.",
+    notions:["La technique","Le devoir","La nature","Le travail"] },
+  { id:13, auteur:"Matisse", oeuvre:"Écrits et propos sur l'art",
+    resume:"L'artiste retrouve un <strong>regard d'enfant</strong> : il voit le monde comme pour la première fois, sans l'habitude. L'être du quotidien ne sait plus voir — aveuglé par la familiarité. Ce regard est angoissant mais nécessaire. L'art nous réconcilie avec notre nature en nous reconnectant à la vision première.",
+    notions:["L'art","La nature","Le travail","Le bonheur","La vérité","La conscience","Le temps"] },
+  { id:14, auteur:"Aristote", oeuvre:"Politique",
+    resume:"L'humain est un <strong>animal politique</strong> par nature : vivre en cité est inscrit dans son essence. Trois communautés : <em>famille</em> (survivre), <em>village</em> (bien vivre par la division du travail), <em>cité</em> (agir bien moralement). Seul le <em>logos</em> — pensée du juste, passé, futur — fonde la politique. Hors de la cité : « ou bête, ou dieu ».",
+    notions:["L'État","La politique","Le devoir","La justice","La nature","Le travail","Le langage","La conscience","La liberté","Le temps"] },
+  { id:15, auteur:"Hobbes", oeuvre:"Léviathan",
+    resume:"À l'<strong>état de nature</strong>, chacun a droit à tout : guerre de tous contre tous, peur de la mort violente. Pour en sortir, les individus transfèrent leur liberté à un <strong>souverain absolu</strong> (le Léviathan) qui garantit la sécurité. La justice n'apparaît qu'avec l'État — avant, rien n'est juste ni injuste.",
+    notions:["L'État","Le devoir","La justice","La nature","Le travail","La liberté"] },
+  { id:16, auteur:"Clastres", oeuvre:"La société contre l'État",
+    resume:"Les sociétés primitives ne sont pas sans État par ignorance : elles le <strong>refusent activement</strong>. Le chef n'a aucune autorité contraignante — il ne peut que <em>conseiller</em> et <em>persuader</em>. Le <strong>rire</strong> collectif désamorce les abus. Organisation rationnelle et légitime sans État, par la seule force du langage.",
+    notions:["L'État","La politique","Le devoir","La justice","La nature","Le langage","La raison","La liberté","La religion"] },
+  { id:17, auteur:"Rousseau", oeuvre:"Du contrat social — Chapitre 6",
+    resume:"Par l'<strong>aliénation de tous à tous</strong>, chacun renonce à son intérêt particulier au profit du bien commun. La <strong>volonté générale</strong> n'est pas la volonté de la majorité, mais l'intérêt de tous ensemble. On troque une liberté naturelle anarchique contre une liberté civile — obéir à la loi qu'on s'est soi-même prescrite.",
+    notions:["L'État","La politique","Le devoir","La justice","Le travail","Le bonheur","La raison","La liberté"] },
+  { id:18, auteur:"Épictète", oeuvre:"Manuel",
+    resume:"Distinguer ce qui <strong>dépend de nous</strong> (jugements, désirs, actions, croyances) de ce qui n'en dépend pas (corps, réputation, résultat du travail). Le sage ne s'attache qu'au premier — il est alors radicalement libre et imperméable au reste. La liberté n'est pas l'absence de contrainte extérieure, mais la maîtrise intérieure.",
+    notions:["La liberté","Le devoir","Le travail","La raison","La religion"] },
+  { id:19, auteur:"Hegel", oeuvre:"Phénoménologie de l'esprit",
+    resume:"Vouloir préserver sa <strong>pureté à tout prix</strong>, c'est refuser d'exister — refuser le temps, le changement, l'engagement. Être libre, c'est accepter de s'engager dans le monde concret. Celui qui cherche trop son devoir peut se détourner de l'existence réelle — c'est la « belle âme » paralysée.",
+    notions:["La liberté","Le devoir","La nature","Le temps"] },
+  { id:20, auteur:"Platon", oeuvre:"Gorgias — Calliclès vs Socrate",
+    resume:"Deux conceptions opposées. <strong>Socrate</strong> : le bonheur est rationnel, il suppose la maîtrise de soi et l'absence de désirs incontrôlés. <strong>Calliclès</strong> : le bonheur est la satisfaction totale et excessive de tous ses désirs — être libre, c'est n'avoir aucune retenue. Nature, raison et liberté s'affrontent.",
+    notions:["Le bonheur","La liberté","La raison"] },
+  { id:21, auteur:"Alain", oeuvre:"Propos sur le bonheur",
+    resume:"Le bonheur ne se reçoit pas, il se <strong>construit</strong> — et on a même le devoir de le construire pour soi et pour autrui. L'enfant qui joue est le modèle : implication totale dans l'instant présent, oubli du reste. Pour connaître le bonheur, la conscience ne doit pas être trop pleine — <em>pas de bonheur sans oubli</em>.",
+    notions:["Le bonheur","L'art","Le devoir","Le travail","La conscience","La liberté","Le temps"] },
+  { id:22, auteur:"Nietzsche", oeuvre:"Le gai savoir §341 — L'éternel retour",
+    resume:"Et si tu devais <strong>revivre ta vie telle qu'elle a été, infiniment</strong> ? Ce test existentiel permet de discerner ce qu'on désire vraiment de ce qu'on fait par habitude ou pression. Il permet de se libérer de toute influence extérieure, de déterminer ses devoirs véritables et l'individu qu'on veut devenir.",
+    notions:["La liberté","Le devoir","La conscience","Le temps"] },
+  { id:23, auteur:"Machiavel", oeuvre:"Le Prince — Réputation, libéralité, cruauté, amour/crainte, adaptation",
+    resume:"Le Prince doit <strong>séparer politique et morale</strong> : son seul devoir est de conserver le pouvoir par tous les moyens — ruse, cruauté, générosité selon les circonstances. La politique est le règne de l'<em>apparence</em>, non de la vérité. Il vaut mieux être craint qu'aimé : l'amour est fragile, la crainte durable.",
+    notions:["La politique","L'État","Le devoir","La justice","La vérité","La liberté","La raison","Le temps","La conscience"] },
+];
+
+// ── NOTIONS avec auteurs + thèses + connexions méthodo ─────────────────
+const NOTIONS_DATA = [
+  { nom:"La vérité", cours:true,
+    intro:"Adéquation entre l'intellect et la chose (adæquatio rei et intellectus). Universelle ou relative au point de vue ?",
+    auteurs:[
+      {nom:"Platon",    dates:"428–348 av. J.-C.", concept:"Allégorie de la caverne", these:"La vérité appartient au monde intelligible (les Idées). Le sensible n'est qu'illusion. Dire la vérité expose au rejet et au danger."},
+      {nom:"Aristote",  dates:"384–322 av. J.-C.", concept:"Adéquation",              these:"Dire de ce qui est qu'il est, et de ce qui n'est pas qu'il n'est pas — définition classique."},
+      {nom:"Protagoras",dates:"Ve s. av. J.-C.",   concept:"Relativisme",             these:"« L'homme est mesure de toutes choses. » La vérité dépend de la perception individuelle, variable et incommunicable."},
+      {nom:"Kant",      dates:"1724–1804",         concept:"Devoir de vérité",        these:"Mentir est toujours interdit : on ne prévoit pas les conséquences et tout mensonge fragilise la confiance sociale."},
+      {nom:"James",     dates:"1842–1910",         concept:"Pragmatisme",             these:"Le vrai est ce qui rend l'action plus efficace. La vérité a une valeur d'usage, non une valeur absolue en soi."},
+      {nom:"Nietzsche", dates:"1844–1900",         concept:"Perspectivisme",          these:"La vérité est multiple et dépend du point de vue. Tous les points de vue ne se valent pas — l'expert prime."},
+    ],
+    methodo:[
+      {auteur:"James",    oeuvre:"Le pragmatisme",                          usage:"Le vrai = ce qui rend l'action efficace. Valeur d'usage, non valeur absolue."},
+      {auteur:"Kant",     oeuvre:"D'un prétendu droit de mentir",           usage:"Devoir de vérité inconditionnel — aucune circonstance ne justifie le mensonge."},
+      {auteur:"Platon",   oeuvre:"Allégorie de la caverne",                 usage:"La vérité appartient à l'intelligible. Le sensible n'est qu'illusion."},
+      {auteur:"Gorgias",  oeuvre:"Sur le non-être",                         usage:"La vérité est incommunicable : les mots sont trop généraux pour nos ressentis singuliers."},
+      {auteur:"Nietzsche",oeuvre:"Par-delà bien et mal — Préface",          usage:"Perspectivisme : la vérité est multiple, dépend du point de vue adopté."},
+      {auteur:"Pascal",   oeuvre:"Pensées — « Qu'est-ce que le moi ? »",    usage:"On ne peut jamais atteindre une certitude absolue sur un individu car tout ce qu'on perçoit de lui peut changer."},
+      {auteur:"Locke",    oeuvre:"Essai sur l'entendement humain",          usage:"Notre mémoire sélective empêche de savoir exactement qui on est."},
+      {auteur:"Matisse",  oeuvre:"Écrits et propos sur l'art",              usage:"L'art permet de percevoir le monde tel qu'il est, sans filtre de l'habitude."},
+      {auteur:"Machiavel",oeuvre:"Le Prince",                               usage:"La vérité n'est pas centrale en politique — c'est le règne de l'apparence."},
+    ]
   },
-  {
-    id: 2,
-    auteur: "Kant",
-    oeuvre: "D'un prétendu droit de mentir par humanité",
-    resume: `Mentir est <strong>toujours interdit</strong>, sans exception. Kant avance deux arguments : (1) on ne peut pas prévoir les conséquences d'un mensonge ; (2) le mensonge détruit la <strong>confiance sociale</strong> sans laquelle aucun lien n'est possible. Même au meurtrier qui cherche notre ami, nous devons dire la vérité. Ce texte illustre l'<em>impératif catégorique</em> et peut être mobilisé sur le devoir, la liberté, l'État, le langage.`,
-    notions: ["La vérité","Le devoir","La justice","L'État","Le langage","La conscience","La liberté","Le temps"],
-    mots_cles: ["mensonge","impératif catégorique","confiance sociale","conséquences","devoir de vérité"],
+  { nom:"Le devoir", cours:false,
+    intro:"Obligation morale inconditionnelle par laquelle la raison commande à la volonté. S'oppose à l'inclination et au calcul d'intérêt.",
+    auteurs:[
+      {nom:"Kant",         dates:"1724–1804", concept:"Impératif catégorique", these:"Agis toujours selon une maxime telle que tu puisses vouloir qu'elle devienne une loi universelle. Inconditionnel."},
+      {nom:"Rousseau",     dates:"1712–1778", concept:"Voix de la conscience", these:"La conscience est le guide assuré qui distingue le bien et le mal. Le devoir vient d'une voix intérieure."},
+      {nom:"Nietzsche",    dates:"1844–1900", concept:"Morale d'esclaves",     these:"La morale du devoir est née du ressentiment des faibles contre les forts. Il faut dépasser cette inversion."},
+      {nom:"Sartre",       dates:"1905–1980", concept:"Liberté responsable",   these:"L'humain n'a aucun devoir préfabriqué — rien ne lui est imposé sinon de faire des choix."},
+      {nom:"Bentham/Mill", dates:"XIXe s.",   concept:"Utilitarisme",          these:"L'action morale maximise le bonheur du plus grand nombre. La morale se calcule par les conséquences."},
+    ],
+    methodo:[
+      {auteur:"Kant",     oeuvre:"D'un prétendu droit de mentir",               usage:"Exemple d'impératif catégorique : agir conformément à la morale sans tenir compte de ses désirs ou sentiments."},
+      {auteur:"Platon",   oeuvre:"Allégorie de la caverne",                     usage:"Par devoir, l'ex-prisonnier doit libérer ses camarades, les instruire."},
+      {auteur:"Freud",    oeuvre:"Nouvelles conférences",                       usage:"L'homme se rapporte au réel sur le mode du devoir : le réel exige sans cesse un certain comportement."},
+      {auteur:"Sartre",   oeuvre:"L'existentialisme est un humanisme",          usage:"En soi, l'homme n'a aucun devoir à respecter — rien ne lui est imposé sinon de faire des choix."},
+      {auteur:"Aristote", oeuvre:"Politique",                                   usage:"Chaque communauté a son devoir propre : survie (famille), confort (village), morale (cité)."},
+      {auteur:"Hobbes",   oeuvre:"Léviathan",                                   usage:"Le devoir d'obéissance au souverain est le prix à payer pour la sécurité."},
+      {auteur:"Clastres", oeuvre:"La société contre l'État",                   usage:"Nul devoir ne lie l'individu au chef — ce dernier n'est qu'un simple conseiller sans autorité contraignante."},
+      {auteur:"Rousseau", oeuvre:"Du contrat social",                           usage:"Au sein de la société du contrat, mon devoir est de respecter la volonté générale."},
+      {auteur:"Épictète", oeuvre:"Manuel",                                      usage:"Le sage a le devoir de se préoccuper de ce qui dépend de lui et d'ignorer ce qui n'en dépend pas."},
+      {auteur:"Hegel",    oeuvre:"Phénoménologie de l'esprit",                 usage:"L'homme qui cherche trop à accomplir son devoir peut se détourner de l'existence concrète."},
+      {auteur:"Alain",    oeuvre:"Propos sur le bonheur",                       usage:"L'homme a le devoir de construire son bonheur et d'inciter autrui à en faire de même."},
+      {auteur:"Nietzsche",oeuvre:"L'éternel retour §341",                       usage:"Cet argument permet de déterminer les actions que nous nous devons véritablement d'accomplir."},
+      {auteur:"Machiavel",oeuvre:"Le Prince",                                   usage:"Le seul devoir du prince : conserver le pouvoir et sa réputation, par tous les moyens nécessaires."},
+      {auteur:"Heidegger",oeuvre:"L'essence de la technique",                  usage:"Heidegger soutient que l'homme privilégie ce qu'il peut faire à ce qu'il doit faire."},
+    ]
   },
-  {
-    id: 3,
-    auteur: "Platon",
-    oeuvre: "La République — Allégorie de la caverne",
-    resume: `Des prisonniers enchaînés dans une caverne prennent les <strong>ombres pour la réalité</strong>. L'un d'eux, libéré, monte vers la lumière (les Idées) et découvre la vérité. Lorsqu'il redescend pour libérer ses camarades, il risque d'être tué. Ce texte articule : vérité = intelligible vs illusion = sensible. Il mobilise le devoir (libérer les autres), la liberté (quitter les apparences), la science (première étape hors de la caverne), le bonheur (la vérité n'est pas sans danger).`,
-    notions: ["La vérité","Le devoir","La nature","La science","Le bonheur","Le langage","La raison","La conscience","La liberté"],
-    mots_cles: ["caverne","ombres","intelligible","sensible","Idées","illusion","libération","philosophe-roi"],
+  { nom:"La conscience", cours:true,
+    intro:"Ce par quoi je me sais exister — capacité à se prendre soi-même comme objet de pensée. Elle pose la question de l'identité personnelle.",
+    auteurs:[
+      {nom:"Descartes",dates:"1596–1650", concept:"Cogito",                    these:"« Je pense, donc je suis. » La conscience de soi est la vérité première, le seul point indubitable du doute."},
+      {nom:"Pascal",   dates:"1623–1662", concept:"Le moi insaisissable",      these:"Le moi ne se trouve dans aucune qualité — elles peuvent toutes disparaître. La singularité reste opaque."},
+      {nom:"Locke",    dates:"1632–1704", concept:"Mémoire",                   these:"L'identité personnelle repose sur la continuité de la conscience à travers le temps, via la mémoire."},
+      {nom:"Sartre",   dates:"1905–1980", concept:"Existence précède l'essence",these:"L'humain n'est pas prédéfini : il est ce qu'il choisit de devenir. Conscience toujours en avant d'elle-même."},
+      {nom:"Freud",    dates:"1856–1939", concept:"Décentrement du moi",       these:"Le moi n'est pas maître dans sa propre maison : écartelé entre le ça, le surmoi et le principe de réalité."},
+    ],
+    methodo:[
+      {auteur:"Platon",   oeuvre:"Allégorie de la caverne",                usage:"Prendre conscience = penser par soi-même, ne plus se fier aux apparences."},
+      {auteur:"Pascal",   oeuvre:"Pensées — « Qu'est-ce que le moi ? »",   usage:"Le moi est insaisissable dans ses qualités — toutes sont éphémères."},
+      {auteur:"Locke",    oeuvre:"Essai sur l'entendement humain",         usage:"L'identité personnelle repose sur la continuité de la conscience via la mémoire."},
+      {auteur:"Gorgias",  oeuvre:"Sur le non-être",                        usage:"L'individu peut être prisonnier de ses états de conscience qu'il ne peut communiquer."},
+      {auteur:"Freud",    oeuvre:"Introduction à la psychanalyse",         usage:"La névrose est une fuite consciente du réel (≠ psychose = fuite inconsciente)."},
+      {auteur:"Aristote", oeuvre:"Politique",                              usage:"Le logos prouve que l'homme a conscience du passé et du futur, pas seulement du présent."},
+      {auteur:"Sartre",   oeuvre:"L'existentialisme est un humanisme",     usage:"L'existence précède l'essence : l'humain n'a pas de nature préfabriquée — il se définit par ses choix."},
+      {auteur:"Nietzsche",oeuvre:"L'éternel retour §341",                  usage:"L'éternel retour : argument pour déterminer l'individu qu'on veut devenir."},
+      {auteur:"Alain",    oeuvre:"Propos sur le bonheur",                  usage:"Pour le bonheur, la conscience ne doit pas être pleine et entière — pas de bonheur sans oubli de soi."},
+      {auteur:"Matisse",  oeuvre:"Écrits et propos sur l'art",             usage:"L'artiste prend conscience du réel, contrairement à l'être du quotidien qui ne voit plus."},
+      {auteur:"Machiavel",oeuvre:"Le Prince",                              usage:"Le dirigeant doit être conscient de la situation pour s'y adapter avec précision."},
+    ]
   },
-  {
-    id: 4,
-    auteur: "Gorgias",
-    oeuvre: "Sur le non-être",
-    resume: `Trois thèses radicales : (1) rien n'existe ; (2) si quelque chose existe, on ne peut le connaître ; (3) si on peut le connaître, on ne peut le <strong>communiquer</strong>. Les mots sont trop généraux pour rendre nos ressentis singuliers — comment décrire le rouge à un aveugle ? Ce <em>relativisme absolu</em> remet en cause la science, la justice, le langage, et place l'individu face à la solitude irréductible de sa conscience.`,
-    notions: ["La vérité","L'art","La justice","La science","L'État","Le langage","La raison","La conscience"],
-    mots_cles: ["relativisme","incommunicabilité","perception","mots généraux","vérité subjective","non-être"],
+  { nom:"Le bonheur", cours:false,
+    intro:"État durable de satisfaction complète. Par opposition au plaisir (ponctuel) et à la joie (intense mais passagère).",
+    auteurs:[
+      {nom:"Aristote",     dates:"384–322 av. J.-C.", concept:"Eudaimonia",          these:"Le bonheur est le souverain bien, fin ultime de toute action. Il s'atteint par la vertu et la raison."},
+      {nom:"Épicure",      dates:"341–270 av. J.-C.", concept:"Ataraxie",            these:"Le bonheur est l'absence de troubles de l'âme. Satisfaire les désirs nécessaires, éliminer les vains."},
+      {nom:"Pascal",       dates:"1623–1662",         concept:"Divertissement",      these:"L'homme fuit dans le divertissement pour ne pas affronter sa condition. Obstacle au bonheur véritable."},
+      {nom:"Kant",         dates:"1724–1804",         concept:"Idéal de l'imagination",these:"Le bonheur est trop indéterminé pour fonder la morale. Vise le devoir — qui rend digne d'être heureux."},
+      {nom:"Schopenhauer", dates:"1788–1860",         concept:"Pessimisme",          these:"La vie oscille entre souffrance et ennui. Le bonheur durable est impossible."},
+    ],
+    methodo:[
+      {auteur:"Platon",   oeuvre:"Allégorie de la caverne",              usage:"La vérité ne rend pas forcément heureux : le philosophe risque d'être tué à son retour."},
+      {auteur:"Pascal",   oeuvre:"Pensées — « Qu'est-ce que le moi ? »", usage:"L'amour ne peut être éternel car il repose sur des qualités éphémères."},
+      {auteur:"Locke",    oeuvre:"Essai sur l'entendement humain",       usage:"Ne pas retracer son évolution ne nuit pas au bonheur — on peut profiter du présent."},
+      {auteur:"Freud",    oeuvre:"Nouvelles conférences",                usage:"Le moi écartelé entre trois maîtres : son accès au bonheur semble compromis."},
+      {auteur:"Freud",    oeuvre:"Introduction à la psychanalyse",       usage:"Le bonheur de l'artiste obtenu par hasard — rien ne garantissait le succès."},
+      {auteur:"Rousseau", oeuvre:"Du contrat social",                    usage:"Le bonheur n'est pas ici pensé comme un idéal individuel mais collectif."},
+      {auteur:"Platon",   oeuvre:"Gorgias — Calliclès vs Socrate",       usage:"Socrate : maîtrise de soi. Calliclès : satisfaction totale et excessive des désirs."},
+      {auteur:"Alain",    oeuvre:"Propos sur le bonheur",                usage:"Le bonheur se construit et doit être partagé pour inciter autrui à en faire de même."},
+      {auteur:"Matisse",  oeuvre:"Écrits et propos sur l'art",           usage:"La pratique artistique est incompatible avec le bonheur ordinaire : l'artiste doit retrouver l'angoisse de l'enfant."},
+    ]
   },
-  {
-    id: 5,
-    auteur: "Nietzsche",
-    oeuvre: "Par-delà bien et mal — Préface",
-    resume: `La vérité est comme une femme : multiple, séduisante, insaisissable. Elle ne peut être possédée. Nietzsche propose le <strong>perspectivisme</strong> : toute connaissance dépend d'un point de vue, et les points de vue ne se valent pas (l'expert prime sur le néophyte). Chaque œuvre d'art offre un nouveau point de vue sur le réel. Ce texte est mobilisable sur la vérité, l'art, la science, et la liberté (la vérité libre ne peut être possédée).`,
-    notions: ["La vérité","L'art","La science","La liberté"],
-    mots_cles: ["perspectivisme","point de vue","pluralité","femme-vérité","expert vs opinion"],
+  { nom:"L'État", cours:true,
+    intro:"Ensemble des institutions politiques, judiciaires et administratives organisant la vie en société. Monopole de la violence légitime (Weber).",
+    auteurs:[
+      {nom:"Aristote",dates:"384–322 av. J.-C.", concept:"Animal politique",    these:"Vivre en cité est inscrit dans l'essence humaine. Le logos nous destine à délibérer du juste."},
+      {nom:"Hobbes",  dates:"1588–1679",         concept:"Léviathan",           these:"L'état de nature est une guerre de tous contre tous. Le Léviathan concentre les pouvoirs pour garantir la paix."},
+      {nom:"Locke",   dates:"1632–1704",         concept:"État libéral",        these:"L'État protège les droits naturels. S'il les viole, le peuple a le droit de résistance."},
+      {nom:"Rousseau",dates:"1712–1778",         concept:"Volonté générale",    these:"La démocratie repose sur l'aliénation de tous à tous : chacun renonce à son intérêt pour le bien commun."},
+      {nom:"Clastres",dates:"1934–1977",         concept:"Société contre l'État",these:"Ces sociétés refusent activement la centralisation. Le rire désamorce les abus du chef-conseiller."},
+      {nom:"Weber",   dates:"1864–1920",         concept:"Monopole de la violence",these:"L'État se définit par le monopole de la violence physique légitime sur un territoire donné."},
+    ],
+    methodo:[
+      {auteur:"Kant",     oeuvre:"D'un prétendu droit de mentir",  usage:"Le mensonge fragilise la confiance nécessaire au vivre-ensemble et à l'État."},
+      {auteur:"Gorgias",  oeuvre:"Sur le non-être",                usage:"Le relativisme complexifie le vivre-ensemble : notre langage ne peut exprimer notre ressenti."},
+      {auteur:"Freud",    oeuvre:"Nouvelles conférences",          usage:"Le rapport à l'État peut être pensé à travers le principe de réalité freudien."},
+      {auteur:"Aristote", oeuvre:"Politique",                      usage:"Famille → village → cité : la cité est la finalité naturelle de l'humain."},
+      {auteur:"Hobbes",   oeuvre:"Léviathan",                      usage:"Le Léviathan met fin à la guerre de tous contre tous par la concentration du pouvoir."},
+      {auteur:"Clastres", oeuvre:"La société contre l'État",       usage:"Ces sociétés refusent l'État par choix politique conscient — pas par ignorance."},
+      {auteur:"Rousseau", oeuvre:"Du contrat social",              usage:"La légitimité de la société repose sur l'aliénation de tous à tous."},
+      {auteur:"Machiavel",oeuvre:"Le Prince",                      usage:"Pour conserver le pouvoir, seules comptent la réputation et l'adaptation à la situation."},
+    ]
   },
-  {
-    id: 6,
-    auteur: "Pascal",
-    oeuvre: "Pensées — « Qu'est-ce que le moi ? »",
-    resume: `Le moi ne se trouve dans <strong>aucune qualité</strong> (physique, morale, intellectuelle) car elles peuvent toutes changer alors que la personne demeure. On n'aime jamais quelqu'un lui-même, mais ses qualités actuelles — éphémères. La connaissance d'autrui est donc toujours partielle et liée au présent. Ce texte porte sur la <em>conscience</em>, la <em>vérité</em> (on n'atteint jamais de certitude absolue sur un individu), le bonheur et le temps.`,
-    notions: ["La vérité","Le bonheur","Le langage","La raison","La conscience","Le temps"],
-    mots_cles: ["moi","qualités éphémères","identité","amour conditionnel","certitude","temps et connaissance"],
+  { nom:"L'inconscient", cours:true,
+    intro:"Ensemble des processus psychiques inaccessibles à la conscience mais qui influencent nos pensées, désirs et actions.",
+    auteurs:[
+      {nom:"Freud", dates:"1856–1939", concept:"Trois maîtres",              these:"Le moi est écartelé entre le ça (pulsions), le surmoi (interdits intériorisés) et le principe de réalité."},
+      {nom:"Sartre",dates:"1905–1980", concept:"Mauvaise foi",               these:"L'inconscient freudien est une excuse pour fuir la liberté. Nous sommes toujours responsables."},
+      {nom:"Alain", dates:"1868–1951", concept:"Refus de l'inconscient",     these:"L'inconscient est un alibi pour ne pas penser. Penser, c'est se rendre compte — il dispense d'effort."},
+      {nom:"Lacan", dates:"1901–1981", concept:"Langage de l'inconscient",   these:"L'inconscient est structuré comme un langage. Il parle à travers lapsus, rêves et symptômes."},
+    ],
+    methodo:[
+      {auteur:"Freud",oeuvre:"Nouvelles conférences",         usage:"Le moi écartelé entre trois maîtres : le ça, le surmoi et le principe de réalité."},
+      {auteur:"Freud",oeuvre:"Introduction à la psychanalyse",usage:"Psychose = fuite inconsciente du réel (à distinguer de la névrose = fuite consciente)."},
+    ]
   },
-  {
-    id: 7,
-    auteur: "Locke",
-    oeuvre: "Essai philosophique concernant l'entendement humain",
-    resume: `L'identité personnelle repose sur la <strong>mémoire</strong> : c'est en retraçant notre évolution que nous savons que c'est bien nous qui avons vécu ces événements. Mais la mémoire est sélective et faillible : on ne saura jamais exactement qui on est. Pour se connaître, il faut la raison et la réflexion, non la seule expérience. Ce texte s'articule autour de la conscience, de la vérité, du temps, et du bonheur.`,
-    notions: ["La vérité","Le bonheur","La raison","La conscience","Le temps"],
-    mots_cles: ["mémoire","identité personnelle","continuité","faillibilité","connaissance de soi","temps"],
+  { nom:"La justice", cours:false,
+    intro:"Vertu individuelle, égalité distributive, ou institution judiciaire. Elle interroge le rapport entre légal et légitime.",
+    auteurs:[
+      {nom:"Aristote",dates:"384–322 av. J.-C.", concept:"Justice dist./commut.", these:"Distributive : à chacun selon son mérite (géométrique). Commutative : rétablir l'égalité dans les échanges."},
+      {nom:"Pascal",  dates:"1623–1662",         concept:"Force et justice",      these:"« Ne pouvant fortifier la justice, on a justifié la force. » Justice sans force : impuissante."},
+      {nom:"Hobbes",  dates:"1588–1679",         concept:"Justice = loi du sov.", these:"Avant l'État, rien n'est juste ni injuste. C'est la loi du Léviathan qui définit la justice."},
+      {nom:"Rousseau",dates:"1712–1778",         concept:"Loi = vol. générale",   these:"La loi juste exprime la volonté générale et concerne tous également, sans acception de personne."},
+      {nom:"Rawls",   dates:"1921–2002",         concept:"Voile d'ignorance",     these:"Une société juste est celle dont on accepterait les principes sans savoir quelle place on y occupera."},
+    ],
+    methodo:[
+      {auteur:"James",    oeuvre:"Le pragmatisme",                    usage:"Le tribunal n'a pas besoin de toute la vérité — juste ce qui lui permet d'être efficace et de trancher."},
+      {auteur:"Kant",     oeuvre:"D'un prétendu droit de mentir",     usage:"Rien ne justifie de remettre en cause l'exigence de vérité qui fonde toute vie en société."},
+      {auteur:"Platon",   oeuvre:"Protagoras — Mythe de Prométhée",   usage:"L'art politique (sens de la justice) est nécessaire pour que l'humain use correctement de la technique."},
+      {auteur:"Gorgias",  oeuvre:"Sur le non-être",                   usage:"Si tout est relatif, la justice n'est qu'une convention arbitraire."},
+      {auteur:"Aristote", oeuvre:"Politique",                         usage:"La justice intervient dès le village avec la répartition équitable des tâches."},
+      {auteur:"Hobbes",   oeuvre:"Léviathan",                         usage:"La justice n'apparaît qu'avec l'État — avant, rien n'est juste ni injuste."},
+      {auteur:"Clastres", oeuvre:"La société contre l'État",          usage:"Le seul droit du chef est de persuader ses semblables pour faire régner la justice."},
+      {auteur:"Rousseau", oeuvre:"Du contrat social",                 usage:"L'aliénation de tous à tous confère sa légitimité à la société."},
+      {auteur:"Machiavel",oeuvre:"Le Prince",                         usage:"Pour un prince, l'important n'est pas d'incarner la justice, mais de paraître juste."},
+    ]
   },
-  {
-    id: 8,
-    auteur: "Freud",
-    oeuvre: "Nouvelles conférences — Décomposition de la personnalité",
-    resume: `Le moi est écartelé entre <strong>trois maîtres</strong> : le <em>ça</em> (pulsions de création et de destruction), le <em>surmoi</em> (interdits parentaux et sociaux intériorisés), et le <em>principe de réalité</em> (monde extérieur contraignant). Ce texte pose la question de la liberté (quelle place reste-t-il si tout est déterminé ?), du bonheur (le moi écartelé peut-il être heureux ?), de la religion (surmoi et interdits), et de l'État (principe de réalité).`,
-    notions: ["L'inconscient","Le devoir","La nature","Le bonheur","La raison","L'État","La liberté","La religion"],
-    mots_cles: ["moi","ça","surmoi","principe de réalité","pulsions","trois maîtres","écartelé"],
+  { nom:"Le langage", cours:false,
+    intro:"Système de signes structurant la pensée. Outil de communication et vecteur de pouvoir, mais aussi source de malentendus.",
+    auteurs:[
+      {nom:"Aristote",    dates:"384–322 av. J.-C.", concept:"Logos",             these:"Le logos humain dépasse la voix animale : il porte sur le passé, le futur, le juste. Il fonde la politique."},
+      {nom:"Hegel",       dates:"1770–1831",         concept:"Pensée et langage", these:"« C'est dans les mots que nous pensons. » Le langage n'habille pas la pensée : il la constitue."},
+      {nom:"Saussure",    dates:"1857–1913",         concept:"Arbitraire du signe",these:"Le signe est arbitraire (signifiant ≠ signifié naturel) et différentiel (sens par différence avec les autres signes)."},
+      {nom:"Bergson",     dates:"1859–1941",         concept:"Mots et expérience", these:"Les mots généraux figent l'expérience vécue, toujours singulière. Le langage déforme autant qu'il exprime."},
+      {nom:"Austin",      dates:"1911–1960",         concept:"Performatif",        these:"Certains énoncés ne décrivent pas mais font : promettre, baptiser, marier. Le langage est action sur le monde."},
+      {nom:"Wittgenstein",dates:"1889–1951",         concept:"Jeux de langage",   these:"Le sens d'un mot est son usage. Comprendre, c'est savoir jouer le jeu de langage dans une forme de vie donnée."},
+    ],
+    methodo:[
+      {auteur:"James",    oeuvre:"Le pragmatisme",                    usage:"Un langage est vrai non par exhaustivité mais par efficacité : il doit permettre d'agir rapidement."},
+      {auteur:"Kant",     oeuvre:"D'un prétendu droit de mentir",     usage:"Si chaque parole peut être mise en doute, tout rapport avec autrui sera détruit."},
+      {auteur:"Platon",   oeuvre:"Allégorie de la caverne",           usage:"Le langage peut être trompeur : « je vois cette montagne » n'en montre qu'une certaine facette."},
+      {auteur:"Gorgias",  oeuvre:"Sur le non-être",                   usage:"Les mots sont trop généraux pour exprimer nos ressentis singuliers."},
+      {auteur:"Pascal",   oeuvre:"Pensées — « Qu'est-ce que le moi ? »",usage:"Dire 'j'aime X' signifie 'j'aime ses qualités actuelles' — le langage ne peut saisir l'autre en totalité."},
+      {auteur:"Aristote", oeuvre:"Politique",                         usage:"Le logos permet d'envisager le passé, le futur, le juste et l'injuste — il fonde la communauté politique."},
+      {auteur:"Clastres", oeuvre:"La société contre l'État",          usage:"Le seul pouvoir du chef est de persuader : le langage y joue un rôle primordial."},
+    ]
   },
-  {
-    id: 9,
-    auteur: "Sartre",
-    oeuvre: "L'existentialisme est un humanisme",
-    resume: `<strong>L'existence précède l'essence</strong> : l'humain n'est pas prédéfini comme un objet. Contrairement à l'artisan qui fait une table selon un plan préexistant, l'humain existe d'abord, puis se définit par ses choix. Il est donc radicalement libre et totalement responsable — condamné à être libre. Ce texte mobilise : liberté (absolue), conscience (se définir), devoir (aucun préfabriqué), nature (l'homme n'est pas déterminé), religion (Dieu créateur = objet déterminé).`,
-    notions: ["La liberté","L'art","Le devoir","La nature","Le travail","La conscience","La religion","Le temps"],
-    mots_cles: ["existence précède l'essence","liberté absolue","responsabilité","mauvaise foi","projet","condamné à être libre"],
+  { nom:"La liberté", cours:false,
+    intro:"Absence de contrainte, autonomie de la volonté ou libre arbitre ? Peut-on ne pas être libre ?",
+    auteurs:[
+      {nom:"Descartes",dates:"1596–1650", concept:"Libre arbitre",       these:"Le pouvoir de choisir entre les contraires est ce qu'il y a de plus divin en nous."},
+      {nom:"Spinoza",  dates:"1632–1677", concept:"Illusion du L.A.",    these:"Nous nous croyons libres parce que nous ignorons les causes qui nous déterminent. La liberté = comprendre la nécessité."},
+      {nom:"Kant",     dates:"1724–1804", concept:"Autonomie",           these:"Être libre, c'est obéir à la loi morale qu'on se donne par sa raison. L'hétéronomie (suivre ses penchants) est servitude."},
+      {nom:"Rousseau", dates:"1712–1778", concept:"Liberté civile",      these:"Le contrat social transforme la liberté naturelle anarchique en liberté civile : obéir à la loi qu'on s'est prescrite."},
+      {nom:"Sartre",   dates:"1905–1980", concept:"Liberté absolue",     these:"L'humain est condamné à être libre. L'existence précède l'essence — responsabilité radicale."},
+      {nom:"Bergson",  dates:"1859–1941", concept:"Acte libre",          these:"Un acte est libre quand il exprime toute la personnalité, quand il vient de nous tout entier."},
+    ],
+    methodo:[
+      {auteur:"James",    oeuvre:"Le pragmatisme",                    usage:"Pour être libre et faire des choix éclairés, nul besoin de tout connaître — seulement ce qui facilite nos choix."},
+      {auteur:"Kant",     oeuvre:"D'un prétendu droit de mentir",     usage:"L'être humain n'est pas libre d'agir selon son analyse : dans tous les cas, il doit dire la vérité."},
+      {auteur:"Platon",   oeuvre:"Allégorie de la caverne",           usage:"Est libre celui qui n'est plus prisonnier des apparences mais en connaît les causes."},
+      {auteur:"Nietzsche",oeuvre:"Par-delà bien et mal",              usage:"La vérité est libre en ce qu'elle ne saurait être possédée par personne."},
+      {auteur:"Freud",    oeuvre:"Nouvelles conférences",             usage:"Si tout acte s'explique par le conflit conscient/inconscient, quelle place reste-t-il à la liberté ?"},
+      {auteur:"Sartre",   oeuvre:"L'existentialisme est un humanisme",usage:"L'homme étant ce qu'il fera de lui, il jouit d'une pleine et entière liberté."},
+      {auteur:"Platon",   oeuvre:"Protagoras — Mythe de Prométhée",   usage:"On ne saurait user librement de la technique sans autodiscipline et bien commun."},
+      {auteur:"Aristote", oeuvre:"Politique",                         usage:"Le village libère de la simple survie ; la cité libère du confort pour ouvrir au champ moral."},
+      {auteur:"Hobbes",   oeuvre:"Léviathan",                         usage:"La liberté originelle est sacrifiée au profit de la sécurité — c'est le pacte hobbesien."},
+      {auteur:"Clastres", oeuvre:"La société contre l'État",          usage:"La liberté de chacun est préservée : nul usage de la force, sauf en temps de guerre."},
+      {auteur:"Rousseau", oeuvre:"Du contrat social",                 usage:"La société du contrat revient à troquer sa liberté individuelle contre une liberté collective."},
+      {auteur:"Épictète", oeuvre:"Manuel",                            usage:"La liberté caractérise l'homme qui ne s'attache qu'à ce qui dépend de lui."},
+      {auteur:"Hegel",    oeuvre:"Phénoménologie de l'esprit",        usage:"Être libre, c'est accepter d'exister et non protéger à toute force sa pureté."},
+      {auteur:"Platon",   oeuvre:"Gorgias — Calliclès vs Socrate",    usage:"Socrate : être libre c'est se libérer de ses désirs. Calliclès : n'avoir aucune retenue."},
+      {auteur:"Alain",    oeuvre:"Propos sur le bonheur",             usage:"Le bonheur suppose la liberté : l'enfant joue quand il le souhaite."},
+      {auteur:"Nietzsche",oeuvre:"L'éternel retour §341",             usage:"L'éternel retour permet de savoir ce qu'on désire vraiment et de se libérer de toute influence."},
+      {auteur:"Machiavel",oeuvre:"Le Prince",                         usage:"La cruauté du dirigeant impacte la liberté du peuple, mais Machiavel soutient que cela le protège."},
+    ]
   },
-  {
-    id: 10,
-    auteur: "Platon",
-    oeuvre: "Protagoras — Mythe de Prométhée",
-    resume: `Épiméthée distribue les capacités aux animaux mais <strong>oublie l'humain</strong>. Prométhée vole le feu et la technique pour compenser ce dénuement. Mais Zeus ajoute l'<em>art militaire</em> (discipline, sublimer ses besoins) et l'<em>art politique</em> (penser au bien commun), sans quoi les hommes s'entre-déchirent. La technique seule ne suffit pas : il faut le sens de la justice pour en user correctement. Ce texte porte sur la technique, la justice, la liberté, la nature, et le travail.`,
-    notions: ["La technique","La justice","La nature","Le travail","La liberté"],
-    mots_cles: ["Prométhée","feu","dénuement originel","art politique","art militaire","justice et technique"],
+  { nom:"La nature", cours:false,
+    intro:"Ce qui existe sans intervention humaine. Nature vs culture, état de nature, rapport de l'humain au vivant.",
+    auteurs:[
+      {nom:"Aristote",    dates:"384–322 av. J.-C.", concept:"Téléologie",     these:"Chaque être naturel a une fin (telos) qui le pousse à se réaliser. La nature est un ordre orienté."},
+      {nom:"Descartes",   dates:"1596–1650",         concept:"Nature-machine", these:"La nature est une machine mathématisable. L'humain doit s'en rendre maître et possesseur."},
+      {nom:"Rousseau",    dates:"1712–1778",         concept:"Bon sauvage",    these:"L'homme à l'état de nature est bon. La société introduit l'inégalité et le corrompt."},
+      {nom:"Lévi-Strauss",dates:"1908–2009",         concept:"Nature/Culture", these:"La prohibition de l'inceste, universelle et imposée, est le seuil entre les deux règnes."},
+      {nom:"Heidegger",   dates:"1889–1976",         concept:"Arraisonnement", these:"La technique moderne réduit la nature à un fonds disponible : le Rhin devient ressource hydroélectrique."},
+      {nom:"Jonas",       dates:"1903–1993",         concept:"Principe resp.", these:"Notre puissance technique oblige à étendre la responsabilité morale aux générations futures et à la biosphère."},
+    ],
+    methodo:[
+      {auteur:"Platon",   oeuvre:"Allégorie de la caverne",           usage:"Par nature, originellement, l'individu est bercé d'illusions — sa perception des choses est mensongère."},
+      {auteur:"Freud",    oeuvre:"Nouvelles conférences",             usage:"La nature et le réel se présentent à l'homme sur le mode de la contrainte."},
+      {auteur:"Sartre",   oeuvre:"L'existentialisme est un humanisme",usage:"L'homme est le seul être naturel qui n'est pas déterminé, pas prévisible."},
+      {auteur:"Platon",   oeuvre:"Protagoras — Mythe de Prométhée",   usage:"Dans ce mythe, la nature ne comble pas les besoins de l'homme."},
+      {auteur:"Aristote", oeuvre:"Politique",                         usage:"À l'état de nature (survie pure), nul n'a besoin du langage articulé et rationnel."},
+      {auteur:"Hobbes",   oeuvre:"Léviathan",                         usage:"À l'état de nature, la seule obligation est de survivre — droit de tout sur tous."},
+      {auteur:"Clastres", oeuvre:"La société contre l'État",          usage:"L'État est ici pensé comme contre-nature : il va à l'encontre de la liberté individuelle."},
+      {auteur:"Hegel",    oeuvre:"Phénoménologie de l'esprit",        usage:"Vouloir préserver sa nature à tout prix peut être refuser d'exister et de s'engager."},
+      {auteur:"Heidegger",oeuvre:"L'essence de la technique",         usage:"L'homme finit par concevoir la nature comme un objet technique dont il peut user à sa guise."},
+    ]
   },
-  {
-    id: 11,
-    auteur: "Freud",
-    oeuvre: "Introduction à la psychanalyse",
-    resume: `L'artiste est un <strong>introverti frustré</strong> (manque d'amour, de gloire, de richesse) qui crée une fiction où son personnage obtient tout ce qu'il désire. Si l'œuvre connaît le succès, il obtient <em>réellement</em> ce qu'il cherchait — par hasard. Deux miracles : l'œuvre touche universellement malgré son origine personnelle, et fait oublier sa source de frustration. Distinction <em>névrose</em> (fuite consciente) vs <em>psychose</em> (fuite inconsciente). Articule art, inconscient, travail, bonheur, langage.`,
-    notions: ["L'inconscient","Le travail","Le bonheur","Le langage","La conscience","L'art"],
-    mots_cles: ["artiste-névrosé","sublimation","fiction","succès","deux miracles","névrose vs psychose"],
+  { nom:"La politique", cours:true,
+    intro:"Art de gouverner la cité. Interroge la légitimité du pouvoir, les régimes politiques et le rôle du citoyen.",
+    auteurs:[
+      {nom:"Aristote",   dates:"384–322 av. J.-C.", concept:"Animal politique",    these:"L'humain réalise sa nature dans la cité. La politique vise le bien commun par la délibération sur le juste."},
+      {nom:"Machiavel",  dates:"1469–1527",         concept:"Réalisme politique",  these:"Le politique se sépare de la morale. Le Prince doit savoir ne pas être bon selon les circonstances."},
+      {nom:"Montesquieu",dates:"1689–1755",         concept:"Séparation des pouvoirs",these:"Pour éviter la tyrannie, il faut que le pouvoir arrête le pouvoir : législatif, exécutif, judiciaire séparés."},
+      {nom:"Rousseau",   dates:"1712–1778",         concept:"Volonté générale",    these:"La souveraineté appartient au peuple. La loi exprime la volonté générale, non la somme des intérêts particuliers."},
+      {nom:"Arendt",     dates:"1906–1975",         concept:"Action politique",    these:"La politique est action en commun dans l'espace public. Le totalitarisme la détruit en abolissant la pluralité."},
+    ],
+    methodo:[
+      {auteur:"Aristote", oeuvre:"Politique",                    usage:"L'humain réalise sa nature dans la cité par la délibération sur le juste et l'injuste."},
+      {auteur:"Clastres", oeuvre:"La société contre l'État",     usage:"La légitimité du chef repose sur la persuasion seule — politique sans État ni contrainte."},
+      {auteur:"Rousseau", oeuvre:"Du contrat social",            usage:"La souveraineté appartient au peuple : la loi exprime la volonté générale."},
+      {auteur:"Machiavel",oeuvre:"Le Prince",                    usage:"Le politique est le règne de l'apparence : l'important est de paraître juste, non d'être juste."},
+    ]
   },
-  {
-    id: 12,
-    auteur: "Heidegger",
-    oeuvre: "Essais et conférences — L'essence de la technique",
-    resume: `La technique moderne crée un <strong>double danger</strong> : (1) <em>autodestruction</em> — l'homme fait tout ce qu'il peut faire sans se demander s'il a le droit (IA, nucléaire) ; (2) <em>arraisonnement</em> (Gestell) — le vivant est réduit à un « fonds disponible », un simple étant utile (le Rhin devient ressource hydroélectrique, l'humain devient prestataire de services). Ce texte porte sur la technique, le devoir (peut ≠ doit), la nature, et le travail.`,
-    notions: ["La technique","Le devoir","La nature","Le travail"],
-    mots_cles: ["arraisonnement","Gestell","autodestruction","fonds disponible","être vs étant","double danger"],
+  { nom:"La raison", cours:false,
+    intro:"Faculté de connaître par concepts, de juger et d'argumenter. Universelle, mais avec des limites irréductibles.",
+    auteurs:[
+      {nom:"Descartes",        dates:"1596–1650", concept:"Bon sens",              these:"« Le bon sens est la chose du monde la mieux partagée. » La raison est universelle — il faut la bien conduire."},
+      {nom:"Pascal",           dates:"1623–1662", concept:"Limites de la raison",  these:"La raison reconnaît ce qui la dépasse. Le cœur a ses raisons que la raison ne connaît point."},
+      {nom:"Hume",             dates:"1711–1776", concept:"Empirisme",             these:"Toutes nos idées viennent de l'expérience. La raison est l'esclave des passions : elle calcule mais ne meut pas."},
+      {nom:"Kant",             dates:"1724–1804", concept:"Critique de la raison", these:"La raison a des bornes (l'expérience). Au-delà, elle tombe dans les antinomies."},
+      {nom:"Hegel",            dates:"1770–1831", concept:"Ruse de la raison",     these:"L'histoire est rationnelle. Les passions individuelles servent à leur insu la réalisation de la Raison universelle."},
+      {nom:"Adorno/Horkheimer",dates:"XXe s.",    concept:"Raison instrumentale",  these:"La raison technicienne, séparée des fins, peut servir la barbarie. La Shoah en est la démonstration."},
+    ],
+    methodo:[
+      {auteur:"James",    oeuvre:"Le pragmatisme",                    usage:"La raison n'est qu'une faculté pratique : son seul objectif est de déterminer ce qui facilitera l'action."},
+      {auteur:"Platon",   oeuvre:"Allégorie de la caverne",           usage:"Raisonner revient à quitter le sensible pour l'intelligible."},
+      {auteur:"Gorgias",  oeuvre:"Sur le non-être",                   usage:"Le relativisme rend la raison inopérante : toute réflexion personnelle est de toute manière incommunicable."},
+      {auteur:"Pascal",   oeuvre:"Pensées — « Qu'est-ce que le moi ? »",usage:"L'amour est ici présenté comme rationnel car il n'est pas dépourvu de causes."},
+      {auteur:"Locke",    oeuvre:"Essai sur l'entendement humain",    usage:"Se connaître exige réflexion et raison : il faut retracer les causes qui nous ont faits ce que nous sommes."},
+      {auteur:"Freud",    oeuvre:"Nouvelles conférences",             usage:"L'être humain n'est pas uniquement rationnel : il est traversé de pulsions irrationnelles."},
+      {auteur:"Clastres", oeuvre:"La société contre l'État",          usage:"La société décrite par Clastres est rationnelle : elle repose sur l'argumentation et la persuasion."},
+      {auteur:"Rousseau", oeuvre:"Du contrat social",                 usage:"L'État du contrat social est rationnel : il ne repose pas sur ce qui semble bon mais sur ce qui l'est pour tous."},
+      {auteur:"Épictète", oeuvre:"Manuel",                            usage:"Le sage se laisse guider par sa raison et est imperméable aux émotions."},
+      {auteur:"Platon",   oeuvre:"Gorgias — Calliclès vs Socrate",    usage:"Pour Socrate, le bonheur est rationnel car il suppose de se contenter de ce que l'on a."},
+      {auteur:"Machiavel",oeuvre:"Le Prince",                         usage:"Le dirigeant est un être de raison qui agit en fonction de la situation, non de ses valeurs."},
+    ]
   },
-  {
-    id: 13,
-    auteur: "Matisse",
-    oeuvre: "Écrits et propos sur l'art",
-    resume: `L'artiste retrouve un <strong>regard d'enfant</strong> : il voit le monde comme pour la première fois, sans le filtre de l'habitude. L'être du quotidien, lui, ne sait plus voir — il est aveuglé par la familiarité. Ce regard originel est angoissant (l'enfant est sans appui) mais nécessaire à la création. L'art nous réconcilie avec notre nature en nous reconnectant à la vision première. Mobilise : art, nature, travail (de l'artiste), bonheur (incompatible), vérité, conscience, temps.`,
-    notions: ["L'art","La nature","Le travail","Le bonheur","La vérité","La conscience","Le temps"],
-    mots_cles: ["regard d'enfant","habitude","angoisse","vision première","artiste","temps et contemplation"],
+  { nom:"La religion", cours:false,
+    intro:"Système de croyances et de pratiques liant les humains au sacré et entre eux. Illusion, exigence morale ou cohésion sociale ?",
+    auteurs:[
+      {nom:"Pascal",   dates:"1623–1662", concept:"Pari",             these:"Croire en Dieu est rationnel sous incertitude : gain infini si Dieu existe, perte minime sinon."},
+      {nom:"Kant",     dates:"1724–1804", concept:"Religion morale",  these:"On ne peut prouver Dieu, mais la raison pratique le postule comme garant de la justice ultime."},
+      {nom:"Marx",     dates:"1818–1883", concept:"Opium du peuple",  these:"La religion console les opprimés et les détourne de leur émancipation réelle."},
+      {nom:"Nietzsche",dates:"1844–1900", concept:"Mort de Dieu",     these:"Le christianisme est une morale d'esclaves. Dieu est mort : il faut créer de nouvelles valeurs affirmant la vie."},
+      {nom:"Freud",    dates:"1856–1939", concept:"Illusion",         these:"La religion est une illusion née du désir : projection d'un Père protecteur, névrose obsessionnelle collective."},
+      {nom:"Durkheim", dates:"1858–1917", concept:"Religion = société",these:"Le sacré est la société symbolisée. La religion produit du lien social et de la cohésion collective."},
+    ],
+    methodo:[
+      {auteur:"Freud",    oeuvre:"Nouvelles conférences",             usage:"La religion peut être pensée comme principe de réalité et comme surmoi (elle intériorise les interdits)."},
+      {auteur:"Sartre",   oeuvre:"L'existentialisme est un humanisme",usage:"Penser Dieu comme créateur revient à penser la créature comme un objet déterminé."},
+      {auteur:"Clastres", oeuvre:"La société contre l'État",          usage:"Les dieux des tribus sont à l'image des chefs : des conseillers non contraignants."},
+      {auteur:"Épictète", oeuvre:"Manuel",                            usage:"La croyance fait partie de ce qui dépend de nous."},
+    ]
   },
-  {
-    id: 14,
-    auteur: "Aristote",
-    oeuvre: "Politique",
-    resume: `L'humain est un <strong>animal politique</strong> par nature : vivre en cité est inscrit dans son essence. Trois communautés emboîtées : la <em>famille</em> (survivre), le <em>village</em> (bien vivre par la division du travail), la <em>cité</em> (agir bien moralement). Seul le <em>logos</em> — qui permet de penser le juste, l'injuste, le passé, le futur — distingue l'humain de l'animal et fonde la politique. Hors de la cité : « ou bête, ou dieu ». Mobilise : État, politique, devoir, justice, travail, langage, conscience, liberté, temps.`,
-    notions: ["L'État","La politique","Le devoir","La justice","La nature","Le travail","Le langage","La conscience","La liberté","Le temps"],
-    mots_cles: ["animal politique","logos","famille-village-cité","bien commun","nature humaine","vivre ensemble"],
+  { nom:"La science", cours:false,
+    intro:"Connaissance rationnelle, méthodique et démontrée visant des lois universelles. Elle se construit contre le sens commun.",
+    auteurs:[
+      {nom:"Aristote",      dates:"384–322 av. J.-C.", concept:"Science des causes",    these:"La science cherche les quatre causes. Elle vise l'universel et le nécessaire, non le particulier."},
+      {nom:"Descartes",     dates:"1596–1650",         concept:"Méthode",              these:"Quatre règles : évidence, analyse, synthèse, dénombrement. La science prend le modèle mathématique."},
+      {nom:"Claude Bernard",dates:"1813–1878",         concept:"Méthode expérimentale",these:"Observation → hypothèse → expérimentation → vérification. Le déterminisme fonde toute science expérimentale."},
+      {nom:"Bachelard",     dates:"1884–1962",         concept:"Obstacle épistémol.",  these:"La science se construit contre l'opinion. Les évidences du sens commun sont les premiers obstacles à dépasser."},
+      {nom:"Popper",        dates:"1902–1994",         concept:"Falsifiabilité",       these:"Une théorie est scientifique si elle peut être réfutée. Une théorie qui explique tout est idéologie."},
+      {nom:"Kuhn",          dates:"1922–1996",         concept:"Révolution scientif.",  these:"La science progresse par changements de paradigme, pas par accumulation linéaire."},
+    ],
+    methodo:[
+      {auteur:"James",    oeuvre:"Le pragmatisme",            usage:"La science n'a de valeur que si elle facilite l'action. La curiosité pure ne suffit pas."},
+      {auteur:"Platon",   oeuvre:"Allégorie de la caverne",   usage:"La science peut être une première étape pour sortir de la caverne car elle questionne ce qu'on perçoit."},
+      {auteur:"Gorgias",  oeuvre:"Sur le non-être",           usage:"Selon le relativisme, il n'y a pas de vérité universelle — toute science est remise en question."},
+      {auteur:"Nietzsche",oeuvre:"Par-delà bien et mal",      usage:"La science cherche à mettre en lumière le meilleur point de vue possible, non une certitude absolue."},
+    ]
   },
-  {
-    id: 15,
-    auteur: "Hobbes",
-    oeuvre: "Léviathan",
-    resume: `À l'<strong>état de nature</strong>, chacun a droit à tout : c'est la « guerre de tous contre tous » où règne la peur de la mort violente. Pour en sortir, les individus concluent un pacte : ils transfèrent leur liberté absolue à un <strong>souverain</strong> (le Léviathan) qui, en échange, garantit la sécurité. La justice n'apparaît qu'avec l'État (avant, rien n'est juste ni injuste). Le devoir d'obéissance est le prix de la paix. Mobilise : État, devoir, justice, nature, travail, liberté.`,
-    notions: ["L'État","Le devoir","La justice","La nature","Le travail","La liberté"],
-    mots_cles: ["état de nature","guerre de tous","Léviathan","pacte social","sécurité vs liberté","souverain absolu"],
+  { nom:"La technique", cours:true,
+    intro:"Ensemble des procédés permettant de transformer la nature pour produire l'utile. Dénuement originel ou puissance aliénante ?",
+    auteurs:[
+      {nom:"Mythe de Prométhée",dates:"tradition grecque", concept:"Dénuement originel",   these:"La technique compense la faiblesse naturelle de l'humain. Sans arts politiques et militaires, elle devient dangereuse."},
+      {nom:"Aristote",          dates:"384–322 av. J.-C.", concept:"Technè / poièsis",      these:"La technique imite la nature et achève ce qu'elle ne peut pas faire. Elle est subordonnée à la praxis morale."},
+      {nom:"Descartes",         dates:"1596–1650",         concept:"Maîtres de la nature",  these:"Par la science et la technique, l'humain doit se rendre maître et possesseur de la nature."},
+      {nom:"Marx",              dates:"1818–1883",         concept:"Aliénation/machine",    these:"La machine pourrait libérer le travail, mais sous le capitalisme elle aliène : cadence, parcellisation, perte de sens."},
+      {nom:"Heidegger",         dates:"1889–1976",         concept:"Arraisonnement (Gestell)",these:"La technique moderne réduit tout à un fonds disponible. Double danger : autodestruction et oubli de l'être."},
+      {nom:"Simondon",          dates:"1924–1989",         concept:"Objets techniques",      these:"L'objet technique n'est pas opposé à la culture — il a sa propre dignité et évolution interne."},
+    ],
+    methodo:[
+      {auteur:"Platon",   oeuvre:"Protagoras — Mythe de Prométhée",   usage:"L'art ne suffit pas : il lui faut aussi le sens de la justice pour en user correctement."},
+      {auteur:"Sartre",   oeuvre:"L'existentialisme est un humanisme",usage:"Pour les objets, l'essence précède l'existence : le travail assigne une fonction à l'objet."},
+      {auteur:"Heidegger",oeuvre:"L'essence de la technique",         usage:"Double danger : autodestruction (faire tout ce qu'on peut) et réduction du vivant à de l'utile."},
+      {auteur:"Aristote", oeuvre:"Politique",                         usage:"La technique contribue au confort du village par la division du travail."},
+    ]
   },
-  {
-    id: 16,
-    auteur: "Clastres",
-    oeuvre: "La société contre l'État",
-    resume: `Les sociétés primitives ne sont pas sans État par ignorance : elles le <strong>refusent activement</strong>. Le chef n'a aucune autorité contraignante — il peut seulement <em>conseiller</em> et <em>persuader</em>. En cas d'abus, la tribu utilise le <strong>rire</strong> pour désamorcer. L'État est ici « contre-nature » car il va à l'encontre de la liberté individuelle. Ce texte montre qu'une organisation rationnelle et légitime est possible sans État, par la seule force du langage.`,
-    notions: ["L'État","La politique","Le devoir","La justice","La nature","Le langage","La raison","La liberté","La religion"],
-    mots_cles: ["chef-conseiller","refus de l'État","rire","persuasion","liberté sans contrainte","anti-étatique"],
+  { nom:"Le temps", cours:false,
+    intro:"Forme du devenir. Temps objectif vs durée vécue. La finitude comme horizon de l'authenticité.",
+    auteurs:[
+      {nom:"Saint Augustin",dates:"354–430",   concept:"Trois temps de l'âme",these:"Présent du passé (mémoire), présent du présent (attention), présent du futur (attente). Tout se vit au présent."},
+      {nom:"Kant",          dates:"1724–1804", concept:"Forme a priori",      these:"Le temps n'est pas dans les choses mais dans notre sensibilité. Il conditionne toute expérience possible."},
+      {nom:"Hegel",         dates:"1770–1831", concept:"Histoire",            these:"Le temps est le devenir de l'Esprit. L'histoire a un sens : la marche progressive de la liberté."},
+      {nom:"Bergson",       dates:"1859–1941", concept:"Durée",               these:"Le temps vrai est durée vécue, qualitative, créatrice. La science le spatialise et trahit son essence."},
+      {nom:"Heidegger",     dates:"1889–1976", concept:"Être-pour-la-mort",   these:"L'humain est essentiellement temporel. La finitude (savoir qu'on mourra) ouvre à l'existence authentique."},
+      {nom:"Pascal",        dates:"1623–1662", concept:"Fuite du présent",    these:"Nous ne vivons jamais : toujours dans le passé ou le futur, jamais dans le présent."},
+    ],
+    methodo:[
+      {auteur:"James",    oeuvre:"Le pragmatisme",                    usage:"L'homme doit se montrer prévoyant et conserver dans sa mémoire ce qui pourrait lui être utile."},
+      {auteur:"Kant",     oeuvre:"D'un prétendu droit de mentir",     usage:"Ne connaissant pas l'avenir, l'homme ne peut être certain que les conséquences de ses actions seront positives."},
+      {auteur:"Pascal",   oeuvre:"Pensées — « Qu'est-ce que le moi ? »",usage:"Toute connaissance d'autrui est liée au présent : elle peut ne plus valoir après."},
+      {auteur:"Locke",    oeuvre:"Essai sur l'entendement humain",    usage:"Ce n'est qu'à travers la mémoire du passé que nous connaissons qui nous sommes au présent."},
+      {auteur:"Aristote", oeuvre:"Politique",                         usage:"Contrairement à l'animal, l'homme n'est pas prisonnier du présent — il a rapport au passé et au futur."},
+      {auteur:"Sartre",   oeuvre:"L'existentialisme est un humanisme",usage:"L'homme ne saurait être défini une fois pour toutes : il se révèle et se construit au cours du temps."},
+      {auteur:"Hegel",    oeuvre:"Phénoménologie de l'esprit",        usage:"Préserver sa pureté, c'est refuser de vivre dans le temps, de changer et de devenir."},
+      {auteur:"Nietzsche",oeuvre:"L'éternel retour §341",             usage:"L'éternel retour permet de faire le point sur l'existence passée et d'envisager l'existence à venir."},
+      {auteur:"Alain",    oeuvre:"Propos sur le bonheur",             usage:"L'enfant s'implique pleinement dans l'instant présent et oublie le passé et le futur."},
+      {auteur:"Machiavel",oeuvre:"Le Prince",                         usage:"Dans une relation hiérarchique, l'amour ne dure pas — seule la crainte est stable dans le temps."},
+      {auteur:"Matisse",  oeuvre:"Écrits et propos sur l'art",        usage:"L'artiste prend le temps de contempler le réel, contrairement à l'être du quotidien toujours pressé."},
+    ]
   },
-  {
-    id: 17,
-    auteur: "Rousseau",
-    oeuvre: "Du contrat social — Chapitre 6",
-    resume: `Par l'<strong>aliénation de tous à tous</strong>, chacun renonce à son intérêt particulier au profit du <em>bien commun</em>. La <strong>volonté générale</strong> n'est pas la volonté de la majorité mais l'intérêt de tous pris ensemble. Cette aliénation est libératrice : on troque une liberté naturelle anarchique contre une liberté civile — obéir à la loi qu'on s'est soi-même prescrite. Ce texte mobilise : État, politique, devoir, justice, travail, bonheur, raison, liberté.`,
-    notions: ["L'État","La politique","Le devoir","La justice","Le travail","Le bonheur","La raison","La liberté"],
-    mots_cles: ["volonté générale","aliénation","bien commun","contrat social","liberté civile","souveraineté populaire"],
+  { nom:"Le travail", cours:false,
+    intro:"Activité de transformation de la nature pour produire l'utile. Libération ou aliénation selon les rapports sociaux ?",
+    auteurs:[
+      {nom:"Aristote",dates:"384–322 av. J.-C.", concept:"Hiérarchie des activités",these:"Le travail manuel est inférieur à l'action politique et à la contemplation."},
+      {nom:"Locke",   dates:"1632–1704",         concept:"Travail = propriété",     these:"Le travail fonde le droit de propriété : ce que je transforme devient légitimement mien."},
+      {nom:"Smith",   dates:"1723–1790",         concept:"Division du travail",     these:"La division du travail multiplie la productivité mais peut abrutir l'ouvrier réduit à des gestes répétitifs."},
+      {nom:"Hegel",   dates:"1770–1831",         concept:"Maître et esclave",       these:"Par le travail, l'esclave se forme lui-même et accède à la conscience de soi. Le travail libère."},
+      {nom:"Marx",    dates:"1818–1883",         concept:"Aliénation",              these:"Sous le capitalisme, le travailleur est aliéné de son produit, de son activité, de son essence et des autres."},
+      {nom:"Arendt",  dates:"1906–1975",         concept:"Travail / oeuvre / action",these:"Distinguer le travail (vital), l'oeuvre (durable) et l'action (politique). La modernité réduit tout au travail-consommation."},
+    ],
+    methodo:[
+      {auteur:"Platon",   oeuvre:"Protagoras — Mythe de Prométhée",   usage:"L'homme ne peut se contenter de ce que lui apporte la nature : il doit travailler et transformer."},
+      {auteur:"Freud",    oeuvre:"Introduction à la psychanalyse",    usage:"L'artiste parvient à éviter la névrose grâce à son travail et au succès qui en découle."},
+      {auteur:"Sartre",   oeuvre:"L'existentialisme est un humanisme",usage:"Le travail de création assigne une fonction, une finalité à l'objet — l'essence précède l'existence pour les objets."},
+      {auteur:"Aristote", oeuvre:"Politique",                         usage:"Le travail est au cœur du village : la division du travail permet le confort."},
+      {auteur:"Hobbes",   oeuvre:"Léviathan",                         usage:"Le travail occupe l'homme et rend supportable la privation de liberté."},
+      {auteur:"Rousseau", oeuvre:"Du contrat social",                 usage:"Le travail vise non l'épanouissement personnel mais ce qui est bon pour tous."},
+      {auteur:"Épictète", oeuvre:"Manuel",                            usage:"Travailler dépend de nous ; que le travail aboutisse ne dépend pas de nous — ne pas s'en préoccuper."},
+      {auteur:"Heidegger",oeuvre:"L'essence de la technique",         usage:"Dans le monde du travail, l'homme finit par être conçu comme un simple prestataire de services."},
+      {auteur:"Alain",    oeuvre:"Propos sur le bonheur",             usage:"Chez l'enfant, travail et jeu ne s'opposent pas : implication totale dans l'activité."},
+      {auteur:"Matisse",  oeuvre:"Écrits et propos sur l'art",        usage:"Le travail de l'artiste consiste à retrouver son regard d'enfant, à voir le monde pour la première fois."},
+    ]
   },
-  {
-    id: 18,
-    auteur: "Épictète",
-    oeuvre: "Manuel",
-    resume: `Distinguer ce qui <strong>dépend de nous</strong> (jugements, désirs, actions, croyances) de ce qui n'en dépend pas (corps, réputation, richesse, résultat du travail). Le sage ne s'attache qu'au premier et est imperméable au reste — il est alors radicalement libre. Ce stoïcisme implique que la liberté n'est pas l'absence de contraintes extérieures, mais la maîtrise de soi intérieure. Mobilise : liberté, devoir, travail, raison, religion.`,
-    notions: ["La liberté","Le devoir","Le travail","La raison","La religion"],
-    mots_cles: ["ce qui dépend de nous","stoïcisme","sage","liberté intérieure","ataraxie","maîtrise de soi"],
-  },
-  {
-    id: 19,
-    auteur: "Hegel",
-    oeuvre: "Phénoménologie de l'esprit",
-    resume: `Vouloir préserver sa <strong>pureté à tout prix</strong>, c'est refuser d'exister — d'entrer dans le temps, le changement et l'engagement. Être libre, c'est accepter d'exister dans le monde, de se salir les mains, de devenir. Celui qui cherche trop son devoir peut se détourner de l'existence concrète. Ce texte articule : liberté (s'engager), nature (la vouloir préserver, c'est la fuir), devoir (trop rigide peut paralyser), et temps (préserver la pureté = refuser de changer).`,
-    notions: ["La liberté","Le devoir","La nature","Le temps"],
-    mots_cles: ["pureté","engagement","existence","devenir","belle âme","changement et liberté"],
-  },
-  {
-    id: 20,
-    auteur: "Platon",
-    oeuvre: "Gorgias — Calliclès vs Socrate",
-    resume: `Deux conceptions radicalement opposées du bonheur et de la liberté. <strong>Socrate</strong> : le bonheur est rationnel, il suppose la maîtrise de soi et l'absence de désirs incontrôlés — être libre, c'est se libérer de ses désirs. <strong>Calliclès</strong> : le bonheur est la satisfaction totale et excessive de tous ses désirs — être libre, c'est n'avoir aucune retenue. Ce dialogue mobilise : bonheur, liberté, raison, et nature (l'homme fort a le droit naturel de dominer les faibles).`,
-    notions: ["Le bonheur","La liberté","La raison"],
-    mots_cles: ["Calliclès","Socrate","désirs","maîtrise de soi","satisfaction totale","tyran-heureux vs sage"],
-  },
-  {
-    id: 21,
-    auteur: "Alain",
-    oeuvre: "Propos sur le bonheur",
-    resume: `Le bonheur ne se reçoit pas, il se <strong>construit</strong> — et on a même le devoir de le construire pour soi et pour inciter autrui. L'enfant qui joue est le modèle : implication totale dans l'instant présent, oubli du reste, liberté de faire ce qu'il veut. Pour connaître le bonheur, la conscience ne doit pas être trop pleine — <em>pas de bonheur sans oubli</em>. L'art permet cette implication totale. Mobilise : bonheur, art, devoir, travail, conscience, liberté, temps.`,
-    notions: ["Le bonheur","L'art","Le devoir","Le travail","La conscience","La liberté","Le temps"],
-    mots_cles: ["construire le bonheur","enfant","implication totale","oubli","jeu","instant présent"],
-  },
-  {
-    id: 22,
-    auteur: "Nietzsche",
-    oeuvre: "Le gai savoir §341 — L'éternel retour",
-    resume: `Si tu devais <strong>revivre ta vie telle qu'elle a été, infiniment</strong>, voudrais-tu que rien ne change ? Ce test existentiel radical permet de discerner ce qu'on désire vraiment de ce qu'on fait par habitude, pression ou fuite. Il permet de se libérer de toute influence extérieure, de déterminer ses devoirs véritables et l'individu qu'on veut devenir. Mobilise : liberté (désirs authentiques), devoir (ce qu'on doit accomplir), conscience (qui voulons-nous être), temps (bilan et projection).`,
-    notions: ["La liberté","Le devoir","La conscience","Le temps"],
-    mots_cles: ["éternel retour","revivre sa vie","désir authentique","test existentiel","bilan","devenir"],
-  },
-  {
-    id: 23,
-    auteur: "Machiavel",
-    oeuvre: "Le Prince — Réputation, libéralité, cruauté, amour/crainte, adaptation",
-    resume: `Le Prince doit <strong>séparer politique et morale</strong> : son seul devoir est de conserver le pouvoir et la réputation, par tous les moyens — ruse, cruauté, générosité selon les circonstances. La politique est le règne de l'<em>apparence</em>, non de la vérité. Il vaut mieux être craint qu'aimé (l'amour est fragile, la crainte durable). Être dirigeant, c'est être un être de raison pur qui s'adapte à la situation, sans être guidé par ses valeurs. Mobilise : politique, État, devoir, justice, vérité, liberté, raison, temps, conscience.`,
-    notions: ["La politique","L'État","Le devoir","La justice","La vérité","La liberté","La raison","Le temps","La conscience"],
-    mots_cles: ["séparation politique/morale","réputation","craint vs aimé","apparence","adaptation","réalisme politique"],
+  { nom:"L'art", cours:true,
+    intro:"La technique de l'artisan et la création esthétique de l'artiste. Il pose la question de la création, du beau et de la transformation de l'humain.",
+    auteurs:[
+      {nom:"Freud",    dates:"1856–1939", concept:"Sublimation",       these:"L'artiste transforme ses frustrations en fiction. L'oeuvre, née de raisons personnelles, peut toucher universellement."},
+      {nom:"Matisse",  dates:"1869–1954", concept:"Regard d'enfant",   these:"L'artiste réapprend à voir le monde pour la première fois, libéré de l'habitude et des clichés du quotidien."},
+      {nom:"Hegel",    dates:"1770–1831", concept:"Bien connu/méconnu",these:"« Le bien connu, précisément parce qu'il est bien connu, est méconnu. » L'art révèle ce que l'habitude cache."},
+      {nom:"Heidegger",dates:"1889–1976", concept:"Vérité de l'oeuvre",these:"L'oeuvre d'art dévoile la vérité de l'être, par opposition à la technique qui réduit tout à de l'utile."},
+      {nom:"Platon",   dates:"428–348 av. J.-C.", concept:"Mimésis",   these:"L'art n'est qu'imitation d'imitation : il copie le sensible, lui-même ombre des Idées."},
+    ],
+    methodo:[
+      {auteur:"Gorgias",  oeuvre:"Sur le non-être",                   usage:"Notre perception de l'art nous est propre et ne peut être communiquée à autrui."},
+      {auteur:"Nietzsche",oeuvre:"Par-delà bien et mal",              usage:"Chaque oeuvre d'art offre un nouveau point de vue sur le réel."},
+      {auteur:"Freud",    oeuvre:"Introduction à la psychanalyse",    usage:"L'artiste crée une fiction pour obtenir ce qu'il désirait. Le succès lui apporte réellement gloire et amour."},
+      {auteur:"Sartre",   oeuvre:"L'existentialisme est un humanisme",usage:"Dans le cas de l'art de l'artiste ou de l'artisan, l'essence précède l'existence."},
+      {auteur:"Alain",    oeuvre:"Propos sur le bonheur",             usage:"L'art semble permettre une implication totale — première condition du bonheur."},
+      {auteur:"Matisse",  oeuvre:"Écrits et propos sur l'art",        usage:"L'art nous donne à voir la nature : l'artiste retrouve le regard de l'enfant qui voit le monde pour la première fois."},
+    ]
   },
 ];
 
-// ── TOUTES LES NOTIONS pour les filtres ────────────────────────────────
-const ALL_NOTIONS = [...new Set(TEXTES.flatMap(t => t.notions))].sort();
+const ALL_NOTIONS_FC = [...new Set(TEXTES.flatMap(t => t.notions))].sort();
 
-// ── STATE ────────────────────────────────────────────────────────────────
-let state = {
-  filter: null,      // notion filtrée
-  deck: [],          // indices dans TEXTES (après filtre + ordre)
-  idx: 0,            // position courante dans deck
+// ══════════════════════════════════════════════════════════
+// MODE SWITCH
+// ══════════════════════════════════════════════════════════
+function switchMode(mode) {
+  document.getElementById('section-fc').classList.toggle('active', mode === 'fc');
+  document.getElementById('section-notions').classList.toggle('active', mode === 'notions');
+  document.getElementById('btn-mode-fc').classList.toggle('active', mode === 'fc');
+  document.getElementById('btn-mode-notions').classList.toggle('active', mode === 'notions');
+  if (mode === 'notions' && !notionsBuilt) buildNotionsMode();
+}
+
+// ══════════════════════════════════════════════════════════
+// FLASHCARD STATE
+// ══════════════════════════════════════════════════════════
+let fcState = {
+  filter: null,
+  deck: [],
+  idx: 0,
   flipped: false,
-  scores: {},        // texte.id → 'ok' | 'nok' | null
-  sessionDone: false,
+  scores: {},
+  done: false,
 };
 
-// ── INIT ─────────────────────────────────────────────────────────────────
-function buildDeck() {
-  const filtered = state.filter
-    ? TEXTES.filter(t => t.notions.includes(state.filter))
-    : [...TEXTES];
-  state.deck = filtered.map(t => t.id);
-  state.idx = 0;
-  state.flipped = false;
-  state.sessionDone = false;
-  filtered.forEach(t => { if (!(t.id in state.scores)) state.scores[t.id] = null; });
+function fcBuildDeck() {
+  const src = fcState.filter ? TEXTES.filter(t => t.notions.includes(fcState.filter)) : [...TEXTES];
+  fcState.deck = src.map(t => t.id);
+  fcState.idx = 0; fcState.flipped = false; fcState.done = false;
+  src.forEach(t => { if (!(t.id in fcState.scores)) fcState.scores[t.id] = null; });
 }
 
-function currentTexte() {
-  return TEXTES.find(t => t.id === state.deck[state.idx]);
+function fcCurrent() { return TEXTES.find(t => t.id === fcState.deck[fcState.idx]); }
+
+function fcShuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length-1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
 }
 
-// ── RENDER ──────────────────────────────────────────────────────────────
-function renderCard() {
-  const t = currentTexte();
-  if (!t) return;
+function fcRender() {
+  const t = fcCurrent(); if (!t) return;
+  const pos = fcState.idx + 1, total = fcState.deck.length;
+  document.getElementById('fc-pos').textContent = `${pos} / ${total}`;
+  document.getElementById('fc-prog').style.width = `${(pos/total)*100}%`;
+  const ok  = fcState.deck.filter(id => fcState.scores[id]==='ok').length;
+  const nok = fcState.deck.filter(id => fcState.scores[id]==='nok').length;
+  document.getElementById('fc-ok').textContent  = `✓ ${ok}`;
+  document.getElementById('fc-nok').textContent = `✗ ${nok}`;
 
-  // Recto
-  document.getElementById('fc-tag').textContent = `${state.idx + 1} / ${state.deck.length}`;
-  document.getElementById('fc-auteur').textContent = t.auteur;
-  document.getElementById('fc-oeuvre').textContent = t.oeuvre;
+  document.getElementById('fc-tag').textContent      = `${pos} / ${total}`;
+  document.getElementById('fc-auteur').textContent   = t.auteur;
+  document.getElementById('fc-oeuvre').textContent   = t.oeuvre;
+  document.getElementById('fc-back-sub').textContent = `${t.auteur} — ${t.oeuvre}`;
+  document.getElementById('fc-resume').innerHTML     = t.resume;
 
-  const nf = document.getElementById('fc-notions-front');
-  nf.innerHTML = '';
-  t.notions.forEach(n => {
-    const sp = document.createElement('span');
-    sp.className = 'notion-tag';
-    sp.textContent = n;
-    nf.appendChild(sp);
-  });
+  const mktags = (el, tags, dim) => {
+    el.innerHTML='';
+    tags.forEach(n => {
+      const s = document.createElement('span');
+      s.className = 'ntag' + (dim?' dim':'');
+      s.textContent = n; el.appendChild(s);
+    });
+  };
+  mktags(document.getElementById('fc-ntags-front'), t.notions, false);
+  mktags(document.getElementById('fc-ntags-back'),  t.notions, true);
 
-  // Verso
-  document.getElementById('fc-back-auteur').textContent = `${t.auteur} — ${t.oeuvre}`;
-  document.getElementById('fc-resume').innerHTML = t.resume;
-
-  const nb = document.getElementById('fc-notions-back');
-  nb.innerHTML = '';
-  t.notions.forEach(n => {
-    const sp = document.createElement('span');
-    sp.className = 'notion-tag';
-    sp.textContent = n;
-    nb.appendChild(sp);
-  });
-
-  // Flip state
   const fc = document.getElementById('flashcard');
-  fc.classList.toggle('flipped', state.flipped);
-
-  // Actions visibility
-  document.getElementById('card-actions').style.display = state.flipped ? 'flex' : 'none';
-
-  // Nav buttons
-  document.getElementById('btn-prev').disabled = state.idx === 0;
-  document.getElementById('btn-next').disabled = state.idx === state.deck.length - 1;
-
-  // Progress
-  updateMeta();
+  fc.classList.toggle('flipped', fcState.flipped);
+  document.getElementById('mark-row').style.display  = fcState.flipped ? 'flex' : 'none';
+  document.getElementById('fc-prev').disabled = fcState.idx === 0;
+  document.getElementById('fc-next').disabled = fcState.idx === fcState.deck.length-1;
 }
 
-function updateMeta() {
-  const total = state.deck.length;
-  const pos   = state.idx + 1;
-  const ok    = state.deck.filter(id => state.scores[id] === 'ok').length;
-  const nok   = state.deck.filter(id => state.scores[id] === 'nok').length;
-
-  document.getElementById('card-counter').textContent = `${pos} / ${total}`;
-  document.getElementById('prog').style.width = `${(pos / total) * 100}%`;
-  document.getElementById('score-ok').textContent  = `✓ ${ok}`;
-  document.getElementById('score-nok').textContent = `✗ ${nok}`;
-  document.getElementById('hd-count').textContent  = `${total} texte${total > 1 ? 's' : ''}`;
+function fcFlip() {
+  fcState.flipped = !fcState.flipped;
+  document.getElementById('flashcard').classList.toggle('flipped', fcState.flipped);
+  document.getElementById('mark-row').style.display = fcState.flipped ? 'flex' : 'none';
 }
 
-function showResults() {
-  state.sessionDone = true;
-  document.getElementById('flashcard').style.display   = 'none';
-  document.getElementById('card-actions').style.display = 'none';
+function fcGoTo(i) { fcState.idx = i; fcState.flipped = false; fcRender(); }
+
+function fcMark(m) {
+  const t = fcCurrent(); if (t) fcState.scores[t.id] = m;
+  if (fcState.idx < fcState.deck.length-1) { fcGoTo(fcState.idx+1); }
+  else { fcShowResults(); }
+}
+
+function fcShowResults() {
+  fcState.done = true;
+  document.getElementById('flashcard').style.display    = 'none';
+  document.getElementById('mark-row').style.display     = 'none';
   document.getElementById('nav-row').style.display      = 'none';
-
-  const total = state.deck.length;
-  const ok    = state.deck.filter(id => state.scores[id] === 'ok').length;
-  const pct   = Math.round((ok / total) * 100);
-
-  const msgs = [
-    [100, "Parfait. Tous les textes maîtrisés."],
-    [80,  "Excellent. Quelques textes à revoir."],
-    [60,  "Bon niveau. Continue sur ta lancée."],
-    [40,  "Les bases sont là. Revois les difficiles."],
-    [0,   "Continue. Relis tes fiches et recommence."],
-  ];
-  const msg = msgs.find(([t]) => pct >= t)[1];
-
+  const total = fcState.deck.length;
+  const ok    = fcState.deck.filter(id => fcState.scores[id]==='ok').length;
+  const pct   = Math.round((ok/total)*100);
+  const msgs  = [[100,"Parfait. Tous les textes maîtrisés."],[80,"Excellent. Quelques textes à revoir."],[60,"Bon niveau. Continue."],[40,"Les bases sont là. Revois les difficiles."],[0,"Continue — relis tes fiches et recommence."]];
+  const msg   = msgs.find(([t])=>pct>=t)[1];
   document.getElementById('res-ok').textContent    = ok;
   document.getElementById('res-total').textContent = total;
   document.getElementById('res-pct').textContent   = `${pct}%`;
   document.getElementById('res-msg').textContent   = msg;
-  document.getElementById('results').classList.add('show');
+  document.getElementById('result-screen').classList.add('show');
 }
 
-// ── FILTRES ─────────────────────────────────────────────────────────────
-function buildFilters() {
-  const bar = document.getElementById('controls');
-  // "Tous"
-  const all = document.createElement('button');
-  all.className = 'filter-btn' + (state.filter === null ? ' active' : '');
-  all.textContent = 'Tous';
-  all.onclick = () => { state.filter = null; applyFilter(); };
-  bar.appendChild(all);
-
-  ALL_NOTIONS.forEach(n => {
-    const btn = document.createElement('button');
-    btn.className = 'filter-btn' + (state.filter === n ? ' active' : '');
-    btn.textContent = n;
-    btn.onclick = () => { state.filter = n; applyFilter(); };
-    bar.appendChild(btn);
-  });
-}
-
-function applyFilter() {
-  // Reset
-  document.getElementById('controls').innerHTML = '';
-  buildFilters();
-  state.scores = {};
-  buildDeck();
-  resetUI();
-  renderCard();
-}
-
-function resetUI() {
-  state.flipped = false;
-  document.getElementById('flashcard').style.display   = '';
-  document.getElementById('card-actions').style.display = 'none';
+function fcResetUI() {
+  fcState.flipped = false;
+  document.getElementById('flashcard').style.display    = '';
+  document.getElementById('mark-row').style.display     = 'none';
   document.getElementById('nav-row').style.display      = '';
-  document.getElementById('results').classList.remove('show');
+  document.getElementById('result-screen').classList.remove('show');
 }
 
-// ── SHUFFLE ─────────────────────────────────────────────────────────────
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
+// Build filter chips
+function fcBuildFilters() {
+  const bar = document.getElementById('fc-filters');
+  bar.innerHTML = '';
+  const addChip = (label, val) => {
+    const b = document.createElement('button');
+    b.className = 'chip' + (fcState.filter===val?' active':'');
+    b.textContent = label;
+    b.onclick = () => { fcState.filter=val; fcState.scores={}; fcBuildDeck(); fcBuildFilters(); fcResetUI(); fcRender(); };
+    bar.appendChild(b);
+  };
+  const lbl = document.createElement('span');
+  lbl.className='filter-label'; lbl.textContent='filtre';
+  bar.appendChild(lbl);
+  addChip('Tous', null);
+  ALL_NOTIONS_FC.forEach(n => addChip(n, n));
 }
 
-// ── NAVIGATION ──────────────────────────────────────────────────────────
-function flip() {
-  state.flipped = !state.flipped;
-  document.getElementById('flashcard').classList.toggle('flipped', state.flipped);
-  document.getElementById('card-actions').style.display = state.flipped ? 'flex' : 'none';
+// ══════════════════════════════════════════════════════════
+// FICHES NOTIONS
+// ══════════════════════════════════════════════════════════
+let notionsBuilt = false;
+let currentNotion = 0;
+
+function buildNotionsMode() {
+  notionsBuilt = true;
+
+  // Build sidebar nav
+  const nav = document.getElementById('notion-nav');
+  NOTIONS_DATA.forEach((n, i) => {
+    const b = document.createElement('button');
+    b.className = 'notion-nav-btn' + (i===0?' active':'');
+    if (n.cours) b.dataset.cours = '1';
+    b.innerHTML = `<span class="ndot"></span>${n.nom}`;
+    b.onclick = () => showNotion(i);
+    nav.appendChild(b);
+  });
+
+  showNotion(0);
 }
 
-function goTo(idx) {
-  state.idx     = idx;
-  state.flipped = false;
-  renderCard();
+function showNotion(idx) {
+  currentNotion = idx;
+  const n = NOTIONS_DATA[idx];
+
+  // Update nav
+  document.querySelectorAll('.notion-nav-btn').forEach((b,i) => b.classList.toggle('active', i===idx));
+
+  const content = document.getElementById('notion-content');
+
+  // Build auteurs table rows
+  const auteurRows = n.auteurs.map(a => `
+    <tr>
+      <td><div class="td-name">${a.nom}<span class="td-dates">${a.dates}</span></div></td>
+      <td><span class="td-concept">${a.concept}</span></td>
+      <td><div class="td-these">${a.these}</div></td>
+    </tr>`).join('');
+
+  // Build methodo cards
+  const methodoCards = n.methodo.map(m => `
+    <div class="methodo-card">
+      <div class="methodo-head">
+        <div>
+          <div class="methodo-auteur">${m.auteur}</div>
+          <div class="methodo-oeuvre">${m.oeuvre}</div>
+        </div>
+      </div>
+      <div class="methodo-usage">${m.usage}</div>
+    </div>`).join('');
+
+  content.innerHTML = `
+    <div class="notion-header">
+      <div class="notion-eyebrow">
+        <span>notion ${String(idx+1).padStart(2,'0')} / ${NOTIONS_DATA.length}</span>
+        ${n.cours ? '<span class="notion-cours-badge">● en cours</span>' : ''}
+      </div>
+      <div class="notion-title">${n.nom}</div>
+      <div class="notion-intro">${n.intro}</div>
+    </div>
+
+    <div class="section-sep"></div>
+
+    <div class="auteurs-label">Auteurs · thèses</div>
+    <table class="auteurs-table">
+      <thead><tr>
+        <th style="width:22%">Philosophe</th>
+        <th style="width:22%">Concept-clé</th>
+        <th style="width:56%">Thèse principale</th>
+      </tr></thead>
+      <tbody>${auteurRows}</tbody>
+    </table>
+
+    <div class="methodo-label">Connexions inter-notions · Fiche TG</div>
+    <div class="methodo-grid">${methodoCards}</div>
+  `;
 }
 
-function markAndNext(mark) {
-  const t = currentTexte();
-  if (t) state.scores[t.id] = mark;
-  if (state.idx < state.deck.length - 1) {
-    goTo(state.idx + 1);
-  } else {
-    showResults();
-  }
-}
-
-// ── EVENTS ──────────────────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
-  buildDeck();
-  buildFilters();
-  renderCard();
+  fcBuildDeck();
+  fcBuildFilters();
+  fcRender();
 
-  document.getElementById('flashcard').addEventListener('click', flip);
-  document.getElementById('btn-flip').addEventListener('click', (e) => { e.stopPropagation(); flip(); });
-  document.getElementById('btn-prev').addEventListener('click', (e) => { e.stopPropagation(); if (state.idx > 0) goTo(state.idx - 1); });
-  document.getElementById('btn-next').addEventListener('click', (e) => { e.stopPropagation(); if (state.idx < state.deck.length - 1) goTo(state.idx + 1); });
-
-  document.getElementById('btn-ok').addEventListener('click',   (e) => { e.stopPropagation(); markAndNext('ok'); });
-  document.getElementById('btn-nok').addEventListener('click',  (e) => { e.stopPropagation(); markAndNext('nok'); });
-  document.getElementById('btn-skip').addEventListener('click', (e) => { e.stopPropagation(); markAndNext(null); });
-
-  document.getElementById('btn-shuffle').addEventListener('click', () => {
-    state.deck = shuffle(state.deck);
-    state.idx  = 0;
-    state.scores = {};
-    buildDeck();
-    state.deck = shuffle(state.deck);
-    resetUI();
-    renderCard();
-  });
-
-  document.getElementById('btn-restart').addEventListener('click', () => {
-    state.scores = {};
-    buildDeck();
-    resetUI();
-    renderCard();
-  });
-
-  document.getElementById('res-restart').addEventListener('click', () => {
-    state.scores = {};
-    buildDeck();
-    resetUI();
-    renderCard();
-  });
-
-  document.getElementById('res-review').addEventListener('click', () => {
-    const difficult = state.deck.filter(id => state.scores[id] === 'nok' || state.scores[id] === null);
-    if (!difficult.length) return;
-    state.deck   = difficult;
-    state.idx    = 0;
-    state.scores = {};
-    resetUI();
-    renderCard();
+  // Flashcard events
+  document.getElementById('flashcard').addEventListener('click', fcFlip);
+  document.getElementById('fc-flip').addEventListener('click', e=>{e.stopPropagation();fcFlip();});
+  document.getElementById('fc-prev').addEventListener('click', e=>{e.stopPropagation();if(fcState.idx>0)fcGoTo(fcState.idx-1);});
+  document.getElementById('fc-next').addEventListener('click', e=>{e.stopPropagation();if(fcState.idx<fcState.deck.length-1)fcGoTo(fcState.idx+1);});
+  document.getElementById('btn-ok').addEventListener('click',  e=>{e.stopPropagation();fcMark('ok');});
+  document.getElementById('btn-nok').addEventListener('click', e=>{e.stopPropagation();fcMark('nok');});
+  document.getElementById('btn-skip').addEventListener('click',e=>{e.stopPropagation();fcMark(null);});
+  document.getElementById('fc-shuffle').addEventListener('click',()=>{fcState.deck=fcShuffle(fcState.deck);fcState.idx=0;fcState.scores={};fcResetUI();fcRender();});
+  document.getElementById('fc-reset').addEventListener('click',()=>{fcState.scores={};fcBuildDeck();fcResetUI();fcRender();});
+  document.getElementById('res-restart').addEventListener('click',()=>{fcState.scores={};fcBuildDeck();fcResetUI();fcRender();});
+  document.getElementById('res-review').addEventListener('click',()=>{
+    const hard=fcState.deck.filter(id=>fcState.scores[id]==='nok'||fcState.scores[id]===null);
+    if(!hard.length)return;
+    fcState.deck=hard;fcState.idx=0;fcState.scores={};fcResetUI();fcRender();
   });
 
   // Keyboard
-  document.addEventListener('keydown', (e) => {
-    if (state.sessionDone) return;
-    if (['INPUT','TEXTAREA','BUTTON'].includes(e.target.tagName)) return;
-    switch (e.key) {
-      case ' ':
-      case 'Enter':
-        e.preventDefault();
-        flip();
-        break;
-      case 'ArrowLeft':
-        if (state.idx > 0) goTo(state.idx - 1);
-        break;
-      case 'ArrowRight':
-        if (!state.flipped) { flip(); }
-        else { markAndNext(null); }
-        break;
-      case '1':
-        if (state.flipped) markAndNext('nok');
-        break;
-      case '3':
-        if (state.flipped) markAndNext('ok');
-        break;
+  document.addEventListener('keydown', e => {
+    const mode = document.getElementById('section-fc').classList.contains('active') ? 'fc' : 'notions';
+    if (mode === 'notions') {
+      if (e.key==='ArrowDown' && currentNotion<NOTIONS_DATA.length-1) showNotion(currentNotion+1);
+      if (e.key==='ArrowUp'   && currentNotion>0)                     showNotion(currentNotion-1);
+      return;
     }
+    if (fcState.done) return;
+    if (['INPUT','TEXTAREA','BUTTON'].includes(e.target.tagName)) return;
+    if (e.key===' '||e.key==='Enter'){e.preventDefault();fcFlip();}
+    else if (e.key==='ArrowLeft'  && fcState.idx>0) fcGoTo(fcState.idx-1);
+    else if (e.key==='ArrowRight'){if(!fcState.flipped)fcFlip();else fcMark(null);}
+    else if (e.key==='1'&&fcState.flipped) fcMark('nok');
+    else if (e.key==='3'&&fcState.flipped) fcMark('ok');
   });
 });
 </script>
